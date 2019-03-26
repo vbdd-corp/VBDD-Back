@@ -1,0 +1,17 @@
+[
+  {
+    "login": "Miriame",
+    "password": "mimi",
+    "id": 0
+  },
+  {
+    "login": "Jeannette",
+    "password": "test",
+    "id": 1
+  },
+  {
+    "login": "JeanDuJardin",
+    "password": "test2",
+    "id": 2
+  }
+]
