@@ -40,5 +40,10 @@
     "eslint-plugin-import": "2.16.0",
     "nodemon": "1.18.10",
     "pre-commit": "1.2.2"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "mocks/*"
+    ]
   }
 }

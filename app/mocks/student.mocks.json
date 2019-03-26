@@ -1,26 +1,17 @@
 [
   {
-    "firstName": "John",
-    "lastName": "hellou",
-    "email": "dohy@gmail.com",
-    "profilePicture": "ab",
-    "notes": "oooh good student 2",
-    "id": 1551728976081
+    "mail": "dohy@hotmail.com",
+    "password": "pass1",
+    "id": 0
   },
   {
-    "id": 1552354875685,
-    "firstName": "jean",
-    "lastName": "michel",
-    "email": "jeanmichel@michel.com",
-    "notes": "Just a Jean Mi",
-    "profilePicture": "blob"
+    "mail": "coco@yahoo.com",
+    "password": "test",
+    "id": 1
   },
   {
-    "firstName": "test",
-    "lastName": "te",
-    "email": "camille.bauce@etu.univ-cotedazur.fr",
-    "notes": "test",
-    "profilePicture": "test",
-    "id": 1552374979452
+    "mail": "halloa@gmail.com",
+    "password": "qwerty",
+    "id": 2
   }
 ]

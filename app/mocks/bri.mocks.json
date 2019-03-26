@@ -1,17 +1,17 @@
 [
   {
-    "mail": "dohy@hotmail.com",
-    "password": "pass1",
+    "login": "Miriame",
+    "password": "mimi",
     "id": 0
   },
   {
-    "mail": "coco@yahoo.com",
+    "login": "Jeannette",
     "password": "test",
     "id": 1
   },
   {
-    "mail": "halloa@gmail.com",
-    "password": "qwerty",
+    "login": "JeanDuJardin",
+    "password": "test2",
     "id": 2
   }
 ]
