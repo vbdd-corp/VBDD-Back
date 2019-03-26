@@ -1,8 +1,4 @@
-// set variables for environment
-var express = require('express');
-var app = express();
-var path = require('path');
+const buildServer = require('./build-server.js');
+const logger = require('./utils/logger.js');
 
-// Set server port
-app.listen(4000);
-console.log('server is running');
+buildServer(server => logger.info(`Server is listening on port ${server.address().port}`));
