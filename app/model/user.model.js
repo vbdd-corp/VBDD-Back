@@ -5,6 +5,6 @@ const BaseModel = require('../utils/base-model.js');
 // est générique, represente user/password.
 module.exports = new BaseModel('User', {
   id: Joi.number().required(),
-  user: Joi.string().required(),
+  mail: Joi.string().required(),
   password: Joi.string().required(),
 });
