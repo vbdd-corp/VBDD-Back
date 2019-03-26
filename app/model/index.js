@@ -5,5 +5,5 @@ const Bri = require('./bri.model.js');
 module.exports = {
   User,
   Student,
-  Bri
+  Bri,
 };
