@@ -39,12 +39,15 @@ router.get('/by-id/:studentID', (req, res) => {
   }
 });
 
+/* éventuellement faire méthode put */
+
 /* ce post fonctionne mais l'id est rempli automatiquement par Node.JS
-* probablement avec la date courante. */
+* probablement avec la date courante au lieu du plus petit id possible */
+
 router.post('/', (req, res) => {
   try {
-    const ticket = Student.create(req.body);
-    res.status(201).json(ticket);
+    const oneStud = Student.create(req.body);
+    res.status(201).json(oneStud);
   } catch (err) {
     if (err.name === 'ValidationError') {
       res.status(400).json(err.extra);

@@ -1,7 +1,7 @@
 [
   {
-    "mail": "Miriame",
-    "password": "mimi",
+    "mail": "Myriam",
+    "password": "El Mama",
     "id": 0
   },
   {
@@ -13,5 +13,10 @@
     "mail": "JeanDuJardin",
     "password": "test2",
     "id": 2
+  },
+  {
+    "id": 1553893941713,
+    "mail": "corinne page",
+    "password": "123abc"
   }
 ]
