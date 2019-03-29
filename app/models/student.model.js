@@ -1,12 +1,13 @@
 const Joi = require('joi');
-// const BaseModel = require('../utils/base-model.js');
-const UserModel = require('./user.model');
+const BaseModel = require('../utils/base-model.js');
 
-
-class StudentModel extends UserModel {
+class StudentModel extends BaseModel {
   constructor() {
     super('Student', {
-      major: Joi.string().allow('').optional(),
+      id: Joi.number().required(),
+      mail: Joi.string().required(),
+      password: Joi.string().required(),
+      // major: Joi.string().allow('').optional(),
     });
   }
 }

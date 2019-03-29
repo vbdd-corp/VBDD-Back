@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { User, Bri, Student } = require('../../models');
+const { Bri, Student } = require('../../models');
 
 // const { STUDENT_MOCKS } = require('../../mocks/student.mocks');
 // const { BRI_MOCKS } = require('../../mocks/bri.mocks.json')
@@ -10,7 +10,7 @@ const router = new Router();
 
 const getBRIByLoginAndPwd = function (mail, pwd) {
   const res = Bri.get().filter(
-    bri => bri.login === mail && bri.password === pwd,
+    bri => bri.mail === mail && bri.password === pwd,
   );
   logger.log('getBRIbyLoginAndPWd ==> ', res);
   return res;
@@ -25,27 +25,21 @@ const getStudentByLoginAndPwd = function (mail, pwd) {
   return res;
 };
 
-const myFunc = function (user) {
-  logger.log(`myFunc user == |${user.mail}| |${user.password}|`);
-  const tab = Student.get();
-  for (let i = 0; i < tab.length; i += 1) {
-    logger.log(`user mail == |${tab[i].mail}|`);
-    logger.log(`user password == |${tab[i].password}|`);
-  }
+const log = function (message) {
+  logger.log(message);
 };
 
 router.get('/', (req, res) => res.status(200).json('ok login'));
 router.post('/', (req, res) => {
   // res.status(200).json('ok login post');
+  log('plop');
   try {
-    const user = User.create(req.body);
-    myFunc(user);
-    let resUser = getBRIByLoginAndPwd(user.mail.trim(), user.password.trim());
+    let resUser = getBRIByLoginAndPwd(req.body.mail.trim(), req.body.password.trim());
     // logger.info('resUser => ', resUser);
     if (resUser.length) {
       res.status(201).json(resUser);
     } else {
-      resUser = getStudentByLoginAndPwd(user.mail.trim(), user.password.trim());
+      resUser = getStudentByLoginAndPwd(req.body.mail.trim(), req.body.password.trim());
       if (resUser.length) {
         res.status(201).json(resUser);
       } else {

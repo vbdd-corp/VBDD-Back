@@ -1,12 +1,12 @@
-// const Joi = require('joi');
-// const BaseModel = require('../utils/base-model.js');
-const UserModel = require('./user.model');
+const Joi = require('joi');
+const BaseModel = require('../utils/base-model.js');
 
-
-class BriModel extends UserModel {
+class BriModel extends BaseModel {
   constructor() {
-    super('BRI', {
-
+    super('Bri', {
+      id: Joi.number().required(),
+      mail: Joi.string().required(),
+      password: Joi.string().required(),
     });
   }
 }

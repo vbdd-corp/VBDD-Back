@@ -1,16 +1,16 @@
 [
   {
-    "user": "Miriame",
+    "mail": "Miriame",
     "password": "mimi",
     "id": 0
   },
   {
-    "user": "Jeannette",
+    "mail": "Jeannette",
     "password": "test",
     "id": 1
   },
   {
-    "user": "JeanDuJardin",
+    "mail": "JeanDuJardin",
     "password": "test2",
     "id": 2
   }
