@@ -1,0 +1,18 @@
+[
+  {
+    "id": 0,
+    "typeName": "informations-generales"
+  },
+  {
+    "id": 1,
+    "typeName": "CNI"
+  },
+  {
+    "id": 2,
+    "typeName": "passeport"
+  },
+  {
+    "id": 3,
+    "typeName": "contrat-etudes",
+  }
+]

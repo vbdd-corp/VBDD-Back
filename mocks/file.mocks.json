@@ -1,0 +1,20 @@
+[
+  {
+    "id": 0,
+    "studentId": 0,
+    "moduleIds": [0, 1],
+    "fileTypeId": 0
+  },
+  {
+    "id": 1,
+    "studentId": 0,
+    "moduleIds": [0, 1, 2, 3],
+    "fileTypeId": 1
+  },
+  {
+    "id": 2,
+    "studentId": 2,
+    "moduleIds": [2, 3],
+    "fileTypeId": 1
+  }
+]

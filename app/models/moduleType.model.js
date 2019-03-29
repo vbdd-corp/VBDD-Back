@@ -1,13 +1,13 @@
 const Joi = require('joi');
 const BaseModel = require('../utils/base-model.js');
 
-class FileTypeModel extends BaseModel {
+class ModuleTypeModel extends BaseModel {
   constructor() {
-    super('FileType', {
+    super('ModuleType', {
       id: Joi.number().required(),
       typeName: Joi.string().required(),
     });
   }
 }
 
-module.exports = new FileTypeModel();
+module.exports = new ModuleTypeModel();
