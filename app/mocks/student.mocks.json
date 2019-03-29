@@ -1,16 +1,16 @@
 [
   {
-    "mail": "dohy@hotmail.com",
+    "user": "dohy@hotmail.com",
     "password": "pass1",
     "id": 0
   },
   {
-    "mail": "coco@yahoo.com",
+    "user": "coco@yahoo.com",
     "password": "test",
     "id": 1
   },
   {
-    "mail": "halloa@gmail.com",
+    "user": "halloa@gmail.com",
     "password": "qwerty",
     "id": 2
   }
