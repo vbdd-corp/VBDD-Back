@@ -1,14 +1,15 @@
 const Joi = require('joi');
 const BaseModel = require('../utils/base-model.js');
 
-class BriModel extends BaseModel {
+class FileModel extends BaseModel {
   constructor() {
-    super('Bri', {
+    super('File', {
       id: Joi.number().required(),
-      mail: Joi.string().required(),
-      password: Joi.string().required(),
+      studentId: Joi.number().required(),
+      moduleIds: Joi.array().items(Joi.number()).required(),
+      fileTypeId: Joi.number().required(),
     });
   }
 }
 
-module.exports = new BriModel();
+module.exports = new FileModel();

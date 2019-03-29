@@ -15,6 +15,7 @@ const getStudentById = function (studentId) {
 
 router.get('/', (req, res) => res.status(200).json(Student.get()));
 router.get('/by-name/:studentName', (req, res) => res.status(200).json('WIP'));
+router.get('/by-major/:major', (req, res) => res.status(200).json('WIP'));
 
 router.get('/by-id/:studentID', (req, res) => {
   try {
