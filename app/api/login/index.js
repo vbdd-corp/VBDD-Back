@@ -27,11 +27,11 @@ router.post('/', (req, res) => {
   try {
     let user = getBriByLogin(req.body.mail.trim(), req.body.password.trim());
     if (user.length) { // if user is found in BRI base
-      res.status(201).json({ bri: user, error: '' });
+      res.status(201).json({ bri: user, error: '', isStudent: false });
     } else {
       user = getStudentByLogin(req.body.mail.trim(), req.body.password.trim());
       if (user.length) { // if user is found in Student base
-        res.status(201).json({ student: user, error: '' });
+        res.status(201).json({ student: user, error: '', isStudent: true });
       } else {
         res.status(403).json({ error: 'Wrong password or login' });
       }

@@ -50,5 +50,10 @@
   {
     "id": 13,
     "typeName": "Carte Européenne d'Assurance Maladie"
+  },
+  {
+    "id": 14,
+    "typeName": "Liste Cours 2018-2019"
   }
+
 ]
