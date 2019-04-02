@@ -6,6 +6,8 @@ class FileTypeModel extends BaseModel {
     super('FileType', {
       id: Joi.number().required(),
       typeName: Joi.string().required(),
+      moduleTypeList: Joi.array().items(Joi.number()).required(),
+      /* liste de moduleTypeIds */
     });
   }
 }

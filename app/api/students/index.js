@@ -27,7 +27,7 @@ router.get('/', (req, res) => res.status(200).json(Student.get()));
 router.get('/by-name/:studentName', (req, res) => res.status(200).json(getStudentByName(req.params.studentName)));
 router.get('/by-major/:major', (req, res) => res.status(200).json(getStudentByMajor(req.params.major)));
 
-router.get('/by-id/:studentID', (req, res) => {
+router.get('/:studentID', (req, res) => {
   try {
     res.status(200).json(getStudentById(req.params.studentID));
   } catch (err) {

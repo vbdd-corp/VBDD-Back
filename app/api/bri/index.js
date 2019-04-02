@@ -16,7 +16,7 @@ const getBriByName = function (name) {
 router.get('/', (req, res) => res.status(200).json(Bri.get()));
 router.get('/by-name/:BriName', (req, res) => res.status(200).json(getBriByName(req.params.BriName)));
 
-router.get('/by-id/:BriID', (req, res) => {
+router.get('/:BriID', (req, res) => {
   try {
     res.status(200).json(getBriById(req.params.BriID));
   } catch (err) {

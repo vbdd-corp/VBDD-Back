@@ -12,7 +12,43 @@
     "typeName": "passeport"
   },
   {
-    "id": 3,
-    "typeName": "contrat-etudes",
+    "id": 4,
+    "typeName": "Formulaire Curriculum Vitae Europass"
+  },
+  {
+    "id": 5,
+    "typeName": "Relevés de notes du Supérieur"
+  },
+  {
+    "id": 6,
+    "typeName": "Lettre de motivation"
+  },
+  {
+    "id": 7,
+    "typeName": "Budget prévisionnel"
+  },
+  {
+    "id": 8,
+    "typeName": "Contrat d'études prévisionnel"
+  },
+  {
+    "id": 9,
+    "typeName": "Fiche Inscription MoveOnline Outgoing"
+  },
+  {
+    "id": 10,
+    "typeName": "Autorisation professeur responsable"
+  },
+  {
+    "id": 11,
+    "typeName": "Erasmus Learning Agreement"
+  },
+  {
+    "id": 12,
+    "typeName": "Evaluation des compétences Linguistiques"
+  },
+  {
+    "id": 13,
+    "typeName": "Carte Européenne d'Assurance Maladie"
   }
 ]
