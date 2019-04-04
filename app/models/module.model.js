@@ -6,7 +6,7 @@ class ModuleModel extends BaseModel {
     super('Module', {
       id: Joi.number().required(),
       typeModuleId: Joi.number().required(),
-      infos: Joi.array(),
+      infos: Joi.object(),
     });
   }
 }
