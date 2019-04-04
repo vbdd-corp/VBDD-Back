@@ -85,19 +85,78 @@ const attachModules = (file) => {
 
 router.get('/:fileID', (req, res) => {
   try {
-    /* let temp = File.getById(req.params.fileID);
-    log_this(temp.moduleIds);
-    let attach = attachStudents(temp);
-    log_this(attach);
-    log_this(getStudentSafely(2).lastName); */
     let reqFile = attachStudents(File.getById(req.params.fileID));
-    logThis(`debug 1 => ${reqFile}`);
+    // logThis(`debug 1 => ${reqFile}`);
     reqFile = attachModules(reqFile);
-    logThis(`debug 2 => ${reqFile}`);
+    // logThis(`debug 2 => ${reqFile}`);
     res.status(200).json(reqFile);
   } catch (err) {
     if (err.name === 'NotFoundError') {
       res.status(404).end();
+    } else {
+      res.status(500).json(err);
+    }
+  }
+});
+
+/*
+*post
+* url => studentId
+* body =>
+*   filetypeID
+* */
+// module.mocks.json seulement jusqu a 24 inclus. file.mocks.json jusqu a 2 inclus.
+router.post('/:studentID', (req, res) => {
+  try {
+    const student = getStudentSafely(req.params.studentID);
+    if (student === null) {
+      res.status(403).json({ error: `Student n°${req.params.studentId} not found.` });
+    }
+    const myFileType = getFileTypeSafely(req.body.fileTypeId);
+    if (myFileType === null) {
+      res.status(403).json({ error: `Filetype n°${req.body.fileTypeId} not found.` });
+    }
+
+    let moduleIdMax = Module.get().reduce((max, p) => (p.id > max ? p.id : max), 0);
+    logThis(`actuel Max == ${moduleIdMax}`);
+
+    const myList = [];
+    myFileType.moduleTypeList.forEach(() => {
+      logThis(`moduleIdMax == ${moduleIdMax + 1}`);
+      // const newModuleId = moduleIdMax + 1;
+
+      /* let tempModule = Module.createWithGivenId({
+        typeModuleId: elt,
+        infos: {}
+      }, newModuleId);
+      tempModule.id = newModuleId;
+      myList.push(tempModule.id); */
+      moduleIdMax += 1;
+    });
+    logThis('===objFile===');
+    logThis(`File.get().length ${File.get().length}`);
+    const maxIdFile = File.get().reduce((max, p) => (p.id > max ? p.id : max), 0);
+    const newFileId = maxIdFile + 1;
+    logThis(`maxFileId == ${maxIdFile}`);
+    // .reduce((max, p) => p.id > max ? p.id : max, 0) + 1);
+    logThis(`myList == ${myList}`);
+    logThis(`req.params.studentID == ${req.params.studentID}`);
+    logThis(`req.body.fileTypeId == ${req.body.fileTypeId}`);
+    logThis(`name: ${myFileType.typeName}`);
+    const objFile = {
+      // id: File.get().reduce((max, p) => p.id > max ? p.id : max, 0) + 1,
+      studentId: req.params.studentID,
+      moduleIds: myList,
+      fileTypeId: req.body.fileTypeId,
+      name: myFileType.typeName,
+    };
+
+    const resFile = File.createWithGivenId(objFile, newFileId);
+    resFile.id = newFileId;
+    res.status(201).json(resFile);
+  } catch (err) {
+    if (err.name === 'ValidationError') {
+      res.status(400).json(err.extra);
     } else {
       res.status(500).json(err);
     }

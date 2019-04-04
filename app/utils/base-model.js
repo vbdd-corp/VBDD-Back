@@ -52,6 +52,17 @@ module.exports = class BaseModel {
     return item;
   }
 
+  createWithGivenId(obj = {}, theId) {
+    const item = Object.assign({}, obj, { id: theId });
+    logger.log(`hello ici jmd item ==> ${item}`);
+    logger.log(`==> ==> item.id == ${item.id}`);
+    const { error } = Joi.validate(item, this.schema);
+    if (error) throw new ValidationError(`Create Error : Object ${JSON.stringify(obj)} does not match schema of model ${this.name}`, error);
+    this.items.push(item);
+    this.save();
+    return item;
+  }
+
   update(id, obj) {
     if (typeof id === 'string') id = parseInt(id, 10);
     const prevObjIndex = this.items.findIndex(item => item.id === id);

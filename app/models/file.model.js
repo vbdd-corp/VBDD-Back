@@ -5,6 +5,7 @@ class FileModel extends BaseModel {
   constructor() {
     super('File', {
       id: Joi.number().required(),
+      name: Joi.string().required(),
       studentId: Joi.number().required(),
       moduleIds: Joi.array().items(Joi.number()).required(),
       fileTypeId: Joi.number().required(),

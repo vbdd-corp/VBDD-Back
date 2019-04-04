@@ -33,7 +33,7 @@ router.post('/', (req, res) => {
       if (user.length) { // if user is found in Student base
         res.status(201).json({ student: user, error: '', isStudent: true });
       } else {
-        res.status(403).json({ error: 'Wrong password or login' });
+        res.status(403).json({ error: 'Mauvais mot de passe ou login' });
       }
     }
   } catch (err) {
