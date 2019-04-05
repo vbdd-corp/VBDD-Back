@@ -13,7 +13,8 @@
       7,
       8
     ],
-    "fileTypeId": 0
+    "fileTypeId": 0,
+    "name": "erasmus"
   },
   {
     "id": 1,
@@ -25,7 +26,8 @@
       12,
       13
     ],
-    "fileTypeId": 1
+    "fileTypeId": 1,
+    "name": "asie"
   },
   {
     "id": 2,
@@ -43,6 +45,20 @@
       23,
       24
     ],
-    "fileTypeId": 1
+    "fileTypeId": 1,
+    "name": "asie"
+  },
+  {
+    "studentId": 0,
+    "moduleIds": [
+      25,
+      26,
+      27,
+      28,
+      29
+    ],
+    "fileTypeId": 1,
+    "name": "asie",
+    "id": 3
   }
 ]

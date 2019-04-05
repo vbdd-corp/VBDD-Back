@@ -99,6 +99,24 @@ router.get('/:fileID', (req, res) => {
   }
 });
 
+router.get('/by-studentId/:studentID', (req, res) => {
+  try {
+    // let reqFile = attachStudents(File.getById(req.params.fileID));
+    const resList = File.get()
+      .filter(file => file.studentId === parseInt(req.params.studentID, 10))
+      .map(file => attachStudents(file)).map(file => attachModules(file));
+    // logThis(`debug 1 => ${reqFile}`);
+    // logThis(`debug 2 => ${reqFile}`);
+    res.status(200).json(resList);
+  } catch (err) {
+    if (err.name === 'NotFoundError') {
+      res.status(404).end();
+    } else {
+      res.status(500).json(err);
+    }
+  }
+});
+
 /*
 * getDossiers d'un studentID donné
 * getDossiers (tous)
@@ -126,7 +144,6 @@ router.post('/:studentID', (req, res) => {
     const myFileTypeId = parseInt(myFileType.id, 10);
 
     let moduleIdMax = Module.get().reduce((max, p) => (p.id > max ? p.id : max), 0);
-    // logThis(`actuel Max == ${moduleIdMax}`);
 
     const myList = [];
     myFileType.moduleTypeList.forEach((elt) => {
@@ -141,8 +158,6 @@ router.post('/:studentID', (req, res) => {
       myList.push(tempModule.id);
       moduleIdMax += 1;
     });
-    /* logThis('===objFile===');
-    logThis(`File.get().length ${File.get().length}`); */
     const maxIdFile = File.get().reduce((max, p) => (p.id > max ? p.id : max), 0);
     const newFileId = maxIdFile + 1;
     /* logThis(`maxFileId == ${maxIdFile}`);
