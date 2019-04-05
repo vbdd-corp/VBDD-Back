@@ -138,10 +138,24 @@ router.get('/', (req, res) => {
 });
 
 /*
-*
-*
-* getDossiers du filetypeId donné (ex filtypeId 1 pour Asie).
+* GET /api/file/by-fileTypeId/:fileTypeID
+* renvoie les dossiers qui correspondent au filetype d'id :fileTypeID
+* (ex filtypeId 1 pour Asie).
 * */
+router.get('/by-fileTypeId/:fileTypeID', (req, res) => {
+  try {
+    const resList = File.get()
+      .filter(file => file.fileTypeId === parseInt(req.params.fileTypeID, 10))
+      .map(file => attachStudents(file)).map(file => attachModules(file));
+    res.status(200).json(resList);
+  } catch (err) {
+    if (err.name === 'NotFoundError') {
+      res.status(404).end();
+    } else {
+      res.status(500).json(err);
+    }
+  }
+});
 
 // module.mocks.json seulement jusqu a 24 inclus. file.mocks.json jusqu a 2 inclus.
 
