@@ -44,19 +44,5 @@
       24
     ],
     "fileTypeId": 1
-  },
-  {
-    "studentId": "2",
-    "moduleIds": [],
-    "fileTypeId": 1,
-    "name": "asie",
-    "id": 3
-  },
-  {
-    "studentId": "2",
-    "moduleIds": [],
-    "fileTypeId": 1,
-    "name": "asie",
-    "id": 4
   }
 ]

@@ -100,6 +100,12 @@ router.get('/:fileID', (req, res) => {
 });
 
 /*
+* getDossiers d'un studentID donné
+* getDossiers (tous)
+* getDossiers du filetypeId donné (ex filtypeId 1 pour Asie).
+* */
+
+/*
 *post
 * url => studentId
 * body =>
@@ -112,42 +118,42 @@ router.post('/:studentID', (req, res) => {
     if (student === null) {
       res.status(403).json({ error: `Student n°${req.params.studentId} not found.` });
     }
+    const theStudentId = parseInt(student.id, 10);
     const myFileType = getFileTypeSafely(req.body.fileTypeId);
     if (myFileType === null) {
       res.status(403).json({ error: `Filetype n°${req.body.fileTypeId} not found.` });
     }
+    const myFileTypeId = parseInt(myFileType.id, 10);
 
     let moduleIdMax = Module.get().reduce((max, p) => (p.id > max ? p.id : max), 0);
-    logThis(`actuel Max == ${moduleIdMax}`);
+    // logThis(`actuel Max == ${moduleIdMax}`);
 
     const myList = [];
-    myFileType.moduleTypeList.forEach(() => {
+    myFileType.moduleTypeList.forEach((elt) => {
       logThis(`moduleIdMax == ${moduleIdMax + 1}`);
-      // const newModuleId = moduleIdMax + 1;
+      const newModuleId = moduleIdMax + 1;
 
-      /* let tempModule = Module.createWithGivenId({
+      const tempModule = Module.createWithGivenId({
         typeModuleId: elt,
-        infos: {}
+        infos: {},
       }, newModuleId);
       tempModule.id = newModuleId;
-      myList.push(tempModule.id); */
+      myList.push(tempModule.id);
       moduleIdMax += 1;
     });
-    logThis('===objFile===');
-    logThis(`File.get().length ${File.get().length}`);
+    /* logThis('===objFile===');
+    logThis(`File.get().length ${File.get().length}`); */
     const maxIdFile = File.get().reduce((max, p) => (p.id > max ? p.id : max), 0);
     const newFileId = maxIdFile + 1;
-    logThis(`maxFileId == ${maxIdFile}`);
-    // .reduce((max, p) => p.id > max ? p.id : max, 0) + 1);
+    /* logThis(`maxFileId == ${maxIdFile}`);
     logThis(`myList == ${myList}`);
     logThis(`req.params.studentID == ${req.params.studentID}`);
     logThis(`req.body.fileTypeId == ${req.body.fileTypeId}`);
-    logThis(`name: ${myFileType.typeName}`);
+    logThis(`name: ${myFileType.typeName}`); */
     const objFile = {
-      // id: File.get().reduce((max, p) => p.id > max ? p.id : max, 0) + 1,
-      studentId: req.params.studentID,
+      studentId: theStudentId,
       moduleIds: myList,
-      fileTypeId: req.body.fileTypeId,
+      fileTypeId: myFileTypeId,
       name: myFileType.typeName,
     };
 
