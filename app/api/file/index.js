@@ -83,6 +83,9 @@ const attachModules = (file) => {
   return resFile;
 };
 
+/* GET /api/file/:fileID
+** renvoie le dossier d'id :fileID
+*/
 router.get('/:fileID', (req, res) => {
   try {
     let reqFile = attachStudents(File.getById(req.params.fileID));
@@ -99,14 +102,31 @@ router.get('/:fileID', (req, res) => {
   }
 });
 
+/* GET /api/file/by-studentId/:studentID
+** renvoie la liste des dossiers du student d'id :studentID
+*/
 router.get('/by-studentId/:studentID', (req, res) => {
   try {
-    // let reqFile = attachStudents(File.getById(req.params.fileID));
     const resList = File.get()
       .filter(file => file.studentId === parseInt(req.params.studentID, 10))
       .map(file => attachStudents(file)).map(file => attachModules(file));
-    // logThis(`debug 1 => ${reqFile}`);
-    // logThis(`debug 2 => ${reqFile}`);
+    res.status(200).json(resList);
+  } catch (err) {
+    if (err.name === 'NotFoundError') {
+      res.status(404).end();
+    } else {
+      res.status(500).json(err);
+    }
+  }
+});
+
+/* GET /api/file
+** renvoie la liste de tous les dossiers
+*/
+router.get('/', (req, res) => {
+  try {
+    const resList = File.get()
+      .map(file => attachStudents(file)).map(file => attachModules(file));
     res.status(200).json(resList);
   } catch (err) {
     if (err.name === 'NotFoundError') {
@@ -118,18 +138,18 @@ router.get('/by-studentId/:studentID', (req, res) => {
 });
 
 /*
-* getDossiers d'un studentID donné
-* getDossiers (tous)
+*
+*
 * getDossiers du filetypeId donné (ex filtypeId 1 pour Asie).
 * */
 
-/*
-*post
-* url => studentId
-* body =>
-*   filetypeID
-* */
 // module.mocks.json seulement jusqu a 24 inclus. file.mocks.json jusqu a 2 inclus.
+
+/*
+* POST /api/file/:studentID
+* crée un nouveau dossier pour l'étudiant d'id :studentID et les modules associées (vides)
+* dans la base avec dans le body de la requete POST {filetypeID: number}
+* */
 router.post('/:studentID', (req, res) => {
   try {
     const student = getStudentSafely(req.params.studentID);
