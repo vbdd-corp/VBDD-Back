@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { Student } = require('../../models');
+const { Student, File } = require('../../models');
 
 // const logger = require('../../utils/logger');
 
@@ -9,9 +9,16 @@ const router = new Router();
   logger.log(message);
 }; */
 
-const getStudentById = function (studentId) {
-  return Student.getById(studentId);
-};
+function getStudentByIdSafely(studentId) {
+  try {
+    return Student.getById(studentId);
+  } catch (err) {
+    if (err.name === 'NotFoundError') {
+      return null;
+    }
+    throw err;
+  }
+}
 
 const getStudentByMajor = function (major) {
   return Student.get().filter(student => student.major === major);
@@ -29,7 +36,35 @@ router.get('/by-major/:major', (req, res) => res.status(200).json(getStudentByMa
 
 router.get('/:studentID', (req, res) => {
   try {
-    res.status(200).json(getStudentById(req.params.studentID));
+    res.status(200).json(getStudentByIdSafely(req.params.studentID));
+  } catch (err) {
+    if (err.name === 'NotFoundError') {
+      res.status(404).end();
+    } else {
+      res.status(500).json(err);
+    }
+  }
+});
+
+/*
+*   /api/students/by-fileTypeId/:fileTypeID
+*   retourne la liste des étudiants qui possèdent au moins un dossier dont le
+*   fileTypeId vaut :fileTypeID
+* */
+router.get('/by-fileTypeId/:fileTypeID', (req, res) => {
+  const studentList = [];
+  function studentExists(studentId) {
+    return studentList.some(stud => stud.id === studentId);
+  }
+  try {
+    File.get()
+      .filter(file => file.fileTypeId === parseInt(req.params.fileTypeID, 10))
+      .forEach((file) => {
+        if (!studentExists(file.studentId)) {
+          studentList.push(getStudentByIdSafely(file.studentId));
+        }
+      });
+    res.status(200).json(studentList);
   } catch (err) {
     if (err.name === 'NotFoundError') {
       res.status(404).end();
