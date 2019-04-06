@@ -166,11 +166,11 @@ router.get('/by-fileTypeId/:fileTypeID', (req, res) => {
 * */
 router.post('/:studentID', (req, res) => {
   try {
-    const student = getStudentSafely(req.params.studentID);
-    if (student === null) {
+    const myStudent = getStudentSafely(req.params.studentID);
+    if (myStudent === null) {
       res.status(403).json({ error: `Student n°${req.params.studentId} not found.` });
     }
-    const theStudentId = parseInt(student.id, 10);
+    const theStudentId = parseInt(myStudent.id, 10);
     const myFileType = getFileTypeSafely(req.body.fileTypeId);
     if (myFileType === null) {
       res.status(403).json({ error: `Filetype n°${req.body.fileTypeId} not found.` });
@@ -183,6 +183,44 @@ router.post('/:studentID', (req, res) => {
     myFileType.moduleTypeList.forEach((elt) => {
       logThis(`moduleIdMax == ${moduleIdMax + 1}`);
       const newModuleId = moduleIdMax + 1;
+
+      /** *** */
+      /* switch (elt) {
+        case 0:
+          // informations-generales
+          theInfos = {
+            student: myStudent,
+            stayCardEndValidity: null,
+            currentUNSDiploma: null,
+            nextYearExchangeDiploma: null,
+            shareMyDetails: null
+          };
+          break;
+        case 1:
+          // CNI
+          theInfos = {recto: null, verso:null};
+          break;
+        case 2:
+          // passeport
+          theInfos = {passeport: null};
+          break;
+        case 4:
+          // CV Europass
+        case 5:
+          // Relevé Notes Supérieur
+        case 6:
+          // Lettre Motivation
+        case 7:
+          // Budget prévisionnel json
+        case 8:
+          // Contrat d'études
+          //autorisation responsable pédagogique pdf
+          theInfos = {filePath: null};
+          break;
+
+
+      } */
+      /** *** */
 
       const tempModule = Module.createWithGivenId({
         typeModuleId: elt,
