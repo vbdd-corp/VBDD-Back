@@ -185,7 +185,8 @@ router.post('/:studentID', (req, res) => {
       const newModuleId = moduleIdMax + 1;
 
       /** *** */
-      /* switch (elt) {
+      let theInfos;
+      switch (elt) {
         case 0:
           // informations-generales
           theInfos = {
@@ -193,38 +194,84 @@ router.post('/:studentID', (req, res) => {
             stayCardEndValidity: null,
             currentUNSDiploma: null,
             nextYearExchangeDiploma: null,
-            shareMyDetails: null
+            shareMyDetails: null,
           };
           break;
         case 1:
           // CNI
-          theInfos = {recto: null, verso:null};
+          theInfos = { recto: null, verso: null };
           break;
-        case 2:
-          // passeport
-          theInfos = {passeport: null};
-          break;
-        case 4:
-          // CV Europass
-        case 5:
-          // Relevé Notes Supérieur
-        case 6:
-          // Lettre Motivation
         case 7:
           // Budget prévisionnel json
-        case 8:
-          // Contrat d'études
-          //autorisation responsable pédagogique pdf
-          theInfos = {filePath: null};
+          theInfos = {
+            country: null,
+            city: null,
+            stayDuration: null,
+            travelCost: null,
+            accommodationCost: null,
+            foodCost: null,
+            transportationHobbiesCost: null,
+            studyCost: null,
+            othersCost: null,
+            frenchCROUSScholarship: null,
+            mobilityScholarship: null,
+            travelHelp: null,
+            summerJobSalaries: null,
+            personalResources: null,
+            familyResources: null,
+            othersResources: null,
+            notes: null,
+          };
           break;
-
-
-      } */
+        case 8:
+        case 11:
+          theInfos = {};
+          // 8 et 11 à faire Contrat d'études gros truc json
+          break;
+        case 9:
+          theInfos = { filePath: null, moveonlineId: null };
+          break;
+        case 2:
+        case 4:
+        case 5:
+        case 6:
+        case 10:
+        case 12:
+        case 13:
+        case 15:
+        case 16:
+          // autorisation responsable pédagogique pdf
+          theInfos = { filePath: null };
+          break;
+        case 17:
+          // Voeux Universités
+          theInfos = {
+            choice1: {
+              university: null,
+              country: null,
+              semester: null,
+            },
+            choice2: {
+              university: null,
+              country: null,
+              semester: null,
+            },
+            choice3: {
+              university: null,
+              country: null,
+              semester: null,
+            },
+          };
+          break;
+        default:
+          theInfos = {};
+          break;
+      }
       /** *** */
 
       const tempModule = Module.createWithGivenId({
         typeModuleId: elt,
-        infos: {},
+        infos: theInfos,
       }, newModuleId);
       tempModule.id = newModuleId;
       myList.push(tempModule.id);

@@ -62,6 +62,9 @@
   {
     "id": 16,
     "typeName": "Acte Naissance avec Filiation"
+  },{
+    "id": 17,
+    "typeName": "Voeux Universités"
   }
 
 ]
