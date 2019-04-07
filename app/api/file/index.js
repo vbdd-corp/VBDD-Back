@@ -190,7 +190,7 @@ router.post('/:studentID', (req, res) => {
         case 0:
           // informations-generales
           theInfos = {
-            student: myStudent,
+            studentId: myStudent.id,
             stayCardEndValidity: null,
             currentUNSDiploma: null,
             nextYearExchangeDiploma: null,
@@ -224,6 +224,18 @@ router.post('/:studentID', (req, res) => {
           };
           break;
         case 8:
+          // Hors Europe Annexe 1
+          // Contrat d'études
+          theInfos = {
+            institutionName: null,
+            country: null,
+            semester: null,
+            BCIcode: null,
+            BCIProgramName: null,
+            S1courses: null,
+            S2courses: null,
+          };
+          break;
         case 11:
           theInfos = {};
           // 8 et 11 à faire Contrat d'études gros truc json
