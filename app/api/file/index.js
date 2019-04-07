@@ -237,7 +237,7 @@ router.post('/:studentID', (req, res) => {
           break;
         case 11:
           theInfos = {};
-          // 8 et 11 à faire Contrat d'études gros truc json
+          // 11 à faire Contrat d'études gros truc json
           break;
         case 9:
           theInfos = { filePath: null, moveonlineId: null };
