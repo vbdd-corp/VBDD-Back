@@ -11,5 +11,5 @@ router.use('/login', LoginRouter);
 router.use('/students', StudentRouter);
 router.use('/bri', BriRouter);
 router.use('/file', FileRouter);
-router.use('module', ModuleRouter);
+router.use('/module', ModuleRouter);
 module.exports = router;
