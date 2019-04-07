@@ -227,10 +227,9 @@ router.post('/:studentID', (req, res) => {
           // Hors Europe Annexe 1
           // Contrat d'études
           theInfos = {
-            institutionName: null,
-            country: null,
+            school: null,
             semester: null,
-            BCIcode: null,
+            BCICode: null,
             BCIProgramName: null,
             S1courses: null,
             S2courses: null,
@@ -259,18 +258,15 @@ router.post('/:studentID', (req, res) => {
           // Voeux Universités
           theInfos = {
             choice1: {
-              university: null,
-              country: null,
+              school: null,
               semester: null,
             },
             choice2: {
-              university: null,
-              country: null,
+              school: null,
               semester: null,
             },
             choice3: {
-              university: null,
-              country: null,
+              school: null,
               semester: null,
             },
           };
