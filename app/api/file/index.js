@@ -17,6 +17,17 @@ function getStudentSafely(studentId) {
   }
 }
 
+function getFileSafely(fileTypeId) {
+  try {
+    return File.getById(fileTypeId);
+  } catch (err) {
+    if (err.name === 'NotFoundError') {
+      return null;
+    }
+    throw err;
+  }
+}
+
 function getFileTypeSafely(fileTypeId) {
   try {
     return FileType.getById(fileTypeId);
@@ -157,12 +168,35 @@ router.get('/by-fileTypeId/:fileTypeID', (req, res) => {
   }
 });
 
-// module.mocks.json seulement jusqu a 24 inclus. file.mocks.json jusqu a 2 inclus.
+// module.mocks.json seulement jusqu a 29 inclus. file.mocks.json jusqu a 3 inclus.
+
+/* DELETE /api/file/:fileID
+* */
+router.delete('/:fileID', (req, res) => {
+  try {
+    const fileId = parseInt(req.params.fileID, 10);
+    const fileToDel = getFileSafely(fileId);
+    if (fileToDel === null) {
+      res.status(403).json({ error: `File n°${fileId} not found.` });
+    }
+    fileToDel.moduleIds.forEach((moduleId) => {
+      const theModuleId = parseInt(moduleId, 10);
+      Module.delete(theModuleId);
+    });
+    res.status(200).json(File.delete(fileId));
+  } catch (err) {
+    if (err.name === 'NotFoundError') {
+      res.status(404).end();
+    } else {
+      res.status(500).json(err);
+    }
+  }
+});
 
 /*
 * POST /api/file/:studentID
 * crée un nouveau dossier pour l'étudiant d'id :studentID et les modules associées (vides)
-* dans la base avec dans le body de la requete POST {fileTypeID: number, reportName: string}
+* dans la base avec dans le body de la requete POST {fileTypeId: number, reportName: string}
 * */
 router.post('/:studentID', (req, res) => {
   try {
