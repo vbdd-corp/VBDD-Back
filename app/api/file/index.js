@@ -162,7 +162,7 @@ router.get('/by-fileTypeId/:fileTypeID', (req, res) => {
 /*
 * POST /api/file/:studentID
 * crée un nouveau dossier pour l'étudiant d'id :studentID et les modules associées (vides)
-* dans la base avec dans le body de la requete POST {filetypeID: number}
+* dans la base avec dans le body de la requete POST {fileTypeID: number, reportName: string}
 * */
 router.post('/:studentID', (req, res) => {
   try {
@@ -175,6 +175,16 @@ router.post('/:studentID', (req, res) => {
     if (myFileType === null) {
       res.status(403).json({ error: `Filetype n°${req.body.fileTypeId} not found.` });
     }
+    logThis(`myFileTYpe ==> ${myFileType}`);
+
+    let fileName;
+    if (typeof req.body.reportName !== 'undefined' && req.body.reportName.length > 0) {
+      fileName = req.body.reportName.toString();
+    } else {
+      fileName = myFileType.typeName;
+    }
+    logThis(`fileName ==> ${fileName}`);
+
     const myFileTypeId = parseInt(myFileType.id, 10);
 
     let moduleIdMax = Module.get().reduce((max, p) => (p.id > max ? p.id : max), 0);
@@ -296,7 +306,7 @@ router.post('/:studentID', (req, res) => {
       studentId: theStudentId,
       moduleIds: myList,
       fileTypeId: myFileTypeId,
-      name: myFileType.typeName,
+      name: fileName,
     };
 
     const resFile = File.createWithGivenId(objFile, newFileId);
