@@ -5,8 +5,8 @@ const { Router } = require('express');
 const app = Router();
 
 app.use(fileUpload());
-
-/* function getModuleSafely(moduleId) {
+/*
+function getModuleSafely(moduleId) {
   try {
     return Module.getById(moduleId);
   } catch (err) {
@@ -15,8 +15,8 @@ app.use(fileUpload());
     }
     throw err;
   }
-} */
-/*
+}
+
 app.post('/upload/:studentID/:fileID/:moduleID', (req) => {
   // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
   // const moduleId = parseInt(req.params.moduleID, 10);
@@ -28,7 +28,7 @@ app.post('/upload/:studentID/:fileID/:moduleID', (req) => {
     case 1:
       if (startupFile.name.startsWith('recto')) {}
       // remove all files in dir whose name begin with recto
-      // https://stackoverflow.com/questions/44076455/delete-all-files-in-a-certain-directory-that-there-names-start-with-a-certain-st
+      https:// stackoverflow.com/questions/44076455/delete-all-files-in-a-certain-directory-that-there-names-start-with-a-certain-st
 
 
       break;
