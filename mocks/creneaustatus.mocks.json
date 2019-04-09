@@ -1,0 +1,15 @@
+[
+  {
+    "name": "disponible",
+    "id": 0
+  },
+  {
+    "name": "non disponible",
+    "id": 1
+  },
+  {
+    "name": "annulé",
+    "id": 2
+  }
+]
+

@@ -1,0 +1,18 @@
+[
+  {
+    "id": 0,
+    "start": "10:00",
+    "end": "11:30",
+    "date": "09/04/2019",
+    "appointmentTypeId": null,
+    "BriId": 0
+  },
+  {
+    "id": 1,
+    "start": "11:00",
+    "end": "11:30",
+    "date": "10/04/2019",
+    "appointmentTypeId": 1,
+    "BriId": 0
+  }
+]
