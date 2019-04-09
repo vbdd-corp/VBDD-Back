@@ -57,62 +57,82 @@ const cleanDir = (dirPath) => {
 };
 
 const makeThisDir = async (dirPath) => {
+  logThis(`--> DIRPATH == ${dirPath}`);
   const path = await makeDir(dirPath);
   logThis(`DIR ${path} CREATED SUCCESSFULLY`);
 };
 
 app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
-  const moduleId = parseInt(req.params.moduleID, 10);
-  const filedId = parseInt(req.params.fileID, 10);
-  const studentId = parseInt(req.params.studentID, 10);
-  const theModule = getModuleSafely(moduleId);
-  if (theModule === null) {
-    res.status(403).json({ error: `Module n°${moduleId} not found.` });
-  }
-  const moduleTypeId = theModule.typeModuleId;
-  logThis(`moduleTypeId == ${moduleTypeId}`);
-  const startupFile = req.files.foo;
-  // logThis('DB1 ==> ', startupFile);
-  const dirPath = `${__dirname}/../../../uploads/Student_${studentId}/Folder_${filedId}/Module_${moduleId}`;
+  try {
+    const moduleId = parseInt(req.params.moduleID, 10);
+    const filedId = parseInt(req.params.fileID, 10);
+    const studentId = parseInt(req.params.studentID, 10);
+    const theModule = getModuleSafely(moduleId);
+    if (theModule === null) {
+      res.status(403).json({ error: `Module n°${moduleId} not found.` });
+    }
+    const moduleTypeId = theModule.typeModuleId;
+    logThis(`moduleTypeId == ${moduleTypeId}`);
+    const startupFile = req.files.foo;
+    // logThis('DB1 ==> ', startupFile);
+    const dirPath = `${__dirname}/../../../uploads/Student_${studentId}/Folder_${filedId}/Module_${moduleId}`;
 
-  try { makeThisDir(dirPath).catch(logThis); } catch (err) {
-    logThis(err);
-  }
+    makeThisDir(dirPath).catch(logThis);
+    /* try { } catch (err) {
+      logThis(err + 'ERROR JMD here');
+    } */
+    logThis('DB 2 => BEEN HERE.');
 
-  switch (moduleTypeId) {
-    case 1:
-      if (startupFile.name.startsWith('recto')) {
+    switch (moduleTypeId) {
+      case 1:
+        if (startupFile.name.startsWith('recto')) {
         // remove all files in dir whose name begin with recto
-        try {
-          deleteDirFilesUsingPattern(/^recto+/, `${dirPath}`).catch(logThis);
+          try {
+            deleteDirFilesUsingPattern(/^recto+/, `${dirPath}`).catch(logThis);
           // un peu bizarre le .catch ici... .
-        } catch (err) { logThis(err); }
-      } else if (startupFile.name.startsWith('verso')) {
-        try {
-          deleteDirFilesUsingPattern(/^verso+/, `${dirPath}`).catch(logThis);
-        } catch (err) { logThis(err); }
-      }
-      break;
-    case 2:
-    case 4:
-    case 5:
-    case 6:
-    case 9:
-    case 10:
-    case 12:
-    case 13:
-    case 15:
-    case 16:
-      logThis(`myPath ==> ${dirPath}`);
-      cleanDir(dirPath); // function block works :)
-      break;
-    default:
-      break;
-  }
+          } catch (err) { logThis(err); }
+        } else if (startupFile.name.startsWith('verso')) {
+          try {
+            deleteDirFilesUsingPattern(/^verso+/, `${dirPath}`).catch(logThis);
+          } catch (err) { logThis(err); }
+        }
+        break;
+      case 2:
+      case 4:
+      case 5:
+      case 6:
+      case 9:
+      case 10:
+      case 12:
+      case 13:
+      case 15:
+      case 16:
+        logThis(`myPath ==> ${dirPath}`);
+        cleanDir(dirPath); // function block works :)
+        res.status(200).json(Module.update(
+          req.params.moduleId,
+          {
+            infos: {
+              filePath: `${dirPath}/${startupFile.name}`,
+              moveonlineId: theModule.moveonlineId,
+            },
+          },
+        ));
+        break;
+      default:
+        break;
+    }
 
-  startupFile.mv(`${dirPath}/${startupFile.name}`, (err) => {
-    if (err) { logThis(err); } else { logThis('uploaded'); }
-  });
+    startupFile.mv(`${dirPath}/${startupFile.name}`, (err) => {
+      if (err) { logThis(err); } else { logThis('uploaded'); }
+    });
+  } catch (err) {
+    if (err.name === 'ValidationError') {
+      res.status(400).json(err.extra);
+    } else {
+      res.status(500).json(err);
+    }
+  }
 });
 
 module.exports = app;

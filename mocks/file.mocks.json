@@ -1,22 +1,5 @@
 [
   {
-    "id": 0,
-    "studentId": 0,
-    "moduleIds": [
-      0,
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8
-    ],
-    "fileTypeId": 0,
-    "name": "erasmus"
-  },
-  {
     "id": 1,
     "studentId": 0,
     "moduleIds": [
@@ -49,5 +32,22 @@
     "fileTypeId": 2,
     "name": "hors europe",
     "id": 2
+  },
+  {
+    "studentId": 30,
+    "moduleIds": [
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35
+    ],
+    "fileTypeId": 0,
+    "name": "erasmus",
+    "id": 3
   }
 ]

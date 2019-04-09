@@ -1,50 +1,5 @@
 [
   {
-    "id": 0,
-    "typeModuleId": 9,
-    "infos": {}
-  },
-  {
-    "id": 1,
-    "typeModuleId": 4,
-    "infos": {}
-  },
-  {
-    "id": 2,
-    "typeModuleId": 5,
-    "infos": {}
-  },
-  {
-    "id": 3,
-    "typeModuleId": 10,
-    "infos": {}
-  },
-  {
-    "id": 4,
-    "typeModuleId": 6,
-    "infos": {}
-  },
-  {
-    "id": 5,
-    "typeModuleId": 11,
-    "infos": {}
-  },
-  {
-    "id": 6,
-    "typeModuleId": 12,
-    "infos": {}
-  },
-  {
-    "id": 7,
-    "typeModuleId": 7,
-    "infos": {}
-  },
-  {
-    "id": 8,
-    "typeModuleId": 13,
-    "infos": {}
-  },
-  {
     "id": 9,
     "typeModuleId": 4,
     "infos": {}
@@ -179,5 +134,83 @@
       "filePath": null
     },
     "id": 26
+  },
+  {
+    "typeModuleId": 9,
+    "infos": {
+      "filePath": null,
+      "moveonlineId": 7
+    },
+    "id": 27
+  },
+  {
+    "typeModuleId": 4,
+    "infos": {
+      "filePath": null
+    },
+    "id": 28
+  },
+  {
+    "typeModuleId": 5,
+    "infos": {
+      "filePath": null
+    },
+    "id": 29
+  },
+  {
+    "typeModuleId": 10,
+    "infos": {
+      "filePath": null
+    },
+    "id": 30
+  },
+  {
+    "typeModuleId": 6,
+    "infos": {
+      "filePath": null
+    },
+    "id": 31
+  },
+  {
+    "typeModuleId": 11,
+    "infos": {},
+    "id": 32
+  },
+  {
+    "typeModuleId": 12,
+    "infos": {
+      "filePath": null
+    },
+    "id": 33
+  },
+  {
+    "typeModuleId": 7,
+    "infos": {
+      "country": null,
+      "city": null,
+      "stayDuration": null,
+      "travelCost": null,
+      "accommodationCost": null,
+      "foodCost": null,
+      "transportationHobbiesCost": null,
+      "studyCost": null,
+      "othersCost": null,
+      "frenchCROUSScholarship": null,
+      "mobilityScholarship": null,
+      "travelHelp": null,
+      "summerJobSalaries": null,
+      "personalResources": null,
+      "familyResources": null,
+      "othersResources": null,
+      "notes": null
+    },
+    "id": 34
+  },
+  {
+    "typeModuleId": 13,
+    "infos": {
+      "filePath": null
+    },
+    "id": 35
   }
 ]
