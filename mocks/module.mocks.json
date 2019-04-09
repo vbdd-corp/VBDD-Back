@@ -70,83 +70,114 @@
     "infos": {}
   },
   {
-    "id": 14,
     "typeModuleId": 12,
-    "infos": {}
+    "infos": {
+      "filePath": null
+    },
+    "id": 14
   },
   {
-    "id": 15,
     "typeModuleId": 14,
-    "infos": {}
-  },
-  {
-    "id": 16,
-    "typeModuleId": 10,
-    "infos": {}
-  },
-  {
-    "id": 17,
-    "typeModuleId": 8,
-    "infos": {}
-  },
-  {
-    "id": 18,
-    "typeModuleId": 5,
-    "infos": {}
-  },
-  {
-    "id": 19,
-    "typeModuleId": 15,
-    "infos": {}
-  },
-  {
-    "id": 20,
-    "typeModuleId": 6,
-    "infos": {}
-  },
-  {
-    "id": 21,
-    "typeModuleId": 4,
-    "infos": {}
-  },
-  {
-    "id": 22,
-    "typeModuleId": 2,
-    "infos": {}
-  },
-  {
-    "id": 23,
-    "typeModuleId": 16,
-    "infos": {}
-  },
-  {
-    "id": 24,
-    "typeModuleId": 7,
-    "infos": {}
-  },
-  {
-    "typeModuleId": 4,
     "infos": {},
+    "id": 15
+  },
+  {
+    "typeModuleId": 10,
+    "infos": {
+      "filePath": null
+    },
+    "id": 16
+  },
+  {
+    "typeModuleId": 8,
+    "infos": {
+      "school": null,
+      "semester": null,
+      "BCICode": null,
+      "BCIProgramName": null,
+      "S1courses": null,
+      "S2courses": null
+    },
+    "id": 17
+  },
+  {
+    "typeModuleId": 5,
+    "infos": {
+      "filePath": null
+    },
+    "id": 18
+  },
+  {
+    "typeModuleId": 15,
+    "infos": {
+      "filePath": null
+    },
+    "id": 19
+  },
+  {
+    "typeModuleId": 6,
+    "infos": {
+      "filePath": null
+    },
+    "id": 20
+  },
+  {
+    "typeModuleId": 4,
+    "infos": {
+      "filePath": null
+    },
+    "id": 21
+  },
+  {
+    "typeModuleId": 2,
+    "infos": {
+      "filePath": null
+    },
+    "id": 22
+  },
+  {
+    "typeModuleId": 16,
+    "infos": {
+      "filePath": null
+    },
+    "id": 23
+  },
+  {
+    "typeModuleId": 7,
+    "infos": {
+      "country": null,
+      "city": null,
+      "stayDuration": null,
+      "travelCost": null,
+      "accommodationCost": null,
+      "foodCost": null,
+      "transportationHobbiesCost": null,
+      "studyCost": null,
+      "othersCost": null,
+      "frenchCROUSScholarship": null,
+      "mobilityScholarship": null,
+      "travelHelp": null,
+      "summerJobSalaries": null,
+      "personalResources": null,
+      "familyResources": null,
+      "othersResources": null,
+      "notes": null
+    },
+    "id": 24
+  },
+  {
+    "typeModuleId": 1,
+    "infos": {
+      "recto": null,
+      "verso": null
+    },
     "id": 25
   },
   {
-    "typeModuleId": 5,
-    "infos": {},
+    "typeModuleId": 2,
+    "infos": {
+      "filePath": null
+    },
     "id": 26
-  },
-  {
-    "typeModuleId": 6,
-    "infos": {},
-    "id": 27
-  },
-  {
-    "typeModuleId": 7,
-    "infos": {},
-    "id": 28
-  },
-  {
-    "typeModuleId": 8,
-    "infos": {},
-    "id": 29
   }
 ]

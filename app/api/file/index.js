@@ -4,6 +4,10 @@ const {
 } = require('../../models');
 const logger = require('../../utils/logger');
 
+function logThis(elt) {
+  logger.log(`debug ==> ${elt}`);
+}
+
 const router = new Router();
 
 function getStudentSafely(studentId) {
@@ -59,10 +63,6 @@ function getModuleSafely(moduleId) {
     }
     throw err;
   }
-}
-
-function logThis(elt) {
-  logger.log(`debug ==> ${elt}`);
 }
 
 const attachStudents = (file) => {
@@ -202,7 +202,7 @@ router.post('/:studentID', (req, res) => {
   try {
     const myStudent = getStudentSafely(req.params.studentID);
     if (myStudent === null) {
-      res.status(403).json({ error: `Student n°${req.params.studentId} not found.` });
+      res.status(403).json({ error: `Student n°${req.params.studentID} not found.` });
     }
     const theStudentId = parseInt(myStudent.id, 10);
     const myFileType = getFileTypeSafely(req.body.fileTypeId);

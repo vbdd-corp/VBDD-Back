@@ -30,8 +30,7 @@
     "name": "asie"
   },
   {
-    "id": 2,
-    "studentId": 1,
+    "studentId": 0,
     "moduleIds": [
       14,
       15,
@@ -43,22 +42,12 @@
       21,
       22,
       23,
-      24
-    ],
-    "fileTypeId": 1,
-    "name": "asie"
-  },
-  {
-    "studentId": 0,
-    "moduleIds": [
+      24,
       25,
-      26,
-      27,
-      28,
-      29
+      26
     ],
-    "fileTypeId": 1,
-    "name": "asie",
-    "id": 3
+    "fileTypeId": 2,
+    "name": "hors europe",
+    "id": 2
   }
 ]
