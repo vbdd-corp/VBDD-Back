@@ -40,15 +40,20 @@ router.get('/:fileTypeID', (req, res) => {
     const resFile = [];
     const fTypeId = parseInt(req.params.fileTypeID, 10);
     const myFileType = getFileTypeSafely(fTypeId);
-    logger.log(`myFileTYpe == ${myFileType.moduleTypeList}`);
+
     if (myFileType === null) {
       res.status(403).json({ error: `Filetype n°${fTypeId} not found.` });
     }
-    myFileType.moduleTypeList
-      .forEach(
-        moduleTypeId => resFile.push(getModuleTypeSafely(parseInt(moduleTypeId, 10))),
-      );
-    // resFile.forEach(elt => logThis(`${resFile.id}\n`));
+    logger.log(`myFileTYpe == ${myFileType.moduleTypeList}`);
+    if (myFileType.moduleTypeList.length > 0) {
+      myFileType.moduleTypeList
+        .forEach(
+          moduleTypeId => resFile.push(getModuleTypeSafely(parseInt(moduleTypeId, 10))),
+        );
+      // resFile.forEach(elt => logThis(`${resFile.id}\n`));
+    } else {
+      res.status(403).json({ error: `Filetype n°${fTypeId} has empty array of moduleType.` });
+    }
 
     res.status(200).json(resFile);
   } catch (err) {
