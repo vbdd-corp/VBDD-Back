@@ -5,9 +5,8 @@ class Appointment extends BaseModel {
   constructor() {
     super('Appointment', {
       id: Joi.number().required(),
-      start: Joi.date().format('HH:mm').optional(),
-      end: Joi.date().format('HH:mm').optional(),
-      date: Joi.date().format('DD/MM/YYYY').optional(),
+      start: Joi.date().optional(),
+      end: Joi.date().optional(),
       time: Joi.number().required(),
       appointmentTypeId: Joi.number().required(),
       appointmentStatusId: Joi.number().required(),

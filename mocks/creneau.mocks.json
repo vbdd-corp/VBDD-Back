@@ -1,33 +1,29 @@
 [
   {
     "id": 0,
-    "start": "10:00",
-    "end": "10:30",
-    "date": "09/04/2019",
+    "start": "04-09-2019 10:00",
+    "end": "04-09-2019 10:30",
     "appointmentTypeId": null,
     "statusId": 0
   },
   {
     "id": 1,
-    "start": "10:30",
-    "end": "11:00",
-    "date": "09/04/2019",
+    "start": "04-09-2019 10:30",
+    "end": "04-09-2019 11:00",
     "appointmentTypeId": null,
     "statusId": 0
   },
   {
     "id": 2,
-    "start": "11:00",
-    "end": "11:30",
-    "date": "09/04/2019",
+    "start": "04-09-2019 11:00",
+    "end": "04-09-2019 11:30",
     "appointmentTypeId": null,
     "statusId": 0
   },
   {
     "id": 3,
-    "start": "11:00",
-    "end": "11:30",
-    "date": "10/04/2019",
+    "start": "04-10-2019 11:00",
+    "end": "04-10-2019 11:30",
     "appointmentTypeId": 1,
     "statusId": 0
   }

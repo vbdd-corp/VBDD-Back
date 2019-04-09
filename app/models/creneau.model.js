@@ -5,9 +5,8 @@ class Creneau extends BaseModel {
   constructor() {
     super('Creneau', {
       id: Joi.number().required(),
-      start: Joi.date().format('HH:mm').required(),
-      end: Joi.date().format('HH:mm').required(),
-      date: Joi.date().format('DD/MM/YYYY'),
+      start: Joi.date().required(),
+      end: Joi.date().required(),
       appointmentTypeId: Joi.number().required(),
       statusId: Joi.number().required(),
     });
