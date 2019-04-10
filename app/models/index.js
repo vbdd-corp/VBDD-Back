@@ -6,6 +6,13 @@ const File = require('./file.model.js');
 const FileType = require('./fileType.model.js');
 const School = require('./school.model.js');
 const Course = require('./course.model.js');
+const Appointment = require('./appointment.model.js');
+const AppointmentType = require('./appointmentType.model.js');
+const AppointmentStatus = require('./appointmentStatus.model.js');
+const Creneau = require('./creneau.model.js');
+const CreneauStatus = require('./creneauStatus.model.js');
+const Plage = require('./plage.model.js');
+
 
 module.exports = {
   Student,
@@ -16,4 +23,10 @@ module.exports = {
   FileType,
   School,
   Course,
+  Appointment,
+  AppointmentStatus,
+  AppointmentType,
+  Creneau,
+  CreneauStatus,
+  Plage,
 };

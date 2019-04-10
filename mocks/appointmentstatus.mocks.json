@@ -1,0 +1,15 @@
+[
+  {
+    "name": "validé",
+    "id": 0
+  },
+  {
+    "name": "en cours de validation",
+    "id": 1
+  },
+  {
+    "name": "annulé",
+    "id": 2
+  }
+]
+
