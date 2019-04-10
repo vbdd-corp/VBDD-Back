@@ -1,10 +1,10 @@
 [
   {
-    "name": "validé",
+    "name": "disponible",
     "id": 0
   },
   {
-    "name": "en attente",
+    "name": "non disponible",
     "id": 1
   },
   {

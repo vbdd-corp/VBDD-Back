@@ -198,7 +198,7 @@ router.delete('/:fileID', (req, res) => {
 * crée un nouveau dossier pour l'étudiant d'id :studentID et les modules associées (vides)
 * dans la base avec dans le body de la requete POST {fileTypeId: number, reportName: string}
 * */
-router.post('/:studentID', (req, res) => {
+router.post('/:studentID', (req, res) => { // TODO : remove le :studentId -> deja dans req.body
   try {
     const myStudent = getStudentSafely(req.params.studentID);
     if (myStudent === null) {

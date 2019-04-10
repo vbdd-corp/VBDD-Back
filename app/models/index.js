@@ -12,6 +12,7 @@ const AppointmentStatus = require('./appointmentStatus.model.js');
 const Creneau = require('./creneau.model.js');
 const CreneauStatus = require('./creneauStatus.model.js');
 const Plage = require('./plage.model.js');
+const Time = require('./time.model.js');
 
 
 module.exports = {
@@ -29,4 +30,5 @@ module.exports = {
   Creneau,
   CreneauStatus,
   Plage,
+  Time,
 };

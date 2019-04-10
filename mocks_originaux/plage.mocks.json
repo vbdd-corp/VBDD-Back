@@ -1,0 +1,40 @@
+[
+  {
+    "id": 0,
+    "start": {
+      "minutes": 0,
+      "hours": 10,
+      "day": 9,
+      "month": 4,
+      "year": 2019
+    },
+    "end": {
+      "minutes": 30,
+      "hours": 11,
+      "day": 9,
+      "month": 4,
+      "year": 2019
+    },
+    "appointmentTypeId": -1,
+    "briId": 0
+  },
+  {
+    "id": 1,
+    "start": {
+      "minutes": 0,
+      "hours": 11,
+      "day": 10,
+      "month": 4,
+      "year": 2019
+    },
+    "end": {
+      "minutes": 30,
+      "hours": 11,
+      "day": 10,
+      "month": 4,
+      "year": 2019
+    },
+    "appointmentTypeId": 1,
+    "briId": 0
+  }
+]

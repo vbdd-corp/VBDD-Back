@@ -1,9 +1,47 @@
 [
   {
     "id": 0,
-    "start": {
+    "start" : {
       "minutes": 0,
       "hours": 10,
+      "day": 9,
+      "month": 4,
+      "year": 2019
+    },
+    "end": {
+      "minutes": 30,
+      "hours": 10,
+      "day": 9,
+      "month": 4,
+      "year": 2019
+    },
+    "appointmentTypeId": -1,
+    "statusId": 0
+  },
+  {
+    "id": 1,
+    "start": {
+      "minutes": 30,
+      "hours": 10,
+      "day": 9,
+      "month": 4,
+      "year": 2019
+    },
+    "end": {
+      "minutes": 0,
+      "hours": 11,
+      "day": 9,
+      "month": 4,
+      "year": 2019
+    },
+    "appointmentTypeId": -1,
+    "statusId": 0
+  },
+  {
+    "id": 2,
+    "start": {
+      "minutes": 0,
+      "hours": 11,
       "day": 9,
       "month": 4,
       "year": 2019
@@ -16,10 +54,10 @@
       "year": 2019
     },
     "appointmentTypeId": -1,
-    "briId": 0
+    "statusId": 0
   },
   {
-    "id": 1,
+    "id": 3,
     "start": {
       "minutes": 0,
       "hours": 11,
@@ -35,63 +73,6 @@
       "year": 2019
     },
     "appointmentTypeId": 1,
-    "briId": 0
-  },
-  {
-    "start": {
-      "minutes": 0,
-      "hours": 10,
-      "day": 9,
-      "month": 4,
-      "year": 2019
-    },
-    "end": {
-      "minutes": 30,
-      "hours": 11,
-      "day": 9,
-      "month": 4,
-      "year": 2019
-    },
-    "appointmentTypeId": -1,
-    "briId": 0,
-    "id": 1554912873171
-  },
-  {
-    "start": {
-      "minutes": 0,
-      "hours": 10,
-      "day": 9,
-      "month": 4,
-      "year": 2019
-    },
-    "end": {
-      "minutes": 30,
-      "hours": 11,
-      "day": 9,
-      "month": 4,
-      "year": 2019
-    },
-    "appointmentTypeId": -1,
-    "briId": 0,
-    "id": 1554913014052
-  },
-  {
-    "start": {
-      "minutes": 0,
-      "hours": 10,
-      "day": 9,
-      "month": 4,
-      "year": 2019
-    },
-    "end": {
-      "minutes": 30,
-      "hours": 11,
-      "day": 9,
-      "month": 4,
-      "year": 2019
-    },
-    "appointmentTypeId": -1,
-    "briId": 0,
-    "id": 1554913063596
+    "statusId": 0
   }
 ]
