@@ -331,11 +331,6 @@ router.post('/:studentID', (req, res) => {
     });
     const maxIdFile = File.get().reduce((max, p) => (p.id > max ? p.id : max), 0);
     const newFileId = maxIdFile + 1;
-    /* logThis(`maxFileId == ${maxIdFile}`);
-    logThis(`myList == ${myList}`);
-    logThis(`req.params.studentID == ${req.params.studentID}`);
-    logThis(`req.body.fileTypeId == ${req.body.fileTypeId}`);
-    logThis(`name: ${myFileType.typeName}`); */
     const objFile = {
       studentId: theStudentId,
       moduleIds: myList,

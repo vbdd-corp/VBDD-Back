@@ -9,6 +9,7 @@ const { Module } = require('../../models');
 function logThis(elt) {
   logger.log(`debug ==> ${elt}`);
 }
+
 const app = Router();
 app.use(fileUpload());
 
@@ -43,23 +44,24 @@ const deleteDirFilesUsingPattern = (pattern, dirPath = __dirname) => {
   });
 };
 
-const cleanDir = (dirPath) => {
-  fs.readdir(resolve(dirPath), (err, fileNames) => {
+const cleanDir = async (dirPath) => {
+  await fs.readdir(resolve(dirPath), (err, fileNames) => {
     if (err) throw err;
-    fileNames.forEach((name) => {
+    fileNames.forEach(async (name) => {
       // logThis('name == ' + name);
-      fs.unlink(resolve(`${dirPath}/${name}`), (errbis) => {
+      await fs.unlink(resolve(`${dirPath}/${name}`), (errbis) => {
         if (errbis) throw errbis;
-        console.log(`Deleted ${name}`);
+        logThis(`Deleted ${name}`);
       });
     });
   });
+  logThis('END Function');
 };
 
 const makeThisDir = async (dirPath) => {
-  logThis(`--> DIRPATH == ${dirPath}`);
-  const path = await makeDir(dirPath);
-  logThis(`DIR ${path} CREATED SUCCESSFULLY`);
+  // logThis(`--> DIRPATH == ${dirPath}`);
+  await makeDir(dirPath);
+  // logThis(`DIR ${path} CREATED SUCCESSFULLY`);
 };
 
 app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
@@ -77,7 +79,7 @@ app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
     // logThis('DB1 ==> ', startupFile);
     const dirPath = `${__dirname}/../../../uploads/Student_${studentId}/Folder_${filedId}/Module_${moduleId}`;
 
-    makeThisDir(dirPath).catch(logThis);
+    // makeThisDir(dirPath).catch(logThis);
     /* try { } catch (err) {
       logThis(err + 'ERROR JMD here');
     } */
@@ -86,47 +88,80 @@ app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
     switch (moduleTypeId) {
       case 1:
         if (startupFile.name.startsWith('recto')) {
-        // remove all files in dir whose name begin with recto
+          // remove all files in dir whose name begin with recto
           try {
             deleteDirFilesUsingPattern(/^recto+/, `${dirPath}`).catch(logThis);
-          // un peu bizarre le .catch ici... .
-          } catch (err) { logThis(err); }
+            // un peu bizarre le .catch ici... .
+          } catch (err) {
+            logThis(err);
+          }
         } else if (startupFile.name.startsWith('verso')) {
           try {
             deleteDirFilesUsingPattern(/^verso+/, `${dirPath}`).catch(logThis);
-          } catch (err) { logThis(err); }
+          } catch (err) {
+            logThis(err);
+          }
         }
         break;
-      case 2:
-      case 4:
-      case 5:
-      case 6:
       case 9:
-      case 10:
-      case 12:
-      case 13:
-      case 15:
-      case 16:
         logThis(`myPath ==> ${dirPath}`);
-        cleanDir(dirPath); // function block works :)
-        res.status(200).json(Module.update(
-          req.params.moduleId,
-          {
-            infos: {
-              filePath: `${dirPath}/${startupFile.name}`,
-              moveonlineId: theModule.moveonlineId,
-            },
-          },
-        ));
+        makeThisDir(dirPath).then(() => {
+          cleanDir(dirPath).then(() => {
+            startupFile.mv(`${dirPath}/${startupFile.name}`, (err) => {
+              if (err) {
+                return res.status(500).send(err);
+              }
+              logThis('cleaned dir and MV SUCCESSFUL');
+              logThis(`ICI theModule.infos.moveonelineId === ${theModule.infos.moveonlineId}`);
+              const moduleUpdated = (Module.update(
+                moduleId,
+                {
+                  infos: {
+                    filePath: `${dirPath}/${startupFile.name}`,
+                    moveonlineId: theModule.infos.moveonlineId,
+                  },
+                },
+              ));
+              res.status(200).json(moduleUpdated);
+              logThis('uploaded yessss ------->');
+              return 0;
+            });
+          }).catch(err => logThis(err));
+        }).catch(err => logThis(err)); // function block works :)
+        break;
+      case
+        2
+        :
+      case
+        4
+        :
+      case
+        5
+        :
+      case
+        6
+        :
+      case
+        10
+        :
+      case
+        12
+        :
+      case
+        13
+        :
+      case
+        15
+        :
+      case
+        16
+        :
         break;
       default:
         break;
     }
-
-    startupFile.mv(`${dirPath}/${startupFile.name}`, (err) => {
-      if (err) { logThis(err); } else { logThis('uploaded'); }
-    });
-  } catch (err) {
+  } catch
+  (err) {
     if (err.name === 'ValidationError') {
       res.status(400).json(err.extra);
     } else {
@@ -134,5 +169,4 @@ app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
     }
   }
 });
-
 module.exports = app;
