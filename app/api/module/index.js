@@ -70,7 +70,33 @@ const makeThisDir = dirPath => new Promise((resolveArg, reject) => {
     return reject(Error(`Error makeThisDir: ${err}`));
   }
 });
-  // logThis(`DIR ${path} CREATED SUCCESSFULLY`);
+
+function moveThatFile(fullPath, startupFile, moduleId, theModule) {
+  return new Promise((resolveArg, reject) => {
+    startupFile.mv(fullPath, (err) => {
+      if (err) {
+        logThis(`Strange ERR == ${err}`);
+        return reject(Error(`moveThatFile FAILED: ${err}`));
+      }
+      logThis('MV SUCCESSFUL');
+      // logThis(`ICI theModule.infos.moveonelineId === ${theModule.infos.moveonlineId}`);
+      const moduleUpdated = Module.update(
+        moduleId,
+        {
+          infos: {
+            // filePath: `${dirPath}/${startupFile.name}`,
+            filePath: fullPath,
+            moveonlineId: theModule.infos.moveonlineId,
+          },
+        },
+      );
+      resolveArg(moduleUpdated);
+      logThis('uploaded yessss ------->');
+      return 0;
+    });
+  });
+}
+// logThis(`DIR ${path} CREATED SUCCESSFULLY`);
 
 app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
   try {
@@ -104,8 +130,8 @@ app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
     dirPath = someDir;
     // makeThisDir(dirPath).catch(logThis);
     /* try { } catch (err) {
-      logThis(err + 'ERROR JMD here');
-    } */
+        logThis(err + 'ERROR JMD here');
+      } */
     logThis('DB 2 => BEEN HERE.');
 
     switch (moduleTypeId) {
@@ -135,26 +161,18 @@ app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
             logThis(`cleanDir Promise returns: ${objbis}`);
             const fullPath = path.join(`${dirPath}`, `${startupFile.name}`);
             logThis(`fullPath == ${fullPath}`);
-            startupFile.mv(fullPath, (err) => {
-              if (err) {
-                logThis(`Strange ERR == ${err}`);
-                return res.status(500).send(err);
-              }
-              logThis('MV SUCCESSFUL');
-              // logThis(`ICI theModule.infos.moveonelineId === ${theModule.infos.moveonlineId}`);
-              const moduleUpdated = (Module.update(
-                moduleId,
-                {
-                  infos: {
-                    filePath: `${dirPath}/${startupFile.name}`,
-                    moveonlineId: theModule.infos.moveonlineId,
-                  },
-                },
-              ));
-              res.status(200).json(moduleUpdated);
-              logThis('uploaded yessss ------->');
-              return 0;
-            });
+            logThis(`!!!! startupFile == ${startupFile.toString()}`);
+
+            moveThatFile(fullPath, startupFile, moduleId, theModule)
+              .then((moduleUpdated) => {
+                logThis('moveThatFile COMPLETED! .');
+                res.status(200).json({
+                  moduleUp: moduleUpdated, startupFileDebug: startupFile,
+                });
+              }).catch((err) => {
+                logThis(err);
+                res.status(500).send(err);
+              });
           }).catch(err => logThis(err));
         }).catch(err => logThis(err));
         break;
