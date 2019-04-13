@@ -90,7 +90,7 @@ app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
     let someDir;
     try {
       someDir = path.join(
-        global.myBbasedir, 'uploads',
+        global.myBasedir, 'uploads',
         `Student_${studentId}`,
         `Folder_${filedId}`,
         `Module_${moduleId}`,
