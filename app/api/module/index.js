@@ -1,6 +1,6 @@
 const fileUpload = require('express-fileupload');
 const { Router } = require('express');
-const { resolve } = require('path');
+const path = require('path');
 const makeDir = require('make-dir');
 const fs = require('fs');
 const logger = require('../../utils/logger');
@@ -26,7 +26,7 @@ function getModuleSafely(moduleId) {
 
 const deleteDirFilesUsingPattern = (pattern, dirPath = __dirname) => {
   // get all file names in directory
-  fs.readdir(resolve(dirPath), (err, fileNames) => {
+  fs.readdir(path.resolve(dirPath), (err, fileNames) => {
     if (err) throw err;
     // iterate through the found file names
 
@@ -35,7 +35,7 @@ const deleteDirFilesUsingPattern = (pattern, dirPath = __dirname) => {
       logThis(`name == ${name}`);
       if (pattern.test(name)) {
         logThis(`--> ${name}`);
-        fs.unlink(resolve(`${dirPath}/${name}`), (errbis) => {
+        fs.unlink(path.resolve(`${dirPath}/${name}`), (errbis) => {
           if (errbis) throw errbis;
           logThis(`Deleted ${name}`);
         });
@@ -44,25 +44,33 @@ const deleteDirFilesUsingPattern = (pattern, dirPath = __dirname) => {
   });
 };
 
-const cleanDir = async (dirPath) => {
-  await fs.readdir(resolve(dirPath), (err, fileNames) => {
-    if (err) throw err;
-    fileNames.forEach(async (name) => {
+const cleanDir = dirPath => new Promise((resolveArg, reject) => {
+  fs.readdir(path.resolve(dirPath), (err, fileNames) => {
+    if (err) return reject(Error('Error 1 while cleanDir'));
+    fileNames.forEach((name) => {
       // logThis('name == ' + name);
-      await fs.unlink(resolve(`${dirPath}/${name}`), (errbis) => {
-        if (errbis) throw errbis;
-        logThis(`Deleted ${name}`);
+      fs.unlink(path.resolve(`${dirPath}/${name}`), async (errbis) => {
+        await logThis(`Deleted ${name}`);
+        if (errbis) return reject(Error('Error 2 while cleanDir'));
+        return 0;
       });
     });
+    return 0;
   });
   logThis('END Function');
-};
+  return resolveArg('cleanDir finished :) .');
+});
 
-const makeThisDir = async (dirPath) => {
-  // logThis(`--> DIRPATH == ${dirPath}`);
-  await makeDir(dirPath);
+// logThis(`--> DIRPATH == ${dirPath}`);
+const makeThisDir = dirPath => new Promise((resolveArg, reject) => {
+  try {
+    makeDir(dirPath);
+    return resolveArg('makeThisDir Successfull :) .');
+  } catch (err) {
+    return reject(Error(`Error makeThisDir: ${err}`));
+  }
+});
   // logThis(`DIR ${path} CREATED SUCCESSFULLY`);
-};
 
 app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
   try {
@@ -77,8 +85,23 @@ app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
     logThis(`moduleTypeId == ${moduleTypeId}`);
     const startupFile = req.files.foo;
     // logThis('DB1 ==> ', startupFile);
-    const dirPath = `${__dirname}/../../../uploads/Student_${studentId}/Folder_${filedId}/Module_${moduleId}`;
-
+    logThis('HELLO =>  == \n');
+    logThis(`__basedir == ${global.myBasedir}`);
+    let someDir;
+    try {
+      someDir = path.join(
+        global.myBbasedir, 'uploads',
+        `Student_${studentId}`,
+        `Folder_${filedId}`,
+        `Module_${moduleId}`,
+      );
+    } catch (err) {
+      logThis(`HHEEE => ${err}`);
+    }
+    logThis(`someDir == ${someDir}`);
+    logThis('---------------');
+    let dirPath = `${__dirname}/../../../uploads/Student_${studentId}/Folder_${filedId}/Module_${moduleId}`;
+    dirPath = someDir;
     // makeThisDir(dirPath).catch(logThis);
     /* try { } catch (err) {
       logThis(err + 'ERROR JMD here');
@@ -104,15 +127,21 @@ app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
         }
         break;
       case 9:
-        logThis(`myPath ==> ${dirPath}`);
-        makeThisDir(dirPath).then(() => {
-          cleanDir(dirPath).then(() => {
-            startupFile.mv(`${dirPath}/${startupFile.name}`, (err) => {
+        logThis(`dirPath ==> ${dirPath}`);
+        makeThisDir(dirPath).then((obj) => {
+          logThis(`makeThisDir Promise returns: ${obj}`);
+
+          cleanDir(dirPath).then((objbis) => {
+            logThis(`cleanDir Promise returns: ${objbis}`);
+            const fullPath = path.join(`${dirPath}`, `${startupFile.name}`);
+            logThis(`fullPath == ${fullPath}`);
+            startupFile.mv(fullPath, (err) => {
               if (err) {
+                logThis(`Strange ERR == ${err}`);
                 return res.status(500).send(err);
               }
-              logThis('cleaned dir and MV SUCCESSFUL');
-              logThis(`ICI theModule.infos.moveonelineId === ${theModule.infos.moveonlineId}`);
+              logThis('MV SUCCESSFUL');
+              // logThis(`ICI theModule.infos.moveonelineId === ${theModule.infos.moveonlineId}`);
               const moduleUpdated = (Module.update(
                 moduleId,
                 {
@@ -127,7 +156,7 @@ app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
               return 0;
             });
           }).catch(err => logThis(err));
-        }).catch(err => logThis(err)); // function block works :)
+        }).catch(err => logThis(err));
         break;
       case
         2

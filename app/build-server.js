@@ -2,10 +2,12 @@ const cors = require('cors');
 const morgan = require('morgan');
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
 const api = require('./api');
 
 module.exports = (cb) => {
   const app = express();
+  global.myBasedir = path.resolve(`${__dirname}/..`);
   app.disable('x-powered-by');
   app.use(cors());
   app.use(bodyParser.json({}));
