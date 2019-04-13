@@ -44,12 +44,12 @@ const deleteDirFilesUsingPattern = (pattern, dirPath = __dirname) => {
   });
 };
 
-const cleanDir = dirPath => new Promise((resolveArg, reject) => {
-  fs.readdir(path.resolve(dirPath), (err, fileNames) => {
+const cleanDir = dirPath => new Promise(async (resolveArg, reject) => {
+  await fs.readdir(path.resolve(dirPath), async (err, fileNames) => {
     if (err) return reject(Error('Error 1 while cleanDir'));
-    fileNames.forEach((name) => {
+    await fileNames.forEach(async (name) => {
       // logThis('name == ' + name);
-      fs.unlink(path.resolve(`${dirPath}/${name}`), async (errbis) => {
+      await fs.unlink(path.resolve(`${dirPath}/${name}`), async (errbis) => {
         await logThis(`Deleted ${name}`);
         if (errbis) return reject(Error('Error 2 while cleanDir'));
         return 0;
@@ -72,13 +72,13 @@ const makeThisDir = dirPath => new Promise((resolveArg, reject) => {
 });
 
 function moveThatFile(fullPath, startupFile, moduleId, theModule) {
-  return new Promise((resolveArg, reject) => {
-    startupFile.mv(fullPath, (err) => {
+  return new Promise(async (resolveArg, reject) => {
+    await startupFile.mv(fullPath, async (err) => {
       if (err) {
         logThis(`Strange ERR == ${err}`);
         return reject(Error(`moveThatFile FAILED: ${err}`));
       }
-      logThis('MV SUCCESSFUL');
+      await logThis('MV SUCCESSFUL');
       // logThis(`ICI theModule.infos.moveonelineId === ${theModule.infos.moveonlineId}`);
       const moduleUpdated = Module.update(
         moduleId,
@@ -126,8 +126,7 @@ app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
     }
     logThis(`someDir == ${someDir}`);
     logThis('---------------');
-    let dirPath = `${__dirname}/../../../uploads/Student_${studentId}/Folder_${filedId}/Module_${moduleId}`;
-    dirPath = someDir;
+    const dirPath = someDir;
     // makeThisDir(dirPath).catch(logThis);
     /* try { } catch (err) {
         logThis(err + 'ERROR JMD here');
