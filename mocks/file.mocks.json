@@ -49,5 +49,26 @@
     "fileTypeId": 0,
     "name": "erasmus",
     "id": 3
+  },
+  {
+    "studentId": 2,
+    "moduleIds": [
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48
+    ],
+    "fileTypeId": 2,
+    "name": "hors europe",
+    "id": 4
   }
 ]
