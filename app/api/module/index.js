@@ -2,7 +2,6 @@ const fileUpload = require('express-fileupload');
 const { Router } = require('express');
 const path = require('path');
 const makeDir = require('make-dir');
-const fs = require('fs');
 const rimraf = require('rimraf');
 const logger = require('../../utils/logger');
 const { Module } = require('../../models');
@@ -26,7 +25,7 @@ function getModuleSafely(moduleId) {
   }
 }
 
-const deleteDirFilesUsingPattern = (pattern, dirPath = __dirname) => {
+/* const deleteDirFilesUsingPattern = (pattern, dirPath = __dirname) => {
   // get all file names in directory
   fs.readdir(path.resolve(dirPath), (err, fileNames) => {
     if (err) throw err;
@@ -44,7 +43,7 @@ const deleteDirFilesUsingPattern = (pattern, dirPath = __dirname) => {
       }
     });
   });
-};
+}; */
 
 /* let cleanDir = async (dirPath) => {
   await fs.readdir(path.resolve(dirPath), async (err, fileNames) => {
@@ -109,11 +108,11 @@ app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
     startupFile.mv(fullPath, (err) => {
       if (err) {
         logThis(`startupFile.mv() ERROR == ${err}`);
-        res.status(500).json({ error: 'startupFile.mv() FAILED :/' });
+        return res.status(500).json({ error: '<------- startupFile.mv() FAILED :/ ------->' });
       }
       logThis('MV SUCCESSFUL');
-      logThis('<------- MV COMPLETED SUCCESS ------->');
-      res.status(200).json({ uploadedFile: startupFile });
+      logThis('<------- startupFile.mv() COMPLETED: SUCCESS ------->');
+      return res.status(200).json({ uploadedFile: startupFile });
     });
   };
 
@@ -131,20 +130,18 @@ app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
     // logThis('DB1 ==> ', startupFile);
     logThis('HELLO =>  == \n');
     logThis(`__basedir == ${global.myBasedir}`);
-    let someDir;
+    let dirPath;
     try {
-      someDir = path.join(
+      dirPath = path.join(
         global.myBasedir, 'uploads',
         `Student_${studentId}`,
         `Folder_${filedId}`,
         `Module_${moduleId}`,
       );
     } catch (err) {
-      logThis(`HHEEE => ${err}`);
+      logThis(`ERROR building dirPath: ${err}`);
     }
-    logThis(`someDir == ${someDir}`);
     logThis('---------------');
-    const dirPath = someDir;
     // makeThisDir(dirPath).catch(logThis);
     /* try { } catch (err) {
         logThis(err + 'ERROR JMD here');
@@ -154,35 +151,32 @@ app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
     const fullPath = path.join(`${dirPath}`, `${startupFile.name}`);
     logThis(`fullPath == ${fullPath}`);
 
-    (async () => {
+    /* (async () => {
       // await is necessary here !!!
       await makeThisDir(dirPath).then((obj) => {
         logThis(`makeThisDir Promise returns: ${obj}`);
       }).catch(err => logThis(err));
-    })();
+    })(); */
 
     switch (moduleTypeId) {
       case 1:
         if (startupFile.name.startsWith('recto')) {
-          // remove all files in dir whose name begin with recto
-          cleanDir(dirPath, 'recto*', () => {
-            basicFileMover(startupFile, fullPath);
-            /* startupFile.mv(fullPath, (err) => {
-              if (err) {
-                logThis(`startupFile.mv() ERROR == ${err}`);
-                res.status(500).json({error: 'startupFile.mv() FAILED :/'});
-              }
-              logThis('MV SUCCESSFUL');
-              logThis('<------- MV COMPLETED SUCCESS ------->');
-              res.status(200).json({uploadedFile: startupFile});
-            }); */
-          });
+          /* remove all files in dir whose name begin with recto then upload file
+          * with name beginning with recto
+          * */
+          makeThisDir(dirPath).then((obj) => {
+            logThis(`makeThisDir Promise returns: ${obj}`);
+            cleanDir(dirPath, 'recto*', () => {
+              basicFileMover(startupFile, fullPath);
+            });
+          }).catch(err => logThis(err));
         } else if (startupFile.name.startsWith('verso')) {
-          try {
-            deleteDirFilesUsingPattern(/^verso+/, `${dirPath}`).catch(logThis);
-          } catch (err) {
-            logThis(err);
-          }
+          makeThisDir(dirPath).then((obj) => {
+            logThis(`makeThisDir Promise returns: ${obj}`);
+            cleanDir(dirPath, 'verso*', () => {
+              basicFileMover(startupFile, fullPath);
+            });
+          }).catch(err => logThis(err));
         }
         break;
 
