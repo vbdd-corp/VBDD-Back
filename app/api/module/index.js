@@ -40,6 +40,9 @@ const makeThisDir = async (dirPath) => {
   }
 };
 
+/*
+* USAGE: POST /api/module/upload/:studentID/:fileID/:moduleID
+* */
 app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
   const basicFileMover = (startupFile, fullPath) => {
     startupFile.mv(fullPath, (err) => {
@@ -52,7 +55,6 @@ app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
       return res.status(200).json({ uploadedFile: startupFile });
     });
   };
-
   try {
     const moduleId = parseInt(req.params.moduleID, 10);
     const filedId = parseInt(req.params.fileID, 10);
@@ -64,9 +66,8 @@ app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
     const moduleTypeId = theModule.typeModuleId;
     logThis(`moduleTypeId == ${moduleTypeId}`);
     const startupFile = req.files.foo;
-    // logThis('DB1 ==> ', startupFile);
-    logThis('HELLO =>  == \n');
     logThis(`__basedir == ${global.myBasedir}`);
+    logThis('\n');
     let dirPath;
     try {
       dirPath = path.join(
@@ -79,21 +80,9 @@ app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
       logThis(`ERROR building dirPath: ${err}`);
     }
     logThis('---------------');
-    // makeThisDir(dirPath).catch(logThis);
-    /* try { } catch (err) {
-        logThis(err + 'ERROR JMD here');
-      } */
-    logThis('DB 2 => BEEN HERE.');
     logThis(`dirPath ==> ${dirPath}`);
     const fullPath = path.join(`${dirPath}`, `${startupFile.name}`);
     logThis(`fullPath == ${fullPath}`);
-
-    /* (async () => {
-      // await is necessary here !!!
-      await makeThisDir(dirPath).then((obj) => {
-        logThis(`makeThisDir Promise returns: ${obj}`);
-      }).catch(err => logThis(err));
-    })(); */
 
     switch (moduleTypeId) {
       case 1:
@@ -118,6 +107,7 @@ app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
         break;
 
       case 9:
+        // to test => 30/3/27
         makeThisDir(dirPath).then((obj) => {
           logThis(`makeThisDir Promise returns: ${obj}`);
 
@@ -144,8 +134,6 @@ app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
             });
           });
         }).catch(err => logThis(err));
-
-
         break;
       case
         2
@@ -174,6 +162,31 @@ app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
       case
         16
         :
+        // to test => 30/3/29
+        makeThisDir(dirPath).then((obj) => {
+          logThis(`makeThisDir Promise returns: ${obj}`);
+
+          cleanDir(dirPath, '*', () => {
+            startupFile.mv(fullPath, (err) => {
+              if (err) {
+                logThis(`startupFile.mv() ERROR == ${err}`);
+                return res.status(500).json({ error: '<------- startupFile.mv() FAILED :/ ------->' });
+              }
+              logThis('startupFile.mv() SUCCESSFUL');
+              const moduleUpdated = Module.update(
+                moduleId, {
+                  infos: {
+                    filePath: fullPath,
+                  },
+                },
+              );
+              logThis('<------- startupFile.mv() COMPLETED: SUCCESS ------->');
+              return res.status(200).json({
+                moduleUp: moduleUpdated, uploadedFile: startupFile,
+              });
+            });
+          });
+        }).catch(err => logThis(err));
         break;
       default:
         break;

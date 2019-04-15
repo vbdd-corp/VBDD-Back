@@ -280,12 +280,15 @@ router.post('/:studentID', (req, res) => {
           };
           break;
         case 11:
+          // Erasmus Learning Agreement A FAIRE CAMILLE!
           theInfos = {};
           // 11 à faire Contrat d'études gros truc json
           break;
         case 9:
+          // Fiche Inscription MoveOnline Outgoing
           theInfos = { filePath: null, moveonlineId: null };
           break;
+
         case 2:
         case 4:
         case 5:
@@ -295,11 +298,19 @@ router.post('/:studentID', (req, res) => {
         case 13:
         case 15:
         case 16:
-          // autorisation responsable pédagogique pdf
+          // 2 passeport
+          // 4 CV Europass
+          // 5 Relevé Notes Supérieur
+          // 6 Lettre de motivation
+          // 10 Autorisation professeur responsable
+          // 12 Evaluation des compétences Linguistiques
+          // 13 Carte Européenne d'Assurance Maladie
+          // 15 Lettre de Recommandation Enseignant
+          // 16 Acte Naissance avec Filiation
           theInfos = { filePath: null };
           break;
         case 17:
-          // Voeux Universités
+          // 17 Voeux Universités
           theInfos = {
             choice1: {
               school: null,
