@@ -2,12 +2,12 @@ const { Router } = require('express');
 const { Student, File } = require('../../models');
 
 // const logger = require('../../utils/logger');
-
-const router = new Router();
-
 /* const log = function (message) {
   logger.log(message);
 }; */
+
+const router = new Router();
+
 
 function getStudentByIdSafely(studentId) {
   try {

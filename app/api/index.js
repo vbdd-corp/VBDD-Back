@@ -5,6 +5,7 @@ const BriRouter = require('./bri');
 const FileRouter = require('./file');
 const ModuleRouter = require('./module');
 const FileTypeRouter = require('./fileType');
+const SchoolRouter = require('./school');
 
 const router = new Router();
 router.get('/status', (req, res) => res.status(200).json('ok'));
@@ -14,4 +15,5 @@ router.use('/bri', BriRouter);
 router.use('/file', FileRouter);
 router.use('/module', ModuleRouter);
 router.use('/fileType', FileTypeRouter);
+router.use('/school', SchoolRouter);
 module.exports = router;
