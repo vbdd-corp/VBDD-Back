@@ -37,6 +37,8 @@ module.exports = class BaseModel {
   }
 
   getById(id) {
+    // logger.log(`here in getbyId param == ${id}`);
+    // logger.log("items.len === " + this.items.length);
     if (typeof id === 'string') id = parseInt(id, 10);
     const item = this.items.find(i => i.id === id);
     if (!item) throw new NotFoundError(`Cannot get ${this.name} id=${id} : not found`);
@@ -54,8 +56,8 @@ module.exports = class BaseModel {
 
   createWithGivenId(obj = {}, theId) {
     const item = Object.assign({}, obj, { id: theId });
-    logger.log(`hello ici jmd item ==> ${item}`);
-    logger.log(`==> ==> item.id == ${item.id}`);
+    // logger.log(`hello ici jmd item ==> ${item}`);
+    logger.log(`==> ==> created item.id == ${item.id}`);
     const { error } = Joi.validate(item, this.schema);
     if (error) throw new ValidationError(`Create Error : Object ${JSON.stringify(obj)} does not match schema of model ${this.name}`, error);
     this.items.push(item);

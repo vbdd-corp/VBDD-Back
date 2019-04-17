@@ -42,6 +42,9 @@ const makeThisDir = async (dirPath) => {
 
 /*
 * USAGE: POST /api/module/upload/:studentID/:fileID/:moduleID
+* si c est un fichier qui est envoyé, doit être envoyé dans une variable foo
+* si c est un objet json qui est envoyé, l objet json correspond au champ
+* infos dans chaque module
 * */
 app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
   const basicFileMover = (startupFile, fullPath) => {
@@ -64,27 +67,74 @@ app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
       res.status(403).json({ error: `Module n°${moduleId} not found.` });
     }
     const moduleTypeId = theModule.typeModuleId;
-    logThis(`moduleTypeId == ${moduleTypeId}`);
-    const startupFile = req.files.foo;
-    logThis(`__basedir == ${global.myBasedir}`);
-    logThis('\n');
-    let dirPath;
-    try {
-      dirPath = path.join(
-        global.myBasedir, 'uploads',
-        `Student_${studentId}`,
-        `Folder_${filedId}`,
-        `Module_${moduleId}`,
-      );
-    } catch (err) {
-      logThis(`ERROR building dirPath: ${err}`);
-    }
-    logThis('---------------');
-    logThis(`dirPath ==> ${dirPath}`);
-    const fullPath = path.join(`${dirPath}`, `${startupFile.name}`);
-    logThis(`fullPath == ${fullPath}`);
 
+    let startupFile;
+    let fullPath;
+    let dirPath;
     switch (moduleTypeId) {
+      case 1:
+      case 9:
+      case 2:
+      case 4:
+      case 5:
+      case 6:
+      case 10:
+      case 12:
+      case 13:
+      case 15:
+      case 16:
+        logThis(`moduleTypeId == ${moduleTypeId}`);
+        startupFile = req.files.foo;
+        logThis(`myBasedir == ${global.myBasedir}`);
+        logThis('\n');
+        try {
+          dirPath = path.join(
+            global.myBasedir, 'uploads',
+            `Student_${studentId}`,
+            `Folder_${filedId}`,
+            `Module_${moduleId}`,
+          );
+        } catch (err) {
+          logThis(`ERROR building dirPath: ${err}`);
+        }
+        logThis('---------------');
+        // logThis(`dirPath ==> ${dirPath}`);
+        fullPath = path.join(`${dirPath}`, `${startupFile.name}`);
+        logThis(`fullPath == ${fullPath}`);
+        break;
+      default:
+        break;
+    }
+
+    let objInfos;
+    switch (moduleTypeId) {
+      case 0:
+        objInfos = Object.assign({}, theModule.infos, {});
+        if (typeof req.body.stayCardEndValidity !== 'undefined' && req.body.stayCardEndValidity.length > 0) {
+          objInfos = Object.assign({}, objInfos,
+            { stayCardEndValidity: req.body.stayCardEndValidity });
+        }
+        if (typeof req.body.currentUNSDiploma !== 'undefined' && req.body.currentUNSDiploma.length > 0) {
+          objInfos = Object.assign({}, objInfos, { currentUNSDiploma: req.body.currentUNSDiploma });
+        }
+        if (typeof req.body.nextYearExchangeDiploma !== 'undefined' && req.body.nextYearExchangeDiploma.length > 0) {
+          objInfos = Object.assign({}, objInfos,
+            { nextYearExchangeDiploma: req.body.nextYearExchangeDiploma });
+        }
+        if (typeof req.body.shareMyDetails !== 'undefined' && (req.body.shareMyDetails === true
+          || req.body.shareMyDetails === false)) {
+          objInfos = Object.assign({}, objInfos, { shareMyDetails: req.body.shareMyDetails });
+        } else if (typeof req.body.shareMyDetails !== 'undefined') {
+          res.status(500).json({ error: 'Need defined one or more of the following fields: stayCardEndValidity, currentUNSDiploma, nextYearExchangeDiploma, shareMyDetails (true or false)' });
+        }
+
+        if (studentId === theModule.infos.studentId) {
+          const moduleUpdated = Module.update(moduleId, { infos: objInfos });
+          res.status(201).json({ updatedModule: moduleUpdated });
+        } else {
+          res.status(500).json({ error: 'Need defined one or more of the following fields: stayCardEndValidity, currentUNSDiploma, nextYearExchangeDiploma, shareMyDetails (true or false)' });
+        }
+        break;
       case 1:
         if (startupFile.name.startsWith('recto')) {
           /* remove all files in dir whose name begin with recto then upload file
