@@ -71,6 +71,9 @@ app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
     let startupFile;
     let fullPath;
     let dirPath;
+    let objInfos;
+    let moduleUpdated;
+
     switch (moduleTypeId) {
       case 1:
       case 9:
@@ -106,7 +109,7 @@ app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
         break;
     }
 
-    let objInfos;
+
     switch (moduleTypeId) {
       case 0:
         objInfos = Object.assign({}, theModule.infos, {});
@@ -129,12 +132,13 @@ app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
         }
 
         if (studentId === theModule.infos.studentId) {
-          const moduleUpdated = Module.update(moduleId, { infos: objInfos });
+          moduleUpdated = Module.update(moduleId, { infos: objInfos });
           res.status(201).json({ updatedModule: moduleUpdated });
         } else {
           res.status(500).json({ error: 'Need defined one or more of the following fields: stayCardEndValidity, currentUNSDiploma, nextYearExchangeDiploma, shareMyDetails (true or false)' });
         }
         break;
+
       case 1:
         if (startupFile.name.startsWith('recto')) {
           /* remove all files in dir whose name begin with recto then upload file
@@ -156,6 +160,99 @@ app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
         }
         break;
 
+      case 7:
+        /*
+        * country: null,
+            city: null,
+            stayDuration: null,
+            travelCost: null,
+            accommodationCost: null,
+            foodCost: null,
+            transportationHobbiesCost: null,
+            studyCost: null,
+            othersCost: null,
+            frenchCROUSScholarship: null,
+            mobilityScholarship: null,
+            travelHelp: null,
+            summerJobSalaries: null,
+            personalResources: null,
+            familyResources: null,
+            othersResources: null,
+            notes: null,
+        * */
+        objInfos = Object.assign({}, theModule.infos, {});
+        if (typeof req.body.country !== 'undefined' && req.body.country.length > 0) {
+          objInfos = Object.assign({}, objInfos,
+            { country: req.body.country });
+        }
+        if (typeof req.body.city !== 'undefined' && req.body.city.length > 0) {
+          objInfos = Object.assign({}, objInfos,
+            { city: req.body.city });
+        }
+        if (typeof req.body.stayDuration !== 'undefined' && req.body.stayDuration > 0) {
+          objInfos = Object.assign({}, objInfos,
+            { stayDuration: req.body.stayDuration });
+        }
+        if (typeof req.body.travelCost !== 'undefined' && req.body.travelCost > 0) {
+          objInfos = Object.assign({}, objInfos,
+            { travelCost: req.body.travelCost });
+        }
+        if (typeof req.body.accommodationCost !== 'undefined' && req.body.accommodationCost > 0) {
+          objInfos = Object.assign({}, objInfos,
+            { accommodationCost: req.body.accommodationCost });
+        }
+        if (typeof req.body.foodCost !== 'undefined' && req.body.foodCost > 0) {
+          objInfos = Object.assign({}, objInfos,
+            { foodCost: req.body.foodCost });
+        }
+        if (typeof req.body.transportationHobbiesCost !== 'undefined' && req.body.transportationHobbiesCost > 0) {
+          objInfos = Object.assign({}, objInfos,
+            { transportationHobbiesCost: req.body.transportationHobbiesCost });
+        }
+        if (typeof req.body.studyCost !== 'undefined' && req.body.studyCost > 0) {
+          objInfos = Object.assign({}, objInfos,
+            { studyCost: req.body.studyCost });
+        }
+        if (typeof req.body.othersCost !== 'undefined' && req.body.othersCost > 0) {
+          objInfos = Object.assign({}, objInfos,
+            { othersCost: req.body.othersCost });
+        }
+        if (typeof req.body.frenchCROUSScholarship !== 'undefined' && req.body.frenchCROUSScholarship > 0) {
+          objInfos = Object.assign({}, objInfos,
+            { frenchCROUSScholarship: req.body.frenchCROUSScholarship });
+        }
+        if (typeof req.body.mobilityScholarship !== 'undefined' && req.body.mobilityScholarship > 0) {
+          objInfos = Object.assign({}, objInfos,
+            { mobilityScholarship: req.body.mobilityScholarship });
+        }
+        if (typeof req.body.travelHelp !== 'undefined' && req.body.travelHelp > 0) {
+          objInfos = Object.assign({}, objInfos,
+            { travelHelp: req.body.travelHelp });
+        }
+        if (typeof req.body.summerJobSalaries !== 'undefined' && req.body.summerJobSalaries > 0) {
+          objInfos = Object.assign({}, objInfos,
+            { summerJobSalaries: req.body.summerJobSalaries });
+        }
+        if (typeof req.body.personalResources !== 'undefined' && req.body.personalResources > 0) {
+          objInfos = Object.assign({}, objInfos,
+            { personalResources: req.body.personalResources });
+        }
+        if (typeof req.body.familyResources !== 'undefined' && req.body.familyResources > 0) {
+          objInfos = Object.assign({}, objInfos,
+            { familyResources: req.body.familyResources });
+        }
+        if (typeof req.body.othersResources !== 'undefined' && req.body.othersResources > 0) {
+          objInfos = Object.assign({}, objInfos,
+            { othersResources: req.body.othersResources });
+        }
+        if (typeof req.body.notes !== 'undefined' && req.body.notes.length > 0) {
+          objInfos = Object.assign({}, objInfos,
+            { notes: req.body.notes });
+        }
+        moduleUpdated = Module.update(moduleId, { infos: objInfos });
+        res.status(201).json({ updatedModule: moduleUpdated });
+        break;
+
       case 9:
         // to test => 30/3/27
         makeThisDir(dirPath).then((obj) => {
@@ -169,7 +266,7 @@ app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
               }
               logThis('startupFile.mv() SUCCESSFUL');
               // logThis(`ICI theModule.infos.moveonelineId === ${theModule.infos.moveonlineId}`);
-              const moduleUpdated = Module.update(
+              moduleUpdated = Module.update(
                 moduleId, {
                   infos: {
                     filePath: fullPath,
@@ -223,7 +320,7 @@ app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
                 return res.status(500).json({ error: '<------- startupFile.mv() FAILED :/ ------->' });
               }
               logThis('startupFile.mv() SUCCESSFUL');
-              const moduleUpdated = Module.update(
+              moduleUpdated = Module.update(
                 moduleId, {
                   infos: {
                     filePath: fullPath,
