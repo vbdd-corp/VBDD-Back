@@ -1,152 +1,369 @@
 [
   {
-    "id": 0,
-    "typeModuleId": 9,
-    "infos": {}
-  },
-  {
-    "id": 1,
-    "typeModuleId": 4,
-    "infos": {}
-  },
-  {
-    "id": 2,
-    "typeModuleId": 5,
-    "infos": {}
-  },
-  {
-    "id": 3,
-    "typeModuleId": 10,
-    "infos": {}
-  },
-  {
-    "id": 4,
-    "typeModuleId": 6,
-    "infos": {}
-  },
-  {
-    "id": 5,
-    "typeModuleId": 11,
-    "infos": {}
-  },
-  {
-    "id": 6,
     "typeModuleId": 12,
-    "infos": {}
+    "infos": {
+      "filePath": null
+    },
+    "id": 14
   },
   {
-    "id": 7,
-    "typeModuleId": 7,
-    "infos": {}
-  },
-  {
-    "id": 8,
-    "typeModuleId": 13,
-    "infos": {}
-  },
-  {
-    "id": 9,
-    "typeModuleId": 4,
-    "infos": {}
-  },
-  {
-    "id": 10,
-    "typeModuleId": 5,
-    "infos": {}
-  },
-  {
-    "id": 11,
-    "typeModuleId": 6,
-    "infos": {}
-  },
-  {
-    "id": 12,
-    "typeModuleId": 7,
-    "infos": {}
-  },
-  {
-    "id": 13,
-    "typeModuleId": 8,
-    "infos": {}
-  },
-  {
-    "id": 14,
-    "typeModuleId": 12,
-    "infos": {}
-  },
-  {
-    "id": 15,
     "typeModuleId": 14,
-    "infos": {}
-  },
-  {
-    "id": 16,
-    "typeModuleId": 10,
-    "infos": {}
-  },
-  {
-    "id": 17,
-    "typeModuleId": 8,
-    "infos": {}
-  },
-  {
-    "id": 18,
-    "typeModuleId": 5,
-    "infos": {}
-  },
-  {
-    "id": 19,
-    "typeModuleId": 15,
-    "infos": {}
-  },
-  {
-    "id": 20,
-    "typeModuleId": 6,
-    "infos": {}
-  },
-  {
-    "id": 21,
-    "typeModuleId": 4,
-    "infos": {}
-  },
-  {
-    "id": 22,
-    "typeModuleId": 2,
-    "infos": {}
-  },
-  {
-    "id": 23,
-    "typeModuleId": 16,
-    "infos": {}
-  },
-  {
-    "id": 24,
-    "typeModuleId": 7,
-    "infos": {}
-  },
-  {
-    "typeModuleId": 4,
     "infos": {},
+    "id": 15
+  },
+  {
+    "typeModuleId": 10,
+    "infos": {
+      "filePath": null
+    },
+    "id": 16
+  },
+  {
+    "typeModuleId": 8,
+    "infos": {
+      "school": null,
+      "semester": null,
+      "BCICode": null,
+      "BCIProgramName": null,
+      "S1courses": null,
+      "S2courses": null
+    },
+    "id": 17
+  },
+  {
+    "typeModuleId": 5,
+    "infos": {
+      "filePath": null
+    },
+    "id": 18
+  },
+  {
+    "typeModuleId": 15,
+    "infos": {
+      "filePath": null
+    },
+    "id": 19
+  },
+  {
+    "typeModuleId": 6,
+    "infos": {
+      "filePath": null
+    },
+    "id": 20
+  },
+  {
+    "typeModuleId": 4,
+    "infos": {
+      "filePath": null
+    },
+    "id": 21
+  },
+  {
+    "typeModuleId": 2,
+    "infos": {
+      "filePath": null
+    },
+    "id": 22
+  },
+  {
+    "typeModuleId": 16,
+    "infos": {
+      "filePath": null
+    },
+    "id": 23
+  },
+  {
+    "typeModuleId": 7,
+    "infos": {
+      "country": null,
+      "city": null,
+      "stayDuration": null,
+      "travelCost": null,
+      "accommodationCost": null,
+      "foodCost": null,
+      "transportationHobbiesCost": null,
+      "studyCost": null,
+      "othersCost": null,
+      "frenchCROUSScholarship": null,
+      "mobilityScholarship": null,
+      "travelHelp": null,
+      "summerJobSalaries": null,
+      "personalResources": null,
+      "familyResources": null,
+      "othersResources": null,
+      "notes": null
+    },
+    "id": 24
+  },
+  {
+    "typeModuleId": 1,
+    "infos": {
+      "recto": null,
+      "verso": null
+    },
     "id": 25
   },
   {
-    "typeModuleId": 5,
-    "infos": {},
+    "typeModuleId": 2,
+    "infos": {
+      "filePath": null
+    },
     "id": 26
   },
   {
-    "typeModuleId": 6,
-    "infos": {},
+    "typeModuleId": 9,
+    "infos": {
+      "filePath": "/home/rex/Bureau/S6/PS6/projet/VBDD-Back/uploads/Student_30/Folder_3/Module_27/verso7.txt",
+      "moveonlineId": 11
+    },
     "id": 27
   },
   {
-    "typeModuleId": 7,
-    "infos": {},
+    "typeModuleId": 4,
+    "infos": {
+      "filePath": null
+    },
     "id": 28
   },
   {
-    "typeModuleId": 8,
-    "infos": {},
+    "typeModuleId": 5,
+    "infos": {
+      "filePath": "/home/rex/Bureau/S6/PS6/projet/VBDD-Back/uploads/Student_30/Folder_3/Module_29/recto1.txt"
+    },
     "id": 29
+  },
+  {
+    "typeModuleId": 10,
+    "infos": {
+      "filePath": null
+    },
+    "id": 30
+  },
+  {
+    "typeModuleId": 6,
+    "infos": {
+      "filePath": null
+    },
+    "id": 31
+  },
+  {
+    "typeModuleId": 11,
+    "infos": {},
+    "id": 32
+  },
+  {
+    "typeModuleId": 12,
+    "infos": {
+      "filePath": null
+    },
+    "id": 33
+  },
+  {
+    "typeModuleId": 7,
+    "infos": {
+      "country": null,
+      "city": null,
+      "stayDuration": null,
+      "travelCost": null,
+      "accommodationCost": null,
+      "foodCost": null,
+      "transportationHobbiesCost": null,
+      "studyCost": null,
+      "othersCost": null,
+      "frenchCROUSScholarship": null,
+      "mobilityScholarship": null,
+      "travelHelp": null,
+      "summerJobSalaries": null,
+      "personalResources": null,
+      "familyResources": null,
+      "othersResources": null,
+      "notes": null
+    },
+    "id": 34
+  },
+  {
+    "typeModuleId": 13,
+    "infos": {
+      "filePath": null
+    },
+    "id": 35
+  },
+  {
+    "typeModuleId": 12,
+    "infos": {
+      "filePath": null
+    },
+    "id": 36
+  },
+  {
+    "typeModuleId": 14,
+    "infos": {},
+    "id": 37
+  },
+  {
+    "typeModuleId": 10,
+    "infos": {
+      "filePath": null
+    },
+    "id": 38
+  },
+  {
+    "typeModuleId": 8,
+    "infos": {
+      "school": null,
+      "semester": null,
+      "BCICode": null,
+      "BCIProgramName": null,
+      "S1courses": null,
+      "S2courses": null
+    },
+    "id": 39
+  },
+  {
+    "typeModuleId": 5,
+    "infos": {
+      "filePath": null
+    },
+    "id": 40
+  },
+  {
+    "typeModuleId": 15,
+    "infos": {
+      "filePath": null
+    },
+    "id": 41
+  },
+  {
+    "typeModuleId": 6,
+    "infos": {
+      "filePath": null
+    },
+    "id": 42
+  },
+  {
+    "typeModuleId": 4,
+    "infos": {
+      "filePath": null
+    },
+    "id": 43
+  },
+  {
+    "typeModuleId": 2,
+    "infos": {
+      "filePath": null
+    },
+    "id": 44
+  },
+  {
+    "typeModuleId": 16,
+    "infos": {
+      "filePath": null
+    },
+    "id": 45
+  },
+  {
+    "typeModuleId": 7,
+    "infos": {
+      "country": null,
+      "city": null,
+      "stayDuration": null,
+      "travelCost": null,
+      "accommodationCost": null,
+      "foodCost": null,
+      "transportationHobbiesCost": null,
+      "studyCost": null,
+      "othersCost": null,
+      "frenchCROUSScholarship": null,
+      "mobilityScholarship": null,
+      "travelHelp": null,
+      "summerJobSalaries": null,
+      "personalResources": null,
+      "familyResources": null,
+      "othersResources": null,
+      "notes": null
+    },
+    "id": 46
+  },
+  {
+    "typeModuleId": 1,
+    "infos": {
+      "recto": null,
+      "verso": null
+    },
+    "id": 47
+  },
+  {
+    "typeModuleId": 2,
+    "infos": {
+      "filePath": null
+    },
+    "id": 48
+  },
+  {
+    "typeModuleId": 4,
+    "infos": {
+      "filePath": null
+    },
+    "id": 49
+  },
+  {
+    "typeModuleId": 5,
+    "infos": {
+      "filePath": null
+    },
+    "id": 50
+  },
+  {
+    "typeModuleId": 6,
+    "infos": {
+      "filePath": null
+    },
+    "id": 51
+  },
+  {
+    "typeModuleId": 7,
+    "infos": {
+      "country": "Iceland",
+      "city": "Reykjavik",
+      "stayDuration": 125,
+      "travelCost": 777,
+      "accommodationCost": 1200,
+      "foodCost": null,
+      "transportationHobbiesCost": null,
+      "studyCost": null,
+      "othersCost": null,
+      "frenchCROUSScholarship": null,
+      "mobilityScholarship": null,
+      "travelHelp": null,
+      "summerJobSalaries": null,
+      "personalResources": null,
+      "familyResources": null,
+      "othersResources": null,
+      "notes": "I am motivated to go abroad."
+    },
+    "id": 52
+  },
+  {
+    "typeModuleId": 8,
+    "infos": {
+      "school": null,
+      "semester": null,
+      "BCICode": null,
+      "BCIProgramName": null,
+      "S1courses": null,
+      "S2courses": null
+    },
+    "id": 53
+  },
+  {
+    "typeModuleId": 0,
+    "infos": {
+      "studentId": 1,
+      "stayCardEndValidity": "23/08/2019",
+      "currentUNSDiploma": "SI3",
+      "nextYearExchangeDiploma": "CS65",
+      "shareMyDetails": false
+    },
+    "id": 54
   }
 ]

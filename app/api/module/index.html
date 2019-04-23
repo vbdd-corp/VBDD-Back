@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Test Upload</title>
+</head>
+<body>
+  <h1>Upload a file here: </h1>
+  <form id="myForm" method="post" enctype="multipart/form-data" action="/">
+    <input type="file" name="foo">
+    <input type="submit" value="upload">
+  </form>
+
+  <script type="text/javascript">
+    // const path = require('path'); NO!
+    document.getElementById("myForm").setAttribute(
+      "action",
+      '/home/rex/Bureau/S6/PS6/projet/VBDD-Back' + '/' + 'app/api/module/upload/30/3/27'
+    );
+  </script>
+</body>
+</html>

@@ -4,6 +4,10 @@ const {
 } = require('../../models');
 const logger = require('../../utils/logger');
 
+function logThis(elt) {
+  logger.log(`debug ==> ${elt}`);
+}
+
 const router = new Router();
 
 function getStudentSafely(studentId) {
@@ -59,10 +63,6 @@ function getModuleSafely(moduleId) {
     }
     throw err;
   }
-}
-
-function logThis(elt) {
-  logger.log(`debug ==> ${elt}`);
 }
 
 const attachStudents = (file) => {
@@ -202,7 +202,7 @@ router.post('/:studentID', (req, res) => { // TODO : remove le :studentId -> dej
   try {
     const myStudent = getStudentSafely(req.params.studentID);
     if (myStudent === null) {
-      res.status(403).json({ error: `Student n°${req.params.studentId} not found.` });
+      res.status(403).json({ error: `Student n°${req.params.studentID} not found.` });
     }
     const theStudentId = parseInt(myStudent.id, 10);
     const myFileType = getFileTypeSafely(req.body.fileTypeId);
@@ -280,12 +280,15 @@ router.post('/:studentID', (req, res) => { // TODO : remove le :studentId -> dej
           };
           break;
         case 11:
+          // Erasmus Learning Agreement A FAIRE CAMILLE!
           theInfos = {};
           // 11 à faire Contrat d'études gros truc json
           break;
         case 9:
+          // Fiche Inscription MoveOnline Outgoing
           theInfos = { filePath: null, moveonlineId: null };
           break;
+
         case 2:
         case 4:
         case 5:
@@ -295,11 +298,19 @@ router.post('/:studentID', (req, res) => { // TODO : remove le :studentId -> dej
         case 13:
         case 15:
         case 16:
-          // autorisation responsable pédagogique pdf
+          // 2 passeport
+          // 4 CV Europass
+          // 5 Relevé Notes Supérieur
+          // 6 Lettre de motivation
+          // 10 Autorisation professeur responsable
+          // 12 Evaluation des compétences Linguistiques
+          // 13 Carte Européenne d'Assurance Maladie
+          // 15 Lettre de Recommandation Enseignant
+          // 16 Acte Naissance avec Filiation
           theInfos = { filePath: null };
           break;
         case 17:
-          // Voeux Universités
+          // 17 Voeux Universités
           theInfos = {
             choice1: {
               school: null,
@@ -331,11 +342,6 @@ router.post('/:studentID', (req, res) => { // TODO : remove le :studentId -> dej
     });
     const maxIdFile = File.get().reduce((max, p) => (p.id > max ? p.id : max), 0);
     const newFileId = maxIdFile + 1;
-    /* logThis(`maxFileId == ${maxIdFile}`);
-    logThis(`myList == ${myList}`);
-    logThis(`req.params.studentID == ${req.params.studentID}`);
-    logThis(`req.body.fileTypeId == ${req.body.fileTypeId}`);
-    logThis(`name: ${myFileType.typeName}`); */
     const objFile = {
       studentId: theStudentId,
       moduleIds: myList,
