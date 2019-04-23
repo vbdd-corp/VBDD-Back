@@ -372,4 +372,8 @@ app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
     }
   }
 });
+
+
 module.exports = app;
+
+// TODO : PUT par module Id des info. { infos: { champ1: "", champ2: ""}}

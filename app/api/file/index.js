@@ -198,11 +198,11 @@ router.delete('/:fileID', (req, res) => {
 * crée un nouveau dossier pour l'étudiant d'id :studentID et les modules associées (vides)
 * dans la base avec dans le body de la requete POST {fileTypeId: number, reportName: string}
 * */
-router.post('/:studentID', (req, res) => { // TODO : remove le :studentId -> deja dans req.body
+router.post('/', (req, res) => {
   try {
-    const myStudent = getStudentSafely(req.params.studentID);
+    const myStudent = getStudentSafely(req.body.studentId);
     if (myStudent === null) {
-      res.status(403).json({ error: `Student n°${req.params.studentID} not found.` });
+      res.status(403).json({ error: `Student n°${req.body.studentId} not found.` });
     }
     const theStudentId = parseInt(myStudent.id, 10);
     const myFileType = getFileTypeSafely(req.body.fileTypeId);
@@ -210,14 +210,6 @@ router.post('/:studentID', (req, res) => { // TODO : remove le :studentId -> dej
       res.status(403).json({ error: `Filetype n°${req.body.fileTypeId} not found.` });
     }
     logThis(`myFileTYpe ==> ${myFileType}`);
-
-    let fileName;
-    if (typeof req.body.reportName !== 'undefined' && req.body.reportName.length > 0) {
-      fileName = req.body.reportName.toString();
-    } else {
-      fileName = myFileType.typeName;
-    }
-    logThis(`fileName ==> ${fileName}`);
 
     const myFileTypeId = parseInt(myFileType.id, 10);
 
@@ -346,7 +338,7 @@ router.post('/:studentID', (req, res) => { // TODO : remove le :studentId -> dej
       studentId: theStudentId,
       moduleIds: myList,
       fileTypeId: myFileTypeId,
-      name: fileName,
+      name: req.body.name,
     };
 
     const resFile = File.createWithGivenId(objFile, newFileId);
