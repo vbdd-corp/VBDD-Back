@@ -194,9 +194,10 @@ router.delete('/:fileID', (req, res) => {
 });
 
 /*
-* POST /api/file/:studentID
+* POST /api/file
 * crée un nouveau dossier pour l'étudiant d'id :studentID et les modules associées (vides)
-* dans la base avec dans le body de la requete POST {fileTypeId: number, reportName: string}
+* dans la base avec dans le body de la requete POST
+* {studentId: number, fileTypeId: number, name: string}
 * */
 router.post('/', (req, res) => {
   try {
@@ -263,7 +264,7 @@ router.post('/', (req, res) => {
           // Hors Europe Annexe 1
           // Contrat d'études
           theInfos = {
-            school: null,
+            schoolID: null,
             semester: null,
             BCICode: null,
             BCIProgramName: null,
@@ -305,15 +306,15 @@ router.post('/', (req, res) => {
           // 17 Voeux Universités
           theInfos = {
             choice1: {
-              school: null,
+              schoolID: null,
               semester: null,
             },
             choice2: {
-              school: null,
+              schoolID: null,
               semester: null,
             },
             choice3: {
-              school: null,
+              schoolID: null,
               semester: null,
             },
           };
