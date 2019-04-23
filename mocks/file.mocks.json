@@ -1,0 +1,33 @@
+[
+  {
+    "studentId": 30,
+    "moduleIds": [
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35
+    ],
+    "fileTypeId": 0,
+    "name": "erasmus",
+    "id": 3
+  },
+  {
+    "studentId": 1,
+    "moduleIds": [
+      49,
+      50,
+      51,
+      52,
+      53,
+      54
+    ],
+    "fileTypeId": 1,
+    "name": "asie",
+    "id": 5
+  }
+]

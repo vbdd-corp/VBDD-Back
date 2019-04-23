@@ -1,0 +1,20 @@
+[
+  {
+    "id": 0,
+    "city": "Oshawa",
+    "country": "Canada",
+    "name": "Ontario Tech University"
+  },
+  {
+    "id": 1,
+    "city": "Cambridge",
+    "country": "United States",
+    "name": "Massachusetts Institute of Technology"
+  },
+  {
+    "id": 2,
+    "city": "Pasadena",
+    "country": "United States",
+    "name": "California Institute of Technology"
+  }
+]

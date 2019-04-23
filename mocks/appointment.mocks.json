@@ -1,0 +1,27 @@
+[
+  {
+    "id": 0,
+    "appointmentTypeId": 1,
+    "appointmentStatusId": 1,
+    "time": 5,
+    "creneauId": 0,
+    "studentId": 0
+  },
+  {
+    "id": 1,
+    "appointmentTypeId": 1,
+    "appointmentStatusId": 1,
+    "time": 5,
+    "creneauId": 0,
+    "studentId": 1
+  },
+  {
+    "id": 2,
+    "appointmentTypeId": 1,
+    "appointmentStatusId": 1,
+    "time": 5,
+    "creneauId": 0,
+    "studentId": 2
+  }
+]
+
