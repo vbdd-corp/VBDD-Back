@@ -340,27 +340,25 @@ app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
         break;
 
       case 17:
-        if (typeof req.body.choice1 !== 'undefined' && req.body.choice1 > 0) {
+        if (typeof req.body.choice1 !== 'undefined' && typeof req.body.choice1.school !== 'undefined') {
           objInfos = Object.assign({}, objInfos,
             { choice1: req.body.choice1 });
         }
-        if (typeof req.body.choice2 !== 'undefined' && req.body.choice2 > 0) {
+        if (typeof req.body.choice2 !== 'undefined' && typeof req.body.choice2.school !== 'undefined') {
           objInfos = Object.assign({}, objInfos,
             { choice2: req.body.choice2 });
         }
-        if (typeof req.body.choice3 !== 'undefined' && req.body.choice3 > 0) {
+        if (typeof req.body.choice3 !== 'undefined' && typeof req.body.choice3.school !== 'undefined') {
           objInfos = Object.assign({}, objInfos,
             { choice3: req.body.choice3 });
         }
-        /* for (const choice in objInfos) {
+        /*
+        for (const choice in objInfos) {
           if (typeof objInfos.choice !== 'undefined' && typeof
-          objInfos.choice.school !== 'undefined') { */
-        // if getSchoolByExactNameSafely(objInfos.choice.school) returns empty array
-        // add school to mock
-        // in all cases, add schoolId to objInfos
-        // and later delete school from objInfos
-        /* }
-        } */
+          objInfos.choice.school !== 'undefined') {
+          }
+        }
+        */
         break;
       default:
         break;

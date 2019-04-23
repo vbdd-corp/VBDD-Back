@@ -23,6 +23,14 @@ function getSchoolByPartialNameSafely(name) {
   }
 }
 
+/* function arraysAreIdentical(array1, array2){
+  if (array1.length === array2.length) {
+
+  } else {
+    return false;
+  }
+} */
+
 function getSchoolByExactNameSafely(name) {
   //  split two strings in 2 arrays of strings,
   //  compare the substrings one by one.
