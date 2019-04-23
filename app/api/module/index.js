@@ -253,6 +253,9 @@ app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
         res.status(201).json({ updatedModule: moduleUpdated });
         break;
 
+      case 8:
+
+        break;
       case 9:
         // to test => 30/3/27
         makeThisDir(dirPath).then((obj) => {
@@ -334,6 +337,30 @@ app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
             });
           });
         }).catch(err => logThis(err));
+        break;
+
+      case 17:
+        if (typeof req.body.choice1 !== 'undefined' && req.body.choice1 > 0) {
+          objInfos = Object.assign({}, objInfos,
+            { choice1: req.body.choice1 });
+        }
+        if (typeof req.body.choice2 !== 'undefined' && req.body.choice2 > 0) {
+          objInfos = Object.assign({}, objInfos,
+            { choice2: req.body.choice2 });
+        }
+        if (typeof req.body.choice3 !== 'undefined' && req.body.choice3 > 0) {
+          objInfos = Object.assign({}, objInfos,
+            { choice3: req.body.choice3 });
+        }
+        /* for (const choice in objInfos) {
+          if (typeof objInfos.choice !== 'undefined' && typeof
+          objInfos.choice.school !== 'undefined') { */
+        // if getSchoolByExactNameSafely(objInfos.choice.school) returns empty array
+        // add school to mock
+        // in all cases, add schoolId to objInfos
+        // and later delete school from objInfos
+        /* }
+        } */
         break;
       default:
         break;

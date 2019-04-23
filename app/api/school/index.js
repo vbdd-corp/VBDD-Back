@@ -24,6 +24,8 @@ function getSchoolByPartialNameSafely(name) {
 }
 
 function getSchoolByExactNameSafely(name) {
+  //  split two strings in 2 arrays of strings,
+  //  compare the substrings one by one.
   try {
     const array = [];
     School.get().filter(
