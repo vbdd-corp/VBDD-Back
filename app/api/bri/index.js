@@ -30,7 +30,7 @@ router.get('/:BriID', (req, res) => {
 
 /* éventuellement faire méthode put */
 
-/* ce post fonctionne mais l'id est rempli automatiquement par Node.JS
+/* ce post fonctionne mais l'id est rempli automatiquement par BaseModel
 * probablement avec la date courante au lieu du plus petit id possible. */
 router.post('/', (req, res) => {
   try {

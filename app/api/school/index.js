@@ -59,7 +59,7 @@ router.get('/', (req, res) => res.status(200).json(School.get()));
 * retourne un array avec les schools ayant un nom contenant schoolName,
 * sinon retourne un array vide.
 * */
-router.post('/get-by-name', (req, res) => {
+router.get('/get-by-name', (req, res) => {
   if (typeof req.body.schoolName === 'undefined' || req.body.schoolName.length === 0) {
     res.status(403).json({ error: 'req.body.schoolName is empty.' });
   }

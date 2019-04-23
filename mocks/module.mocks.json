@@ -24,7 +24,7 @@
   {
     "typeModuleId": 10,
     "infos": {
-      "filePath": null
+      "filePath": "/home/user/Documents/PROJET/PS6 site web/VBDD-Back/uploads/Student_1/Folder_3/Module_30/verso-2730.pdf"
     },
     "id": 30
   },
@@ -50,7 +50,7 @@
   {
     "typeModuleId": 7,
     "infos": {
-      "country": null,
+      "country": "France",
       "city": null,
       "stayDuration": null,
       "travelCost": null,

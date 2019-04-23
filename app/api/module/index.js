@@ -4,7 +4,7 @@ const path = require('path');
 const makeDir = require('make-dir');
 const rimraf = require('rimraf');
 const logger = require('../../utils/logger');
-const { Module } = require('../../models');
+const { Module, Student, File } = require('../../models');
 
 
 function logThis(elt) {
@@ -14,16 +14,6 @@ function logThis(elt) {
 const router = Router();
 router.use(fileUpload());
 
-function getModuleSafely(moduleId) {
-  try {
-    return Module.getById(moduleId);
-  } catch (err) {
-    if (err.name === 'NotFoundError') {
-      return null;
-    }
-    throw err;
-  }
-}
 
 const cleanDir = (dirPath, file, cb) => rimraf(path.join(`${dirPath}`, `${file}`), () => {
   logThis(`${path.join(`${dirPath}`, `${file}`)} removed`);
@@ -42,7 +32,7 @@ const makeThisDir = async (dirPath) => {
 
 router.get('/:moduleId', (req, res) => {
   try {
-    res.status(200).json(getModuleSafely(req.params.moduleId));
+    res.status(200).json(Module.getById(req.params.moduleId));
   } catch (err) {
     if (err.name === 'NotFoundError') {
       res.status(404).end();
@@ -57,7 +47,7 @@ router.put('/:moduleId', (req, res) => {
     res.status(200).json(Module.update(req.params.moduleId, req.body));
   } catch (err) {
     if (err.name === 'NotFoundError') {
-      res.status(403).json(err);
+      res.status(404).end();
     } else if (err.name === 'ValidationError') {
       res.status(400).json(err.extra);
     } else {
@@ -86,10 +76,11 @@ router.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
     const moduleId = parseInt(req.params.moduleID, 10);
     const filedId = parseInt(req.params.fileID, 10);
     const studentId = parseInt(req.params.studentID, 10);
-    const theModule = getModuleSafely(moduleId);
-    if (theModule === null) {
-      res.status(403).json({ error: `Module n°${moduleId} not found.` });
-    }
+
+    const theModule = Module.getById(moduleId);
+    File.getById(filedId);
+    Student.getById(studentId);
+
     const moduleTypeId = theModule.typeModuleId;
 
     const startupFile = req.files.foo;
@@ -197,10 +188,11 @@ router.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
         });
       }).catch(err => logThis(err));
     }
-  } catch
-  (err) {
+  } catch (err) {
     if (err.name === 'ValidationError') {
       res.status(400).json(err.extra);
+    } else if (err.name === 'NotFoundError') {
+      res.status(404).json({ error: 'student or file or module not found' });
     } else {
       res.status(500).json(err);
     }
