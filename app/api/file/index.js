@@ -194,9 +194,10 @@ router.delete('/:fileID', (req, res) => {
 });
 
 /*
-* POST /api/file/:studentID
+* POST /api/file
 * crée un nouveau dossier pour l'étudiant d'id :studentID et les modules associées (vides)
-* dans la base avec dans le body de la requete POST {fileTypeId: number, reportName: string}
+* dans la base avec dans le body de la requete POST
+* {studentId: number, fileTypeId: number, name: string}
 * */
 router.post('/', (req, res) => {
   try {
