@@ -1,5 +1,10 @@
 [
   {
+    "name": "all",
+    "avgTime": null,
+    "id": -1
+  },
+  {
     "name": "rendu dossier",
     "avgTime": 5,
     "id": 1
