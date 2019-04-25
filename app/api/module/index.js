@@ -56,6 +56,36 @@ router.put('/:moduleId', (req, res) => {
   }
 });
 
+function getParentFiles(moduleId) {
+  return File.get().filter(file => file.moduleIds.includes(moduleId));
+}
+
+function remove(array, element) {
+  const index = array.indexOf(element);
+  array.splice(index, 1);
+}
+
+router.delete('/:moduleId', (req, res) => {
+  let moduleId = req.params.moduleId; // eslint-disable-line
+  if (typeof moduleId === 'string') moduleId = parseInt(moduleId, 10);
+  try {
+    getParentFiles(moduleId).forEach((file) => {
+      remove(file.moduleIds, moduleId);
+      File.update(file.id, file);
+    });
+    Module.delete(moduleId);
+    res.status(204).end();
+  } catch (err) {
+    if (err.name === 'NotFoundError') {
+      res.status(404).end();
+    } else {
+      res.status(500).json(err);
+    }
+  }
+});
+
+// *****************  UPLOAD  *****************
+
 /*
 * USAGE: POST /api/module/upload/:studentID/:fileID/:moduleID
 * si c est un fichier qui est envoyé, doit être envoyé dans une variable foo

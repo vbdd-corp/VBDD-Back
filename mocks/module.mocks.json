@@ -143,5 +143,65 @@
       "shareMyDetails": false
     },
     "id": 54
+  },
+  {
+    "typeModuleId": 5,
+    "infos": {
+      "filePath": null
+    },
+    "id": 56
+  },
+  {
+    "typeModuleId": 6,
+    "infos": {
+      "filePath": null
+    },
+    "id": 57
+  },
+  {
+    "typeModuleId": 7,
+    "infos": {
+      "country": null,
+      "city": null,
+      "stayDuration": null,
+      "travelCost": null,
+      "accommodationCost": null,
+      "foodCost": null,
+      "transportationHobbiesCost": null,
+      "studyCost": null,
+      "othersCost": null,
+      "frenchCROUSScholarship": null,
+      "mobilityScholarship": null,
+      "travelHelp": null,
+      "summerJobSalaries": null,
+      "personalResources": null,
+      "familyResources": null,
+      "othersResources": null,
+      "notes": null
+    },
+    "id": 58
+  },
+  {
+    "typeModuleId": 8,
+    "infos": {
+      "schoolID": null,
+      "semester": null,
+      "BCICode": null,
+      "BCIProgramName": null,
+      "S1courses": null,
+      "S2courses": null
+    },
+    "id": 59
+  },
+  {
+    "typeModuleId": 0,
+    "infos": {
+      "studentId": 30,
+      "stayCardEndValidity": null,
+      "currentUNSDiploma": null,
+      "nextYearExchangeDiploma": null,
+      "shareMyDetails": null
+    },
+    "id": 60
   }
 ]
