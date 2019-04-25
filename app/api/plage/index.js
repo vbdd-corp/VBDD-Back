@@ -1,8 +1,27 @@
 const { Router } = require('express');
-const { Plage, Creneau } = require('../../models');
+const { Plage, Creneau, AppointmentType } = require('../../models');
 const Time = require('../../models/time.model');
 
 const router = Router();
+
+function getAppointmentTypeSafely(appointmentTypeId) {
+  try {
+    return AppointmentType.getById(appointmentTypeId);
+  } catch (err) {
+    if (err.name === 'NotFoundError') {
+      return null;
+    }
+    throw err;
+  }
+}
+
+const attachAppointmentType = (plage) => {
+  const newPlage = Object.assign({}, plage, {
+    appointmentType: getAppointmentTypeSafely(plage.appointmentTypeId),
+  });
+  delete newPlage.appointmentTypeId;
+  return newPlage;
+};
 
 const createCreneauxFromPlage = function (plage) {
   let startingTime = plage.start;
@@ -28,11 +47,17 @@ const createCreneauxFromPlage = function (plage) {
   }
 };
 
-router.get('/', (req, res) => res.status(200).json(Plage.get()));
+router.get('/', (req, res) => {
+  try {
+    res.status(200).json(Plage.get().map(attachAppointmentType));
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 router.get('/:plageId', (req, res) => {
   try {
-    res.status(200).json(Plage.getById(req.params.plageId));
+    res.status(200).json(attachAppointmentType(Plage.getById(req.params.plageId)));
   } catch (err) {
     if (err.name === 'NotFoundError') {
       res.status(404).end();
@@ -47,7 +72,7 @@ router.post('/', (req, res) => {
     const plage = Plage.create(req.body);
     createCreneauxFromPlage(plage);
 
-    res.status(201).json(plage);
+    res.status(201).json(attachAppointmentType(plage));
   } catch (err) {
     if (err.name === 'ValidationError') {
       res.status(400).json(err.extra);
@@ -60,7 +85,7 @@ router.post('/', (req, res) => {
 // TODO : change creaneau accordingly to plage put
 router.put('/:plageId', (req, res) => {
   try {
-    res.status(200).json(Plage.update(req.params.plageId, req.body));
+    res.status(200).json(attachAppointmentType(Plage.update(req.params.plageId, req.body)));
   } catch (err) {
     if (err.name === 'NotFoundError') {
       res.status(404).end();
@@ -71,5 +96,20 @@ router.put('/:plageId', (req, res) => {
     }
   }
 });
+
+// TODO : change creaneau accordingly to plage delete
+router.delete('/:plageId', (req, res) => {
+  try {
+    Plage.delete(req.params.plageId);
+    res.status(204).end();
+  } catch (err) {
+    if (err.name === 'NotFoundError') {
+      res.status(404).end();
+    } else {
+      res.status(500).json(err);
+    }
+  }
+});
+
 
 module.exports = router;

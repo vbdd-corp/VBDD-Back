@@ -183,7 +183,8 @@ router.delete('/:fileID', (req, res) => {
       const theModuleId = parseInt(moduleId, 10);
       Module.delete(theModuleId);
     });
-    res.status(200).json(File.delete(fileId));
+    File.delete(fileId);
+    res.status(204).end();
   } catch (err) {
     if (err.name === 'NotFoundError') {
       res.status(404).end();
@@ -356,11 +357,7 @@ router.post('/', (req, res) => {
 
 router.put('/:fileID', (req, res) => {
   try {
-    if ('studentId' in req.body) {
-      res.status(403).end();
-    } else {
-      res.status(200).json(File.update(req.params.fileID, req.body));
-    }
+    res.status(200).json(File.update(req.params.fileID, req.body));
   } catch (err) {
     if (err.name === 'NotFoundError') {
       res.status(404).end();
