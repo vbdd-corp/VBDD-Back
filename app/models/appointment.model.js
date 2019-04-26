@@ -13,6 +13,7 @@ class Appointment extends BaseModel {
       appointmentStatusId: Joi.number().required(),
       creneauId: Joi.number().required(),
       studentId: Joi.number().required(),
+      briId: Joi.number().required(),
     });
   }
 }
