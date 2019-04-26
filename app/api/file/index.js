@@ -239,6 +239,7 @@ router.post('/', (req, res) => {
       moduleIds: myList,
       fileTypeId: myFileTypeId,
       name: req.body.name,
+      isValidated: false,
     };
 
     const resFile = File.createWithGivenId(objFile, newFileId);

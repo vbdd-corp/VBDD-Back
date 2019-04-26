@@ -9,6 +9,7 @@ class FileModel extends BaseModel {
       studentId: Joi.number().required(),
       moduleIds: Joi.array().items(Joi.number()).required(),
       fileTypeId: Joi.number().required(),
+      isValidated: Joi.boolean().required(),
     });
   }
 }
