@@ -9,48 +9,23 @@ const { Student, File } = require('../../models');
 const router = new Router();
 
 
-function getStudentByIdSafely(studentId) {
-  try {
-    return Student.getById(studentId);
-  } catch (err) {
-    if (err.name === 'NotFoundError') {
-      return null;
-    }
-    throw err;
-  }
+function getStudentByMajor(major) {
+  return Student.get().filter(student => student.major === major);
 }
 
-function getStudentByMajorSafely(major) {
-  try {
-    return Student.get().filter(student => student.major === major);
-  } catch (err) {
-    if (err.name === 'NotFoundError') {
-      return null;
-    }
-    throw err;
-  }
-}
-
-function getStudentByNameSafely(name) {
-  try {
-    return Student.get().filter(
-      student => student.firstName.includes(name) || student.lastName.includes(name),
-    );
-  } catch (err) {
-    if (err.name === 'NotFoundError') {
-      return null;
-    }
-    throw err;
-  }
+function getStudentByName(name) {
+  return Student.get().filter(
+    student => student.firstName.includes(name) || student.lastName.includes(name),
+  );
 }
 
 router.get('/', (req, res) => res.status(200).json(Student.get()));
-router.get('/by-name/:studentName', (req, res) => res.status(200).json(getStudentByNameSafely(req.params.studentName)));
-router.get('/by-major/:major', (req, res) => res.status(200).json(getStudentByMajorSafely(req.params.major)));
+router.get('/by-name/:studentName', (req, res) => res.status(200).json(getStudentByName(req.params.studentName)));
+router.get('/by-major/:major', (req, res) => res.status(200).json(getStudentByMajor(req.params.major)));
 
 router.get('/:studentID', (req, res) => {
   try {
-    res.status(200).json(getStudentByIdSafely(req.params.studentID));
+    res.status(200).json(Student.getById(req.params.studentID));
   } catch (err) {
     if (err.name === 'NotFoundError') {
       res.status(404).end();
@@ -67,24 +42,22 @@ router.get('/:studentID', (req, res) => {
 * */
 router.get('/by-fileTypeId/:fileTypeID', (req, res) => {
   const studentList = [];
+
   function studentExists(studentId) {
     return studentList.some(stud => stud.id === studentId);
   }
+
   try {
     File.get()
       .filter(file => file.fileTypeId === parseInt(req.params.fileTypeID, 10))
       .forEach((file) => {
         if (!studentExists(file.studentId)) {
-          studentList.push(getStudentByIdSafely(file.studentId));
+          studentList.push(Student.getById(file.studentId));
         }
       });
     res.status(200).json(studentList);
   } catch (err) {
-    if (err.name === 'NotFoundError') {
-      res.status(404).end();
-    } else {
-      res.status(500).json(err);
-    }
+    res.status(500).json(err);
   }
 });
 

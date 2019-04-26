@@ -1,0 +1,69 @@
+[
+  {
+    "mail": "dohy@hotmail.com",
+    "password": "pass1",
+    "firstName": "Martin",
+    "lastName": "Guillotin",
+    "id": 0,
+    "major": "SI3"
+  },
+  {
+    "id": 1,
+    "mail": "coco@yahoo.com",
+    "password": "test",
+    "firstName": "Coco",
+    "lastName": "Martin",
+    "major": "SI3",
+    "gender": "M",
+    "nationality": "FR",
+    "birthDate": "22/08/1997",
+    "INE": "2379263974T",
+    "studentNumber": "21560703",
+    "address": "1 Avenue G.Pompidou, Residence des Dolines, APP 256",
+    "city": "Valbonne",
+    "postalCode": "06560",
+    "mobilePhoneNumber": "0605468955",
+    "phoneNumber": "0455637198"
+  },
+  {
+    "mail": "halloa@gmail.com",
+    "password": "qwerty",
+    "firstName": "Corellia",
+    "lastName": "Devrainville",
+    "id": 2,
+    "major": "MAM4"
+  },
+  {
+    "mail": "allomoto@gmail.com",
+    "password": "alloquoi",
+    "firstName": "Romain",
+    "lastName": "Alphace",
+    "id": 3,
+    "major": "MAM4"
+  },
+  {
+    "id": 1553892739083,
+    "mail": "test@gmail.com",
+    "password": "test7test7",
+    "firstName": "Jean",
+    "lastName": "Valjean"
+  },
+  {
+    "mail": "s1",
+    "password": "s2",
+    "firstName": "Coco",
+    "lastName": "Martin",
+    "major": "SI3",
+    "gender": "M",
+    "nationality": "FR",
+    "birthDate": "22/08/1997",
+    "INE": "2379263974T",
+    "studentNumber": "21560703",
+    "address": "1 Avenue G.Pompidou, Residence des Dolines, APP 256",
+    "city": "Valbonne",
+    "postalCode": "06560",
+    "mobilePhoneNumber": "0605468955",
+    "phoneNumber": "0455637198",
+    "id" : 30
+  }
+]

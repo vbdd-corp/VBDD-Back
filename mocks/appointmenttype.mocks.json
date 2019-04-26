@@ -1,0 +1,28 @@
+[
+  {
+    "name": "all",
+    "avgTime": null,
+    "id": -1
+  },
+  {
+    "name": "rendu dossier",
+    "avgTime": 5,
+    "id": 1
+  },
+  {
+    "name": "test anglais",
+    "avgTime": 30,
+    "id": 2
+  },
+  {
+    "name": "orientation",
+    "avgTime": 20,
+    "id": 3
+  },
+  {
+    "name": "autre",
+    "avgTime": -1,
+    "id": 4
+  }
+]
+

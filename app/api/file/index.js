@@ -183,7 +183,8 @@ router.delete('/:fileID', (req, res) => {
       const theModuleId = parseInt(moduleId, 10);
       Module.delete(theModuleId);
     });
-    res.status(200).json(File.delete(fileId));
+    File.delete(fileId);
+    res.status(204).end();
   } catch (err) {
     if (err.name === 'NotFoundError') {
       res.status(404).end();
@@ -347,6 +348,20 @@ router.post('/', (req, res) => {
     res.status(201).json(resFile);
   } catch (err) {
     if (err.name === 'ValidationError') {
+      res.status(400).json(err.extra);
+    } else {
+      res.status(500).json(err);
+    }
+  }
+});
+
+router.put('/:fileID', (req, res) => {
+  try {
+    res.status(200).json(File.update(req.params.fileID, req.body));
+  } catch (err) {
+    if (err.name === 'NotFoundError') {
+      res.status(404).end();
+    } else if (err.name === 'ValidationError') {
       res.status(400).json(err.extra);
     } else {
       res.status(500).json(err);
