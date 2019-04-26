@@ -106,4 +106,26 @@ router.get('/', (req, res) => {
   }
 });
 
+router.get('/:appointmentID', (req, res) => {
+  try {
+    res.status(200).json(
+      attachAppointmentStatus(
+        attachAppointmentType(
+          attachAppointmentCreneau(
+            attachAppointmentStudent(
+              Appointment.getById(req.params.appointmentID),
+            ),
+          ),
+        ),
+      ),
+    );
+  } catch (err) {
+    if (err.name === 'NotFoundError') {
+      res.status(404).end();
+    } else {
+      res.status(500).json(err);
+    }
+  }
+});
+
 module.exports = router;
