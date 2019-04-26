@@ -340,6 +340,7 @@ app.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
         break;
 
       case 17:
+        objInfos = Object.assign({}, theModule.infos, {});
         if (typeof req.body.choice1 !== 'undefined' && typeof req.body.choice1.school !== 'undefined') {
           objInfos = Object.assign({}, objInfos,
             { choice1: req.body.choice1 });
