@@ -8,6 +8,7 @@ const FileTypeRouter = require('./fileType');
 const PlageRouter = require('./plage');
 const CreneauRouter = require('./creneau');
 const SchoolRouter = require('./school');
+const AppointmentRouter = require('./appointment');
 
 const router = new Router();
 router.get('/status', (req, res) => res.status(200).json('ok'));
@@ -20,5 +21,6 @@ router.use('/fileType', FileTypeRouter);
 router.use('/plage', PlageRouter);
 router.use('/creneau', CreneauRouter);
 router.use('/school', SchoolRouter);
+router.use('/appointment', AppointmentRouter);
 
 module.exports = router;
