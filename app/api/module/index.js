@@ -361,4 +361,7 @@ router.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
   }
 });
 
-module.exports = router;
+module.exports = {
+  router,
+  fillInfos,
+};
