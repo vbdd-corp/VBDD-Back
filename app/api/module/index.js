@@ -3,6 +3,7 @@ const { Router } = require('express');
 const path = require('path');
 const makeDir = require('make-dir');
 const rimraf = require('rimraf');
+const fs = require('fs');
 const logger = require('../../utils/logger');
 const { Module, Student, File } = require('../../models');
 
@@ -84,9 +85,51 @@ router.delete('/:moduleId', (req, res) => {
   }
 });
 
-// *****************  UPLOAD  *****************
+function responseFile(fileName, filePath, response) {
+  // filePath is full path of file.
+  // Check if file specified by the filePath exists
+  fs.exists(filePath, (exists) => {
+    if (exists) {
+      // Content-type is very interesting part that guarantee that
+      // Web browser will handle response in an appropriate manner.
+      response.writeHead(200, {
+        'Content-Type': 'application/octet-stream',
+        'Content-Disposition': `attachment; filename=${fileName}`,
+      });
+      fs.createReadStream(filePath).pipe(response);
+    } else {
+      response.writeHead(400, { 'Content-Type': 'text/plain' });
+      response.end('ERROR File does not exist');
+    }
+  });
+}
 
 /*
+* GET /api/module/download
+* {"filePath": "/path/to/file.pdf"}
+* example.com/user/000000?sex=female
+* */
+router.post('/download', (req, res) => {
+  try {
+    logThis(`global.myBaseDir ${global.myBasedir}`);
+    const filePath = path.join(global.myBasedir, req.body.filePath);
+    logThis(`filePath --> ${filePath}`);
+    const array = filePath.split('/');
+    const fileName = array[array.length - 1];
+    logThis((`--> filePath: ${filePath}`));
+    responseFile(fileName, filePath, res);
+  } catch (err) {
+    if (err.name === 'ValidationError') {
+      res.status(400).json(err.extra);
+    } else if (err.name === 'NotFoundError') {
+      res.status(404).json({ error: 'student or file or module not found' });
+    } else {
+      res.status(500).json(err);
+    }
+  }
+});
+/* *****************  UPLOAD  *****************
+**
 * USAGE: POST /api/module/upload/:studentID/:fileID/:moduleID
 * si c est un fichier qui est envoyé, doit être envoyé dans une variable foo
 * */
@@ -123,11 +166,12 @@ router.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
     logThis('\n');
     try {
       dirPath = path.join(
-        global.myBasedir, 'uploads',
+        'uploads',
         `Student_${studentId}`,
         `Folder_${filedId}`,
         `Module_${moduleId}`,
       );
+      dirPath = `./${dirPath}`;
     } catch (err) {
       logThis(`ERROR building dirPath: ${err}`);
     }
