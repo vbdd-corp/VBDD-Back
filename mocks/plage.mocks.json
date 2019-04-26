@@ -2,15 +2,15 @@
   {
     "id": 0,
     "start": {
-      "minutes": 0,
-      "hours": 10,
+      "minute": 0,
+      "hour": 10,
       "day": 9,
       "month": 4,
       "year": 2019
     },
     "end": {
-      "minutes": 30,
-      "hours": 11,
+      "minute": 30,
+      "hour": 11,
       "day": 9,
       "month": 4,
       "year": 2019
@@ -21,20 +21,39 @@
   {
     "id": 1,
     "start": {
-      "minutes": 0,
-      "hours": 11,
+      "minute": 0,
+      "hour": 11,
       "day": 10,
       "month": 4,
       "year": 2019
     },
     "end": {
-      "minutes": 30,
-      "hours": 11,
+      "minute": 30,
+      "hour": 11,
       "day": 10,
       "month": 4,
       "year": 2019
     },
     "appointmentTypeId": 1,
     "briId": 0
+  },
+  {
+    "start": {
+      "minute": 0,
+      "hour": 10,
+      "day": 9,
+      "month": 4,
+      "year": 2019
+    },
+    "end": {
+      "minute": 30,
+      "hour": 11,
+      "day": 9,
+      "month": 4,
+      "year": 2019
+    },
+    "briId": 0,
+    "appointmentTypeId": -1,
+    "id": 1556293028111
   }
 ]

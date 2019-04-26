@@ -26,7 +26,7 @@ const attachAppointmentType = (plage) => {
 const createCreneauxFromPlage = function (plage) {
   let startingTime = plage.start;
   let endingTime = Time.add30MinutesToTime(plage.start);
-  while (Time.compareByHoursAndMinutes(plage.end, endingTime) >= 0) {
+  while (Time.compare(plage.end, endingTime) >= 0) {
     try {
       Creneau.create({
         start: startingTime,
@@ -100,7 +100,9 @@ router.put('/:plageId', (req, res) => {
 // TODO : change creaneau accordingly to plage delete
 router.delete('/:plageId', (req, res) => {
   try {
+    // const plage = Plage.getById(req.params.plageId);
     Plage.delete(req.params.plageId);
+    // deleteCreneauBetween(plage.start, plage.end);
     res.status(204).end();
   } catch (err) {
     if (err.name === 'NotFoundError') {
