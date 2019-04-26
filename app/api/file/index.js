@@ -2,6 +2,8 @@ const { Router } = require('express');
 const {
   File, FileType, Student, Module, ModuleType,
 } = require('../../models');
+const fillInfos = require('../module/index.js').fillInfos; // eslint-disable-line
+// TODO: use correctly the function from { ModuleFunc } = ...
 const logger = require('../../utils/logger');
 
 function logThis(elt) {
@@ -218,120 +220,16 @@ router.post('/', (req, res) => {
     let moduleIdMax = Module.get().reduce((max, p) => (p.id > max ? p.id : max), 0);
 
     const myList = [];
-    myFileType.moduleTypeList.forEach((elt) => {
+    myFileType.moduleTypeList.forEach((moduleId) => {
       logThis(`moduleIdMax == ${moduleIdMax + 1}`);
       const newModuleId = moduleIdMax + 1;
 
-      /** *** */
-      let theInfos;
-      switch (elt) {
-        case 0:
-          // informations-generales
-          theInfos = {
-            studentId: myStudent.id,
-            stayCardEndValidity: null,
-            currentUNSDiploma: null,
-            nextYearExchangeDiploma: null,
-            shareMyDetails: null,
-          };
-          break;
-        case 1:
-          // CNI
-          theInfos = { recto: null, verso: null };
-          break;
-        case 7:
-          // Budget prévisionnel json
-          theInfos = {
-            country: null,
-            city: null,
-            stayDuration: null,
-            travelCost: null,
-            accommodationCost: null,
-            foodCost: null,
-            transportationHobbiesCost: null,
-            studyCost: null,
-            othersCost: null,
-            frenchCROUSScholarship: null,
-            mobilityScholarship: null,
-            travelHelp: null,
-            summerJobSalaries: null,
-            personalResources: null,
-            familyResources: null,
-            othersResources: null,
-            notes: null,
-          };
-          break;
-        case 8:
-          // Hors Europe Annexe 1
-          // Contrat d'études
-          theInfos = {
-            schoolID: null,
-            semester: null,
-            BCICode: null,
-            BCIProgramName: null,
-            S1courses: null,
-            S2courses: null,
-          };
-          break;
-        case 11:
-          // Erasmus Learning Agreement A FAIRE CAMILLE!
-          theInfos = {};
-          // 11 à faire Contrat d'études gros truc json
-          break;
-        case 9:
-          // Fiche Inscription MoveOnline Outgoing
-          theInfos = { filePath: null, moveonlineId: null };
-          break;
-
-        case 2:
-        case 4:
-        case 5:
-        case 6:
-        case 10:
-        case 12:
-        case 13:
-        case 15:
-        case 16:
-          // 2 passeport
-          // 4 CV Europass
-          // 5 Relevé Notes Supérieur
-          // 6 Lettre de motivation
-          // 10 Autorisation professeur responsable
-          // 12 Evaluation des compétences Linguistiques
-          // 13 Carte Européenne d'Assurance Maladie
-          // 15 Lettre de Recommandation Enseignant
-          // 16 Acte Naissance avec Filiation
-          theInfos = { filePath: null };
-          break;
-        case 17:
-          // 17 Voeux Universités
-          theInfos = {
-            choice1: {
-              schoolID: null,
-              semester: null,
-            },
-            choice2: {
-              schoolID: null,
-              semester: null,
-            },
-            choice3: {
-              schoolID: null,
-              semester: null,
-            },
-          };
-          break;
-        default:
-          theInfos = {};
-          break;
-      }
-      /** *** */
-
-      const tempModule = Module.createWithGivenId({
-        typeModuleId: elt,
-        infos: theInfos,
+      const module = Module.createWithGivenId({
+        typeModuleId: moduleId,
+        infos: {},
       }, newModuleId);
-      tempModule.id = newModuleId;
-      myList.push(tempModule.id);
+      fillInfos(module);
+      myList.push(module.id);
       moduleIdMax += 1;
     });
     const maxIdFile = File.get().reduce((max, p) => (p.id > max ? p.id : max), 0);

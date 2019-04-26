@@ -85,6 +85,141 @@ router.delete('/:moduleId', (req, res) => {
   }
 });
 
+const fillInfos = function (module) {
+  let infos;
+  switch (module.typeModuleId) {
+    case 0:
+      // informations-generales
+      infos = {
+        studentId: null,
+        stayCardEndValidity: null,
+        currentUNSDiploma: null,
+        nextYearExchangeDiploma: null,
+        shareMyDetails: null,
+      };
+      break;
+    case 1:
+      // CNI
+      infos = { recto: null, verso: null };
+      break;
+    case 7:
+      // Budget prévisionnel json
+      infos = {
+        country: null,
+        city: null,
+        stayDuration: null,
+        travelCost: null,
+        accommodationCost: null,
+        foodCost: null,
+        transportationHobbiesCost: null,
+        studyCost: null,
+        othersCost: null,
+        frenchCROUSScholarship: null,
+        mobilityScholarship: null,
+        travelHelp: null,
+        summerJobSalaries: null,
+        personalResources: null,
+        familyResources: null,
+        othersResources: null,
+        notes: null,
+      };
+      break;
+    case 8:
+      // Hors Europe Annexe 1
+      // Contrat d'études
+      infos = {
+        schoolID: null,
+        semester: null,
+        BCICode: null,
+        BCIProgramName: null,
+        S1courses: null,
+        S2courses: null,
+      };
+      break;
+    case 11:
+      // Erasmus Learning Agreement A FAIRE CAMILLE!
+      infos = {};
+      // 11 à faire Contrat d'études gros truc json
+      break;
+    case 9:
+      // Fiche Inscription MoveOnline Outgoing
+      infos = { filePath: null, moveonlineId: null };
+      break;
+
+    case 2:
+    case 4:
+    case 5:
+    case 6:
+    case 10:
+    case 12:
+    case 13:
+    case 15:
+    case 16:
+      // 2 passeport
+      // 4 CV Europass
+      // 5 Relevé Notes Supérieur
+      // 6 Lettre de motivation
+      // 10 Autorisation professeur responsable
+      // 12 Evaluation des compétences Linguistiques
+      // 13 Carte Européenne d'Assurance Maladie
+      // 15 Lettre de Recommandation Enseignant
+      // 16 Acte Naissance avec Filiation
+      infos = { filePath: null };
+      break;
+    case 17:
+      // 17 Voeux Universités
+      infos = {
+        choice1: {
+          schoolID: null,
+          semester: null,
+        },
+        choice2: {
+          schoolID: null,
+          semester: null,
+        },
+        choice3: {
+          schoolID: null,
+          semester: null,
+        },
+      };
+      break;
+    default:
+      infos = {};
+      break;
+  }
+  Module.update(module.id, { infos });
+};
+
+function putInFile(moduleId, fileId) {
+  const file = File.getById(fileId);
+  file.moduleIds.push(moduleId);
+  File.update(file.id, file);
+}
+
+router.post('/:fileId', (req, res) => {
+  try {
+    // check if the file exists before doing anything
+    File.getById(req.params.fileId);
+
+    const module = Module.create(req.body);
+    fillInfos(module);
+    putInFile(module.id, req.params.fileId);
+
+    res.status(201).json(module);
+  } catch (err) {
+    if (err.name === 'ValidationError') {
+      res.status(400).json(err.extra);
+    } else if (err.name === 'NotFoundError') {
+      res.status(400).json(err);
+    } else {
+      res.status(500).json(err);
+    }
+  }
+});
+
+// *****************  UPLOAD  *****************
+
+
 function responseFile(fileName, filePath, response) {
   // filePath is full path of file.
   // Check if file specified by the filePath exists
@@ -273,4 +408,7 @@ router.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
   }
 });
 
-module.exports = router;
+module.exports = {
+  router,
+  fillInfos,
+};
