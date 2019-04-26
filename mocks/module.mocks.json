@@ -147,7 +147,7 @@
   {
     "typeModuleId": 5,
     "infos": {
-      "filePath": null
+      "filePath": "uploads/Student_30/Folder_6/Module_56/pokedex.pdf"
     },
     "id": 56
   },
@@ -203,5 +203,139 @@
       "shareMyDetails": null
     },
     "id": 60
+  },
+  {
+    "typeModuleId": 4,
+    "infos": {
+      "filePath": null
+    },
+    "id": 61
+  },
+  {
+    "typeModuleId": 5,
+    "infos": {
+      "filePath": null
+    },
+    "id": 62
+  },
+  {
+    "typeModuleId": 6,
+    "infos": {
+      "filePath": null
+    },
+    "id": 63
+  },
+  {
+    "typeModuleId": 7,
+    "infos": {
+      "country": null,
+      "city": null,
+      "stayDuration": null,
+      "travelCost": null,
+      "accommodationCost": null,
+      "foodCost": null,
+      "transportationHobbiesCost": null,
+      "studyCost": null,
+      "othersCost": null,
+      "frenchCROUSScholarship": null,
+      "mobilityScholarship": null,
+      "travelHelp": null,
+      "summerJobSalaries": null,
+      "personalResources": null,
+      "familyResources": null,
+      "othersResources": null,
+      "notes": null
+    },
+    "id": 64
+  },
+  {
+    "typeModuleId": 8,
+    "infos": {
+      "schoolID": null,
+      "semester": null,
+      "BCICode": null,
+      "BCIProgramName": null,
+      "S1courses": null,
+      "S2courses": null
+    },
+    "id": 65
+  },
+  {
+    "typeModuleId": 0,
+    "infos": {
+      "studentId": 30,
+      "stayCardEndValidity": null,
+      "currentUNSDiploma": null,
+      "nextYearExchangeDiploma": null,
+      "shareMyDetails": null
+    },
+    "id": 66
+  },
+  {
+    "typeModuleId": 4,
+    "infos": {
+      "filePath": null
+    },
+    "id": 67
+  },
+  {
+    "typeModuleId": 5,
+    "infos": {
+      "filePath": null
+    },
+    "id": 68
+  },
+  {
+    "typeModuleId": 6,
+    "infos": {
+      "filePath": null
+    },
+    "id": 69
+  },
+  {
+    "typeModuleId": 7,
+    "infos": {
+      "country": null,
+      "city": null,
+      "stayDuration": null,
+      "travelCost": null,
+      "accommodationCost": null,
+      "foodCost": null,
+      "transportationHobbiesCost": null,
+      "studyCost": null,
+      "othersCost": null,
+      "frenchCROUSScholarship": null,
+      "mobilityScholarship": null,
+      "travelHelp": null,
+      "summerJobSalaries": null,
+      "personalResources": null,
+      "familyResources": null,
+      "othersResources": null,
+      "notes": null
+    },
+    "id": 70
+  },
+  {
+    "typeModuleId": 8,
+    "infos": {
+      "schoolID": null,
+      "semester": null,
+      "BCICode": null,
+      "BCIProgramName": null,
+      "S1courses": null,
+      "S2courses": null
+    },
+    "id": 71
+  },
+  {
+    "typeModuleId": 0,
+    "infos": {
+      "studentId": null,
+      "stayCardEndValidity": null,
+      "currentUNSDiploma": null,
+      "nextYearExchangeDiploma": null,
+      "shareMyDetails": null
+    },
+    "id": 72
   }
 ]
