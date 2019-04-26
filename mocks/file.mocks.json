@@ -2,46 +2,50 @@
   {
     "studentId": 30,
     "moduleIds": [
-      27,
-      28,
-      29,
-      30,
-      31,
-      32,
-      33,
-      34,
-      35
-    ],
-    "fileTypeId": 0,
-    "name": "erasmus 1",
-    "id": 3
-  },
-  {
-    "studentId": 1,
-    "moduleIds": [
-      49,
-      50,
-      51,
-      52,
-      53,
-      54
-    ],
-    "fileTypeId": 1,
-    "name": "asie",
-    "id": 5
-  },
-  {
-    "studentId": 30,
-    "moduleIds": [
       61,
       62,
       63,
       64,
       65,
-      66
+      66,
+      67,
+      68,
+      69,
+      70
+    ],
+    "fileTypeId": 0,
+    "name": "erasmus 1",
+    "isValidated": false,
+    "id": 1
+  },
+  {
+    "studentId": 1,
+    "moduleIds": [
+      71,
+      72,
+      73,
+      74,
+      75,
+      76
     ],
     "fileTypeId": 1,
     "name": "asie",
-    "id": 6
+    "isValidated": false,
+    "id": 2
+  },
+  {
+    "studentId": 30,
+    "moduleIds": [
+      77,
+      78,
+      79,
+      80,
+      81,
+      82
+    ],
+    "fileTypeId": 1,
+    "name": "asie",
+    "isValidated": false,
+    "id": 3
   }
 ]
