@@ -244,7 +244,7 @@ router.post('/', (req, res) => {
 
     const resFile = File.createWithGivenId(objFile, newFileId);
     resFile.id = newFileId;
-    res.status(201).json(resFile);
+    res.status(201).json(attachModules(attachStudents(resFile)));
   } catch (err) {
     if (err.name === 'ValidationError') {
       res.status(400).json(err.extra);
@@ -256,7 +256,7 @@ router.post('/', (req, res) => {
 
 router.put('/:fileID', (req, res) => {
   try {
-    res.status(200).json(File.update(req.params.fileID, req.body));
+    res.status(200).json(attachModules(attachStudents(File.update(req.params.fileID, req.body))));
   } catch (err) {
     if (err.name === 'NotFoundError') {
       res.status(404).end();
