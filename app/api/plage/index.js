@@ -62,19 +62,7 @@ router.get('/', (req, res) => {
   }
 });
 
-router.get('/:plageId', (req, res) => {
-  try {
-    res.status(200).json(attachAppointmentType(Plage.getById(req.params.plageId)));
-  } catch (err) {
-    if (err.name === 'NotFoundError') {
-      res.status(404).end();
-    } else {
-      res.status(500).json(err);
-    }
-  }
-});
-
-router.get('/statuso', (req, res) => {
+router.get('/statuso  ', (req, res) => {
   try {
     res.status(200).json({ msg: 'ok here :)' });
   } catch (err) {
@@ -86,7 +74,6 @@ router.get('/statuso', (req, res) => {
     }
   }
 });
-
 
 /*
 * GET /api/plage/between-dates
@@ -122,6 +109,18 @@ router.get('/between-dates', (req, res) => {
     res.status(200).json(plageList);
   } catch (err) {
     logThis(err);
+    if (err.name === 'NotFoundError') {
+      res.status(404).end();
+    } else {
+      res.status(500).json(err);
+    }
+  }
+});
+
+router.get('/:plageId', (req, res) => {
+  try {
+    res.status(200).json(attachAppointmentType(Plage.getById(req.params.plageId)));
+  } catch (err) {
     if (err.name === 'NotFoundError') {
       res.status(404).end();
     } else {

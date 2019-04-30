@@ -96,6 +96,29 @@ const attachModules = (file) => {
   return resFile;
 };
 
+/*
+* GET /?name="prenom nom"
+* */
+router.get('/by-name', (req, res) => {
+  try {
+    const tab = req.query.name.toLowerCase().trim().split(' ')
+      .filter(str => str.length > 0);
+    const resList = File.get()
+      .map(file => attachStudents(file))
+      .filter(file => (file.student.firstName.toLowerCase() === tab[0]
+        && file.student.lastName.toLowerCase() === tab[1]));
+
+    res.status(200).json(resList);
+  } catch (err) {
+    if (err.name === 'NotFoundError') {
+      res.status(404).end();
+    } else {
+      logThis(err);
+      res.status(500).json(err);
+    }
+  }
+});
+
 /* GET /api/file/:fileID
 ** renvoie le dossier d'id :fileID
 */
