@@ -39,6 +39,7 @@ const createCreneauxFromPlage = function (plage) {
         end: endingTime,
         appointmentTypeId: plage.appointmentTypeId,
         statusId: 0,
+        briId: plage.briId,
       });
     } catch (err) {
       if (err.name === 'ValidationError') {
@@ -144,10 +145,40 @@ router.post('/', (req, res) => {
   }
 });
 
-// TODO : change creaneau accordingly to plage put
+function deleteCreneau(creneau) {
+  Creneau.delete(creneau.id);
+}
+
+function deleteCreneauxBetween(briId, timeA, timeB) {
+  let start; let
+    end;
+  if (Time.compare(timeB, timeA) >= 0) {
+    start = timeA;
+    end = timeB;
+  } else {
+    start = timeB;
+    end = timeA;
+  }
+  Creneau.get().filter(creneau => creneau.briId === briId
+      && ((Time.compare(creneau.end, start) > 0 && Time.compare(creneau.end, end) <= 0)
+        || (Time.compare(creneau.start, start) >= 0 && Time.compare(creneau.start, end) < 0)))
+    .forEach(creneau => deleteCreneau(creneau));
+}
+
+// TODO: create creneaux accordingly to plage PUT
 router.put('/:plageId', (req, res) => {
   try {
-    res.status(200).json(attachAppointmentType(Plage.update(req.params.plageId, req.body)));
+    const oldPlage = Plage.getById(req.params.plageId);
+    const plage = Plage.update(req.params.plageId, req.body);
+
+    if (Time.compare(plage.start, oldPlage.start) > 0) {
+      deleteCreneauxBetween(plage.briId, oldPlage.start, plage.start);
+    }
+    if (Time.compare(oldPlage.end, plage.end) > 0) {
+      deleteCreneauxBetween(plage.briId, plage.end, oldPlage.end);
+    }
+
+    res.status(200).json(attachAppointmentType(plage));
   } catch (err) {
     if (err.name === 'NotFoundError') {
       res.status(404).end();
@@ -159,12 +190,11 @@ router.put('/:plageId', (req, res) => {
   }
 });
 
-// TODO : change creaneau accordingly to plage delete
 router.delete('/:plageId', (req, res) => {
   try {
-    // const plage = Plage.getById(req.params.plageId);
+    const plage = Plage.getById(req.params.plageId);
     Plage.delete(req.params.plageId);
-    // deleteCreneauBetween(plage.start, plage.end);
+    deleteCreneauxBetween(plage.briId, plage.start, plage.end);
     res.status(204).end();
   } catch (err) {
     if (err.name === 'NotFoundError') {

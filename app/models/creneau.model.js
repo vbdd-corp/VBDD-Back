@@ -10,6 +10,7 @@ class Creneau extends BaseModel {
       end: Time.getScheme(),
       appointmentTypeId: Joi.number().required(), // -1 for all
       statusId: Joi.number().required(),
+      briId: Joi.number().required(),
     });
   }
 }
