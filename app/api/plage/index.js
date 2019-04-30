@@ -62,7 +62,7 @@ router.get('/', (req, res) => {
   }
 });
 
-router.get('/statuso  ', (req, res) => {
+router.get('/status', (req, res) => {
   try {
     res.status(200).json({ msg: 'ok here :)' });
   } catch (err) {
@@ -79,6 +79,10 @@ router.get('/statuso  ', (req, res) => {
 * GET /api/plage/between-dates
 *   ?sYear=2019&sMonth=12&sDay=17&sHour=6&sMinute=44
 *   &eYear=2019&eMonth=12&eDay=17&eHour=17&eMinute=44
+*
+* 9-4-2019  10H - 11H30
+* 10-4-2019 11H - 11H30
+* 9-4-2019  10H - 11H30
 * */
 router.get('/between-dates', (req, res) => {
   logThis('BP 0');
@@ -104,7 +108,7 @@ router.get('/between-dates', (req, res) => {
     const plageList = Plage.get()
       .filter(plage => (
         Time.compare(timeStart, plage.start) <= 0
-        && Time.compare(timeEnd, plage.end) >= 0)).forEach(plage => attachAppointmentType(plage));
+        && Time.compare(timeEnd, plage.end) >= 0)).map(plage => attachAppointmentType(plage));
 
     res.status(200).json(plageList);
   } catch (err) {
