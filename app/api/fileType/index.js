@@ -1,12 +1,12 @@
 const { Router } = require('express');
 const { ModuleType, FileType } = require('../../models');
 const logger = require('../../utils/logger');
-
-const router = new Router();
-
 /* function logThis(elt) {
   logger.log(`debug ==> ${elt}`);
 } */
+
+const router = new Router();
+
 
 function getModuleTypeSafely(moduleTypeId) {
   try {

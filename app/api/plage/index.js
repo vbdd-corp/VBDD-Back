@@ -1,6 +1,12 @@
+const Joi = require('joi');
 const { Router } = require('express');
 const { Plage, Creneau, AppointmentType } = require('../../models');
 const Time = require('../../models/time.model');
+const logger = require('../../utils/logger');
+
+function logThis(elt) {
+  logger.log(`debug ==> ${elt}`);
+}
 
 const router = Router();
 
@@ -59,6 +65,62 @@ router.get('/:plageId', (req, res) => {
   try {
     res.status(200).json(attachAppointmentType(Plage.getById(req.params.plageId)));
   } catch (err) {
+    if (err.name === 'NotFoundError') {
+      res.status(404).end();
+    } else {
+      res.status(500).json(err);
+    }
+  }
+});
+
+router.get('/statuso', (req, res) => {
+  try {
+    res.status(200).json({ msg: 'ok here :)' });
+  } catch (err) {
+    logThis(err);
+    if (err.name === 'NotFoundError') {
+      res.status(404).end();
+    } else {
+      res.status(500).json(err);
+    }
+  }
+});
+
+
+/*
+* GET /api/plage/between-dates
+*   ?sYear=2019&sMonth=12&sDay=17&sHour=6&sMinute=44
+*   &eYear=2019&eMonth=12&eDay=17&eHour=17&eMinute=44
+* */
+router.get('/between-dates', (req, res) => {
+  logThis('BP 0');
+  try {
+    const timeStart = {
+      minute: parseInt(req.query.sMinute, 10),
+      hour: parseInt(req.query.sHour, 10),
+      day: parseInt(req.query.sDay, 10),
+      month: parseInt(req.query.sMonth, 10),
+      year: parseInt(req.query.sYear, 10),
+    };
+    Joi.validate(timeStart, Time.getScheme());
+    logThis('BP 1');
+    const timeEnd = {
+      minute: parseInt(req.query.eMinute, 10),
+      hour: parseInt(req.query.eHour, 10),
+      day: parseInt(req.query.eDay, 10),
+      month: parseInt(req.query.eMonth, 10),
+      year: parseInt(req.query.eYear, 10),
+    };
+    Joi.validate(timeEnd, Time.getScheme());
+    logThis('BP 2');
+    const plageList = Plage.get()
+      .filter(plage => (
+        Time.compare(timeStart, plage.start) <= 0
+        && Time.compare(timeEnd, plage.end) >= 0)).forEach(plage => attachAppointmentType(plage));
+
+    res.status(200).json(plageList);
+  } catch (err) {
+    logThis(err);
     if (err.name === 'NotFoundError') {
       res.status(404).end();
     } else {
