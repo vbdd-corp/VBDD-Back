@@ -96,6 +96,18 @@ const fillInfos = function (module) {
         currentUNSDiploma: null,
         nextYearExchangeDiploma: null,
         shareMyDetails: null,
+        date1: null,
+        date2: null,
+        date3: null,
+        diploma1: null,
+        diploma2: null,
+        diploma3: null,
+        school1: null,
+        school2: null,
+        school3: null,
+        note1: null,
+        note2: null,
+        note3: null,
       };
       break;
     case 1:
@@ -125,17 +137,14 @@ const fillInfos = function (module) {
       };
       break;
     case 8:
-      // Hors Europe Annexe 1
+      // Hors Europe Annexe 1, Asie, Autres
       // Contrat d'études
-      /* infos = {
+      infos = {
         schoolID: null,
         semester: null,
         BCICode: null,
         BCIProgramName: null,
-        S1courses: null,
-        S2courses: null, */
-      /* version Kévin */
-      infos = {
+
         codeCours1: null,
         codeCours2: null,
         codeCours3: null,
@@ -172,18 +181,6 @@ const fillInfos = function (module) {
         nombreCredits10: null,
         nombreCredits11: null,
         nombreCredits12: null,
-        date1: null,
-        date2: null,
-        date3: null,
-        diploma1: null,
-        diploma2: null,
-        diploma3: null,
-        school1: null,
-        school2: null,
-        school3: null,
-        note1: null,
-        note2: null,
-        note3: null,
       };
       break;
     case 11:
