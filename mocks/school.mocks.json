@@ -16,5 +16,23 @@
     "city": "Pasadena",
     "country": "United States",
     "name": "California Institute of Technology"
+  },
+  {
+    "id": 3,
+    "city": "Incheon",
+    "country": "South Korea",
+    "name": "Incheon National University"
+  },
+  {
+    "id": 4,
+    "city": "Khlong Luang",
+    "country": "Thailand",
+    "name": "Asian Institute of Technology"
+  },
+  {
+    "id": 5,
+    "city": "Hong Kong",
+    "country": "China",
+    "name": "University of Hong Kong"
   }
 ]
