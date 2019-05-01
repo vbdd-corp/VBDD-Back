@@ -1,13 +1,13 @@
 const { Router } = require('express');
 const { Student, File } = require('../../models');
 
-// const logger = require('../../utils/logger');
-/* const log = function (message) {
+const logger = require('../../utils/logger');
+
+const logThis = function (message) {
   logger.log(message);
-}; */
+};
 
 const router = new Router();
-
 
 function getStudentByMajor(major) {
   return Student.get().filter(student => student.major === major);
@@ -29,6 +29,21 @@ router.get('/:studentID', (req, res) => {
   } catch (err) {
     if (err.name === 'NotFoundError') {
       res.status(404).end();
+    } else {
+      res.status(500).json(err);
+    }
+  }
+});
+
+router.put('/:studentId', (req, res) => {
+  try {
+    res.status(200).json(Student.update(parseInt(req.params.studentId, 10), req.body));
+  } catch (err) {
+    if (err.name === 'NotFoundError') {
+      res.status(404).end();
+    } else if (err.name === 'ValidationError') {
+      logThis(err);
+      res.status(400).json(err.extra);
     } else {
       res.status(500).json(err);
     }

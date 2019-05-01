@@ -13,7 +13,7 @@ class StudentModel extends BaseModel {
       gender: Joi.string(),
       nationality: Joi.string(),
       residencePermitExpirationDate: Joi.date(),
-      birthDate: Joi.date(),
+      birthDate: Joi.string(),
       INE: Joi.string(),
       studentNumber: Joi.string(),
       address: Joi.string(),
