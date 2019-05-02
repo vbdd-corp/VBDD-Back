@@ -9,6 +9,7 @@ const PlageRouter = require('./plage');
 const CreneauRouter = require('./creneau');
 const SchoolRouter = require('./school');
 const AppointmentRouter = require('./appointment');
+const ModuleTypeRouter = require('./moduleTypes');
 
 const router = new Router();
 router.get('/status', (req, res) => res.status(200).json('ok'));
@@ -22,5 +23,6 @@ router.use('/plage', PlageRouter);
 router.use('/creneau', CreneauRouter);
 router.use('/school', SchoolRouter);
 router.use('/appointment', AppointmentRouter);
+router.use('/moduleTypes', ModuleTypeRouter);
 
 module.exports = router;

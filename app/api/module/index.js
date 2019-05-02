@@ -5,7 +5,9 @@ const makeDir = require('make-dir');
 const rimraf = require('rimraf');
 const fs = require('fs');
 const logger = require('../../utils/logger');
-const { Module, Student, File } = require('../../models');
+const {
+  Module, Student, File, ModuleType,
+} = require('../../models');
 
 
 function logThis(elt) {
@@ -29,6 +31,25 @@ const makeThisDir = async (dirPath) => {
   } catch (err) {
     return `Error makeThisDir: ${err}`;
   }
+};
+
+function getModuleTypeSafely(moduleTypeId) {
+  try {
+    return ModuleType.getById(moduleTypeId);
+  } catch (err) {
+    if (err.name === 'NotFoundError') {
+      return null;
+    }
+    throw err;
+  }
+}
+
+const attachModuleType = (module) => {
+  const newModule = Object.assign({}, module, {
+    typeModule: getModuleTypeSafely(module.typeModuleId),
+  });
+  delete newModule.typeModuleId;
+  return newModule;
 };
 
 router.get('/:moduleId', (req, res) => {
@@ -252,7 +273,7 @@ router.post('/:fileId', (req, res) => {
     fillInfos(module);
     putInFile(module.id, req.params.fileId);
 
-    res.status(201).json(module);
+    res.status(201).json(attachModuleType(module));
   } catch (err) {
     if (err.name === 'ValidationError') {
       res.status(400).json(err.extra);
