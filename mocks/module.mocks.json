@@ -297,23 +297,23 @@
   {
     "typeModuleId": 7,
     "infos": {
-      "country": null,
-      "city": null,
-      "stayDuration": null,
-      "travelCost": null,
-      "accommodationCost": null,
-      "foodCost": null,
-      "transportationHobbiesCost": null,
-      "studyCost": null,
-      "othersCost": null,
-      "frenchCROUSScholarship": null,
-      "mobilityScholarship": null,
-      "travelHelp": null,
-      "summerJobSalaries": null,
-      "personalResources": null,
-      "familyResources": null,
-      "othersResources": null,
-      "notes": null
+      "country": "",
+      "city": "",
+      "stayDuration": "",
+      "travelCost": "",
+      "accommodationCost": "",
+      "foodCost": "",
+      "transportationHobbiesCost": "",
+      "studyCost": "",
+      "othersCost": "",
+      "frenchCROUSScholarship": "",
+      "mobilityScholarship": "",
+      "travelHelp": "",
+      "summerJobSalaries": "",
+      "personalResources": "",
+      "familyResources": "",
+      "othersResources": "",
+      "notes": ""
     },
     "id": 80
   },
@@ -385,5 +385,23 @@
       "note3": null
     },
     "id": 82
+  },
+  {
+    "typeModuleId": 17,
+    "id": 1556833449718,
+    "infos": {
+      "choice1": {
+        "schoolID": null,
+        "semester": null
+      },
+      "choice2": {
+        "schoolID": null,
+        "semester": null
+      },
+      "choice3": {
+        "schoolID": null,
+        "semester": null
+      }
+    }
   }
 ]
