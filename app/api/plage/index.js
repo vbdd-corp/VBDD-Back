@@ -84,8 +84,7 @@ router.get('/status', (req, res) => {
 * 10-4-2019 11H - 11H30
 * 9-4-2019  10H - 11H30
 * */
-router.get('/between-dates', (req, res) => {
-  logThis('BP 0');
+router.get('/between-times', (req, res) => {
   try {
     const timeStart = {
       minute: parseInt(req.query.sMinute, 10),
@@ -95,7 +94,6 @@ router.get('/between-dates', (req, res) => {
       year: parseInt(req.query.sYear, 10),
     };
     Joi.validate(timeStart, Time.getScheme());
-    logThis('BP 1');
     const timeEnd = {
       minute: parseInt(req.query.eMinute, 10),
       hour: parseInt(req.query.eHour, 10),
@@ -104,11 +102,11 @@ router.get('/between-dates', (req, res) => {
       year: parseInt(req.query.eYear, 10),
     };
     Joi.validate(timeEnd, Time.getScheme());
-    logThis('BP 2');
     const plageList = Plage.get()
       .filter(plage => (
-        Time.compare(timeStart, plage.start) <= 0
-        && Time.compare(timeEnd, plage.end) >= 0)).map(plage => attachAppointmentType(plage));
+        Time.compare(plage.start, timeStart) >= 0
+        && Time.compare(plage.end, timeEnd) <= 0))
+      .map(plage => attachAppointmentType(plage));
 
     res.status(200).json(plageList);
   } catch (err) {
