@@ -119,6 +119,23 @@ router.get('/between-times', (req, res) => {
   }
 });
 
+router.get('/by-bri/:briId', (req, res) => {
+  try {
+    const plageList = Plage.get()
+      .filter(plage => plage.briId === parseInt(req.params.briId, 10))
+      .map(plage => attachAppointmentType(plage));
+
+    res.status(200).json(plageList);
+  } catch (err) {
+    logThis(err);
+    if (err.name === 'NotFoundError') {
+      res.status(404).end();
+    } else {
+      res.status(500).json(err);
+    }
+  }
+});
+
 router.get('/:plageId', (req, res) => {
   try {
     res.status(200).json(attachAppointmentType(Plage.getById(req.params.plageId)));
@@ -195,7 +212,13 @@ router.delete('/:plageId', (req, res) => {
   try {
     const plage = Plage.getById(req.params.plageId);
     Plage.delete(req.params.plageId);
-    deleteCreneauxBetween(plage.briId, plage.start, plage.end);
+
+    // TODO: find why deleteCreneauxBetween send a 404 error not found and del try-catch
+    try {
+      deleteCreneauxBetween(plage.briId, plage.start, plage.end);
+    } catch (err) {
+      logThis('404 not found error during deleteCreneauxBetween !');
+    }
     res.status(204).end();
   } catch (err) {
     if (err.name === 'NotFoundError') {

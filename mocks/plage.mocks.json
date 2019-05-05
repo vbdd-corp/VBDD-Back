@@ -93,5 +93,100 @@
     "briId": 0,
     "appointmentTypeId": -1,
     "id": 456785676
+  },
+  {
+    "start": {
+      "minute": 0,
+      "hour": 8,
+      "day": 10,
+      "month": 5,
+      "year": 2019
+    },
+    "end": {
+      "minute": 30,
+      "hour": 11,
+      "day": 10,
+      "month": 5,
+      "year": 2019
+    },
+    "briId": 30,
+    "appointmentTypeId": -1,
+    "id": 1557095221467
+  },
+  {
+    "start": {
+      "minute": 0,
+      "hour": 13,
+      "day": 10,
+      "month": 5,
+      "year": 2019
+    },
+    "end": {
+      "minute": 30,
+      "hour": 17,
+      "day": 10,
+      "month": 5,
+      "year": 2019
+    },
+    "briId": 30,
+    "appointmentTypeId": -1,
+    "id": 1557095232447
+  },
+  {
+    "start": {
+      "minute": 0,
+      "hour": 13,
+      "day": 9,
+      "month": 5,
+      "year": 2019
+    },
+    "end": {
+      "minute": 30,
+      "hour": 17,
+      "day": 9,
+      "month": 5,
+      "year": 2019
+    },
+    "briId": 30,
+    "appointmentTypeId": -1,
+    "id": 1557095242718
+  },
+  {
+    "start": {
+      "minute": 0,
+      "hour": 8,
+      "day": 8,
+      "month": 5,
+      "year": 2019
+    },
+    "end": {
+      "minute": 30,
+      "hour": 11,
+      "day": 8,
+      "month": 5,
+      "year": 2019
+    },
+    "briId": 30,
+    "appointmentTypeId": -1,
+    "id": 1557096529030
+  },
+  {
+    "start": {
+      "minute": 0,
+      "hour": 13,
+      "day": 8,
+      "month": 5,
+      "year": 2019
+    },
+    "end": {
+      "minute": 30,
+      "hour": 16,
+      "day": 8,
+      "month": 5,
+      "year": 2019
+    },
+    "briId": 30,
+    "appointmentTypeId": -1,
+    "id": 1557096545605
   }
 ]
