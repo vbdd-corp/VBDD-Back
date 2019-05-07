@@ -66,7 +66,7 @@ router.get('/:moduleId', (req, res) => {
 
 router.put('/:moduleId', (req, res) => {
   try {
-    res.status(200).json(Module.update(req.params.moduleId, req.body));
+    res.status(200).json(attachModuleType(Module.update(req.params.moduleId, req.body)));
   } catch (err) {
     if (err.name === 'NotFoundError') {
       res.status(404).end();
@@ -264,6 +264,50 @@ function putInFile(moduleId, fileId) {
   File.update(file.id, file);
 }
 
+function responseFile(fileName, filePath, response) {
+  // filePath is full path of file.
+  // Check if file specified by the filePath exists
+  fs.exists(filePath, (exists) => {
+    if (exists) {
+      // Content-type is very interesting part that guarantee that
+      // Web browser will handle response in an appropriate manner.
+      response.writeHead(200, {
+        'Content-Type': 'application/octet-stream',
+        'Content-Disposition': `attachment; filename=${fileName}`,
+      });
+      fs.createReadStream(filePath).pipe(response);
+    } else {
+      response.writeHead(400, { 'Content-Type': 'text/plain' });
+      response.end('ERROR File does not exist');
+    }
+  });
+}
+
+/*
+* POST /api/module/download
+* {"filePath": "/path/to/file.pdf"}
+* example.com/user/000000?sex=female
+* */
+router.post('/download', (req, res) => {
+  try {
+    logThis(`global.myBaseDir ${global.myBasedir}`);
+    const filePath = path.join(global.myBasedir, req.body.filePath);
+    logThis(`filePath --> ${filePath}`);
+    const array = filePath.split('/');
+    const fileName = array[array.length - 1];
+    logThis((`--> filePath: ${filePath}`));
+    responseFile(fileName, filePath, res);
+  } catch (err) {
+    if (err.name === 'ValidationError') {
+      res.status(400).json(err.extra);
+    } else if (err.name === 'NotFoundError') {
+      res.status(404).json({ error: 'student or file or module not found' });
+    } else {
+      res.status(500).json(err);
+    }
+  }
+});
+
 router.post('/:fileId', (req, res) => {
   try {
     // check if the file exists before doing anything
@@ -288,49 +332,6 @@ router.post('/:fileId', (req, res) => {
 // *****************  UPLOAD  *****************
 
 
-function responseFile(fileName, filePath, response) {
-  // filePath is full path of file.
-  // Check if file specified by the filePath exists
-  fs.exists(filePath, (exists) => {
-    if (exists) {
-      // Content-type is very interesting part that guarantee that
-      // Web browser will handle response in an appropriate manner.
-      response.writeHead(200, {
-        'Content-Type': 'application/octet-stream',
-        'Content-Disposition': `attachment; filename=${fileName}`,
-      });
-      fs.createReadStream(filePath).pipe(response);
-    } else {
-      response.writeHead(400, { 'Content-Type': 'text/plain' });
-      response.end('ERROR File does not exist');
-    }
-  });
-}
-
-/*
-* GET /api/module/download
-* {"filePath": "/path/to/file.pdf"}
-* example.com/user/000000?sex=female
-* */
-router.post('/download', (req, res) => {
-  try {
-    logThis(`global.myBaseDir ${global.myBasedir}`);
-    const filePath = path.join(global.myBasedir, req.body.filePath);
-    logThis(`filePath --> ${filePath}`);
-    const array = filePath.split('/');
-    const fileName = array[array.length - 1];
-    logThis((`--> filePath: ${filePath}`));
-    responseFile(fileName, filePath, res);
-  } catch (err) {
-    if (err.name === 'ValidationError') {
-      res.status(400).json(err.extra);
-    } else if (err.name === 'NotFoundError') {
-      res.status(404).json({ error: 'student or file or module not found' });
-    } else {
-      res.status(500).json(err);
-    }
-  }
-});
 /* *****************  UPLOAD  *****************
 **
 * USAGE: POST /api/module/upload/:studentID/:fileID/:moduleID
