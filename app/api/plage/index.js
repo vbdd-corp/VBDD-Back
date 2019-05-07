@@ -29,17 +29,48 @@ const attachAppointmentType = (plage) => {
   return newPlage;
 };
 
-const createCreneauxFromPlage = function (plage) {
-  let startingTime = plage.start;
-  let endingTime = Time.add30MinutesToTime(plage.start);
-  while (Time.compare(plage.end, endingTime) >= 0) {
+function createCreneauxBetween(briId, appointmentTypeId, timeA, timeB) {
+  let start; let end;
+  if (Time.compare(timeB, timeA) >= 0) {
+    start = timeA;
+    end = timeB;
+  } else {
+    start = timeB;
+    end = timeA;
+  }
+
+  let endingTime = Time.add30MinutesToTime(start);
+  while (Time.compare(end, endingTime) >= 0) {
     try {
       Creneau.create({
-        start: startingTime,
+        start,
         end: endingTime,
-        appointmentTypeId: plage.appointmentTypeId,
+        appointmentTypeId,
         statusId: 0,
-        briId: plage.briId,
+        briId,
+      });
+      logThis(`created creneau ${start.hour}:${start.minute}`);
+    } catch (err) {
+      if (err.name === 'ValidationError') {
+        console.log(err.extra);
+      } else {
+        console.log(err);
+      }
+      throw err;
+    }
+    start = endingTime;
+    endingTime = Time.add30MinutesToTime(endingTime);
+  }
+
+  // if there is less than 30 minute left create a smaller creneau at the end
+  if (Time.compare(start, end) < 0) {
+    try {
+      Creneau.create({
+        start,
+        end,
+        appointmentTypeId,
+        statusId: 0,
+        briId,
       });
     } catch (err) {
       if (err.name === 'ValidationError') {
@@ -49,9 +80,11 @@ const createCreneauxFromPlage = function (plage) {
       }
       throw err;
     }
-    startingTime = endingTime;
-    endingTime = Time.add30MinutesToTime(endingTime);
   }
+}
+
+const createCreneauxFromPlage = function (plage) {
+  createCreneauxBetween(plage.briId, plage.appointmentTypeId, plage.start, plage.end);
 };
 
 router.get('/', (req, res) => {
@@ -167,9 +200,12 @@ function deleteCreneau(creneau) {
   Creneau.delete(creneau.id);
 }
 
+function changeTimeCreneau(creneau, start, end) {
+  Creneau.update(creneau.id, { start, end });
+}
+
 function deleteCreneauxBetween(briId, timeA, timeB) {
-  let start; let
-    end;
+  let start; let end;
   if (Time.compare(timeB, timeA) >= 0) {
     start = timeA;
     end = timeB;
@@ -177,23 +213,52 @@ function deleteCreneauxBetween(briId, timeA, timeB) {
     start = timeB;
     end = timeA;
   }
-  Creneau.get().filter(creneau => creneau.briId === briId
+  Creneau.get().filter(creneau => (creneau.briId === briId)
       && ((Time.compare(creneau.end, start) > 0 && Time.compare(creneau.end, end) <= 0)
         || (Time.compare(creneau.start, start) >= 0 && Time.compare(creneau.start, end) < 0)))
     .forEach(creneau => deleteCreneau(creneau));
 }
 
-// TODO: create creneaux accordingly to plage PUT
+function putAndDeleteCreneauxBetween(briId, timeA, timeB) {
+  let start; let end;
+  if (Time.compare(timeB, timeA) >= 0) {
+    start = timeA;
+    end = timeB;
+  } else {
+    start = timeB;
+    end = timeA;
+  }
+  Creneau.get().filter(creneau => (creneau.briId === briId)
+    && (Time.compare(creneau.start, end) < 0) && (Time.compare(creneau.end, start) > 0))
+    .forEach((creneau) => {
+      if (Time.compare(creneau.end, end) <= 0 && Time.compare(creneau.start, start) >= 0) {
+        deleteCreneau(creneau);
+        return;
+      }
+      if (Time.compare(creneau.end, end) > 0) {
+        changeTimeCreneau(creneau, end, creneau.end);
+        return;
+      }
+      if (Time.compare(creneau.start, start) < 0) {
+        changeTimeCreneau(creneau, creneau.start, start);
+      }
+    });
+}
+
 router.put('/:plageId', (req, res) => {
   try {
     const oldPlage = Plage.getById(req.params.plageId);
     const plage = Plage.update(req.params.plageId, req.body);
 
     if (Time.compare(plage.start, oldPlage.start) > 0) {
-      deleteCreneauxBetween(plage.briId, oldPlage.start, plage.start);
+      putAndDeleteCreneauxBetween(plage.briId, oldPlage.start, plage.start);
+    } else if (Time.compare(plage.start, oldPlage.start) < 0) {
+      createCreneauxBetween(plage.bri, plage.appointmentTypeId, plage.start, oldPlage.start);
     }
     if (Time.compare(oldPlage.end, plage.end) > 0) {
-      deleteCreneauxBetween(plage.briId, plage.end, oldPlage.end);
+      putAndDeleteCreneauxBetween(plage.briId, plage.end, oldPlage.end);
+    } else if (Time.compare(oldPlage.end, plage.end) < 0) {
+      createCreneauxBetween(plage.briId, plage.appointmentTypeId, oldPlage.end, plage.end);
     }
 
     res.status(200).json(attachAppointmentType(plage));
@@ -214,6 +279,8 @@ router.delete('/:plageId', (req, res) => {
     Plage.delete(req.params.plageId);
 
     // TODO: find why deleteCreneauxBetween send a 404 error not found and del try-catch
+    // base model delete creneau sending errors on some creneau
+    // but they're deleted anyway and existed before
     try {
       deleteCreneauxBetween(plage.briId, plage.start, plage.end);
     } catch (err) {
