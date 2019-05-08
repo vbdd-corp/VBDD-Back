@@ -251,12 +251,20 @@ router.put('/:plageId', (req, res) => {
     const plage = Plage.update(req.params.plageId, req.body);
 
     if (Time.compare(plage.start, oldPlage.start) > 0) {
-      putAndDeleteCreneauxBetween(plage.briId, oldPlage.start, plage.start);
+      try {
+        putAndDeleteCreneauxBetween(plage.briId, oldPlage.start, plage.start);
+      } catch (err) {
+        logThis('404 not found error during putAndDeleteCreneauxBetween !');
+      }
     } else if (Time.compare(plage.start, oldPlage.start) < 0) {
       createCreneauxBetween(plage.bri, plage.appointmentTypeId, plage.start, oldPlage.start);
     }
     if (Time.compare(oldPlage.end, plage.end) > 0) {
-      putAndDeleteCreneauxBetween(plage.briId, plage.end, oldPlage.end);
+      try {
+        putAndDeleteCreneauxBetween(plage.briId, plage.end, oldPlage.end);
+      } catch (err) {
+        logThis('404 not found error during putAndDeleteCreneauxBetween !');
+      }
     } else if (Time.compare(oldPlage.end, plage.end) < 0) {
       createCreneauxBetween(plage.briId, plage.appointmentTypeId, oldPlage.end, plage.end);
     }
