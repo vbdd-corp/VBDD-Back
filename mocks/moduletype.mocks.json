@@ -1,7 +1,7 @@
 [
   {
     "id": 0,
-    "typeName": "informations-generales"
+    "typeName": "Informations générales"
   },
   {
     "id": 1,
@@ -17,7 +17,7 @@
   },
   {
     "id": 5,
-    "typeName": "Relevé Notes Supérieur"
+    "typeName": "Relevé de note supérieurs"
   },
   {
     "id": 6,
