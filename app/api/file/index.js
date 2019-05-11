@@ -205,6 +205,32 @@ router.get('/', (req, res) => {
         return (school1 && school1.name.includes(req.query.schoolName))
           || (school2 && school2.name.includes(req.query.schoolName))
           || (school3 && school3.name.includes(req.query.schoolName));
+      })
+      .filter((file) => {
+        if (!req.query.country) {
+          return true;
+        }
+        let choices = file.modules.filter(module => module.typeModule.id === 17);
+        // if the file doesn't have an university choice module, so if the file is corrupted
+        if (choices.length === 0) {
+          return false;
+        }
+        choices = choices[0].infos;
+        let school1;
+        let school2;
+        let school3;
+        try {
+          school1 = School.getById(choices.choice1.schoolID);
+          school2 = School.getById(choices.choice2.schoolID);
+          school3 = School.getById(choices.choice3.schoolID);
+        } catch (err) {
+          if (err.name !== 'NotFoundError') {
+            throw err;
+          }
+        }
+        return (school1 && school1.country === req.query.country)
+          || (school2 && school2.country === req.query.country)
+          || (school3 && school3.country === req.query.country);
       });
 
     res.status(200).json(resList);
