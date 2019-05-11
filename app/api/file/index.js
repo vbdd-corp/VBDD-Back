@@ -165,6 +165,7 @@ router.get('/', (req, res) => {
       .map(file => attachStudents(file)).map(file => attachModules(file))
       .filter(file => !req.query.cursus || req.query.cursus === file.student.major)
       .filter(file => !req.query.ref || parseInt(req.query.ref, 10) === file.fileType.id)
+      .filter(file => !req.query.validated || (/true/i).test(req.query.validated) === file.isValidated)
       .filter((file) => {
         if (!req.query.schoolId) {
           return true;
