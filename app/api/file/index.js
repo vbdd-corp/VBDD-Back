@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const {
-  File, FileType, Student, Module, ModuleType,
+  File, FileType, Student, Module, ModuleType, School,
 } = require('../../models');
 const fillInfos = require('../module/index.js').fillInfos; // eslint-disable-line
 // TODO: use correctly the function from { ModuleFunc } = ...
@@ -162,7 +162,50 @@ router.get('/by-studentId/:studentID', (req, res) => {
 router.get('/', (req, res) => {
   try {
     const resList = File.get()
-      .map(file => attachStudents(file)).map(file => attachModules(file));
+      .map(file => attachStudents(file)).map(file => attachModules(file))
+      .filter(file => !req.query.cursus || req.query.cursus === file.student.major)
+      .filter(file => !req.query.ref || parseInt(req.query.ref, 10) === file.fileType.id)
+      .filter((file) => {
+        if (!req.query.schoolId) {
+          return true;
+        }
+        let choices = file.modules.filter(module => module.typeModule.id === 17);
+        // if the file doesn't have an university choice module, so if the file is corrupted
+        if (choices.length === 0) {
+          return false;
+        }
+        choices = choices[0].infos;
+        return choices.choice1.schoolID === parseInt(req.query.schoolId, 10)
+        || choices.choice2.schoolID === parseInt(req.query.schoolId, 10)
+        || choices.choice3.schoolID === parseInt(req.query.schoolId, 10);
+      })
+      .filter((file) => {
+        if (!req.query.schoolName) {
+          return true;
+        }
+        let choices = file.modules.filter(module => module.typeModule.id === 17);
+        // if the file doesn't have an university choice module, so if the file is corrupted
+        if (choices.length === 0) {
+          return false;
+        }
+        choices = choices[0].infos;
+        let school1;
+        let school2;
+        let school3;
+        try {
+          school1 = School.getById(choices.choice1.schoolID);
+          school2 = School.getById(choices.choice2.schoolID);
+          school3 = School.getById(choices.choice3.schoolID);
+        } catch (err) {
+          if (err.name !== 'NotFoundError') {
+            throw err;
+          }
+        }
+        return (school1 && school1.name.includes(req.query.schoolName))
+          || (school2 && school2.name.includes(req.query.schoolName))
+          || (school3 && school3.name.includes(req.query.schoolName));
+      });
+
     res.status(200).json(resList);
   } catch (err) {
     if (err.name === 'NotFoundError') {
