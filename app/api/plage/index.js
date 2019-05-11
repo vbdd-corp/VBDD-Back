@@ -42,14 +42,13 @@ function createCreneauxBetween(briId, appointmentTypeId, timeA, timeB) {
   let endingTime = Time.add30MinutesToTime(start);
   while (Time.compare(end, endingTime) >= 0) {
     try {
-      Creneau.create({
+      Creneau.createWithNextId({
         start,
         end: endingTime,
         appointmentTypeId,
         statusId: 0,
         briId,
       });
-      logThis(`created creneau ${start.hour}:${start.minute}`);
     } catch (err) {
       if (err.name === 'ValidationError') {
         console.log(err.extra);
@@ -65,7 +64,7 @@ function createCreneauxBetween(briId, appointmentTypeId, timeA, timeB) {
   // if there is less than 30 minute left create a smaller creneau at the end
   if (Time.compare(start, end) < 0) {
     try {
-      Creneau.create({
+      Creneau.createWithNextId({
         start,
         end,
         appointmentTypeId,
@@ -183,7 +182,8 @@ router.get('/:plageId', (req, res) => {
 
 router.post('/', (req, res) => {
   try {
-    const plage = Plage.create(req.body);
+    const plage = Plage.createWithNextId(req.body);
+    logThis('plop');
     createCreneauxFromPlage(plage);
 
     res.status(201).json(attachAppointmentType(plage));
@@ -245,10 +245,31 @@ function putAndDeleteCreneauxBetween(briId, timeA, timeB) {
     });
 }
 
+function changeAppointmentTypeCreneauxBetween(appointmentTypeId, briId, timeA, timeB) {
+  let start; let end;
+  if (Time.compare(timeB, timeA) >= 0) {
+    start = timeA;
+    end = timeB;
+  } else {
+    start = timeB;
+    end = timeA;
+  }
+  Creneau.get().filter(creneau => (creneau.briId === briId)
+    && ((Time.compare(creneau.end, start) > 0 && Time.compare(creneau.end, end) <= 0)
+      || (Time.compare(creneau.start, start) >= 0 && Time.compare(creneau.start, end) < 0)))
+    .forEach((creneau) => {
+      logThis(`${creneau.start.hour} : ${creneau.start.minute}`);
+      Creneau.update(creneau.id, { appointmentTypeId });
+    });
+}
+
 router.put('/:plageId', (req, res) => {
   try {
     const oldPlage = Plage.getById(req.params.plageId);
     const plage = Plage.update(req.params.plageId, req.body);
+
+    changeAppointmentTypeCreneauxBetween(plage.appointmentTypeId,
+      plage.briId, plage.start, plage.end);
 
     if (Time.compare(plage.start, oldPlage.start) > 0) {
       try {

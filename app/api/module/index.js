@@ -353,7 +353,7 @@ router.post('/:fileId', (req, res) => {
     // check if the file exists before doing anything
     File.getById(req.params.fileId);
 
-    const module = Module.create(req.body);
+    const module = Module.createWithNextId(req.body);
     fillInfos(module);
     putInFile(module.id, req.params.fileId);
 

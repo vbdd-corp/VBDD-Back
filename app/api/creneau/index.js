@@ -46,4 +46,27 @@ router.get('/by-bri/:briId', (req, res) => {
   }
 });
 
+router.get('/by-appointmentType/:appointmentTypeId', (req, res) => {
+  try {
+    const creneauList = Creneau.get();
+
+    // if the appointmentType asked is all
+    if (parseInt(req.params.appointmentTypeId, 10) < 0) {
+      res.status(200).json(creneauList.map(creneau => attachAppointmentType(creneau)));
+    } else {
+      res.status(200).json(creneauList
+        .filter(creneau => creneau.appointmentTypeId < 0
+          || creneau.appointmentTypeId === parseInt(req.params.appointmentTypeId, 10))
+        .map(creneau => attachAppointmentType(creneau)));
+    }
+  } catch (err) {
+    if (err.name === 'NotFoundError') {
+      res.status(404).end();
+    } else {
+      logThis(err);
+      res.status(500).json(err);
+    }
+  }
+});
+
 module.exports = router;
