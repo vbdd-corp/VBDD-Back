@@ -3,25 +3,40 @@
     "id": 0,
     "appointmentTypeId": 1,
     "appointmentStatusId": 1,
-    "time": 5,
     "creneauId": 0,
+    "briId": 30,
     "studentId": 0
   },
   {
     "id": 1,
     "appointmentTypeId": 1,
     "appointmentStatusId": 1,
-    "time": 5,
     "creneauId": 0,
+    "briId": 30,
     "studentId": 1
   },
   {
     "id": 2,
     "appointmentTypeId": 1,
     "appointmentStatusId": 1,
-    "time": 5,
     "creneauId": 0,
+    "briId": 30,
     "studentId": 2
+  },
+  {
+    "appointmentTypeId": 1,
+    "appointmentStatusId": 1,
+    "creneauId": 10,
+    "studentId": 30,
+    "briId": 30,
+    "id": 3
+  },
+  {
+    "appointmentTypeId": 3,
+    "appointmentStatusId": 1,
+    "creneauId": 1,
+    "studentId": 30,
+    "briId": 30,
+    "id": 4
   }
 ]
-

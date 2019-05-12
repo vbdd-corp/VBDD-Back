@@ -8,7 +8,6 @@ class Appointment extends BaseModel {
       id: Joi.number().required(),
       start: Time.getScheme(),
       end: Time.getScheme(),
-      time: Joi.number().required(),
       appointmentTypeId: Joi.number().min(0).required(), // -1 for all
       appointmentStatusId: Joi.number().required(),
       creneauId: Joi.number().required(),

@@ -72,7 +72,7 @@ const attachAppointmentStatus = (appointment) => {
 
 const attachAppointmentCreneau = (appointment) => {
   const newAppointment = Object.assign({}, appointment, {
-    appointmentCreneau: getAppointmentCreneauSafely(appointment.creneauId),
+    creneau: getAppointmentCreneauSafely(appointment.creneauId),
   });
   delete newAppointment.creneauId;
   return newAppointment;
@@ -80,7 +80,7 @@ const attachAppointmentCreneau = (appointment) => {
 
 const attachAppointmentStudent = (appointment) => {
   const newAppointment = Object.assign({}, appointment, {
-    appointmentStudent: getAppointmentStudentSafely(appointment.studentId),
+    student: getAppointmentStudentSafely(appointment.studentId),
   });
   logThis('debug2');
   delete newAppointment.studentId;
@@ -122,6 +122,38 @@ router.get('/:appointmentID', (req, res) => {
   } catch (err) {
     if (err.name === 'NotFoundError') {
       res.status(404).end();
+    } else {
+      res.status(500).json(err);
+    }
+  }
+});
+
+router.get('/by-student/:StudentId', (req, res) => {
+  try {
+    const resList = Appointment.get()
+      .filter(appointment => appointment.studentId === parseInt(req.params.StudentId, 10))
+      .map(appointment => attachAppointmentType(appointment))
+      .map(appointment => attachAppointmentStatus(appointment))
+      .map(appointment => attachAppointmentCreneau(appointment))
+      .map(appointment => attachAppointmentStudent(appointment));
+    res.status(200).json(resList);
+  } catch (err) {
+    if (err.name === 'NotFoundError') {
+      res.status(404).end();
+    } else {
+      res.status(500).json(err);
+    }
+  }
+});
+
+
+router.post('/', (req, res) => {
+  try {
+    const appointment = Appointment.createWithNextId(req.body);
+    res.status(201).json(appointment);
+  } catch (err) {
+    if (err.name === 'ValidationError') {
+      res.status(400).json(err.extra);
     } else {
       res.status(500).json(err);
     }
