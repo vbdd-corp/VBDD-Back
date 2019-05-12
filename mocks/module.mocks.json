@@ -70,7 +70,7 @@
   {
     "typeModuleId": 4,
     "infos": {
-      "filePath": "uploads/Student_30/Folder_1/Module_62/pokedex.pdf"
+      "filePath": null
     },
     "id": 62
   },
@@ -367,6 +367,7 @@
     "typeModuleId": 0,
     "infos": {
       "studentId": 30,
+      "stayCardEndValidity": null,
       "currentUNSDiploma": "ingé best quadro",
       "nextYearExchangeDiploma": "The Diploma",
       "shareMyDetails": false,
@@ -381,8 +382,7 @@
       "school3": null,
       "note1": null,
       "note2": null,
-      "note3": null,
-      "stayCardEndValidity": null
+      "note3": null
     },
     "id": 82
   },
@@ -391,12 +391,30 @@
     "id": 1556833449718,
     "infos": {
       "choice1": {
-        "schoolID": 4,
-        "semester": "spring"
+        "schoolID": 5,
+        "semester": "full"
       },
       "choice2": {
         "schoolID": 0,
-        "semester": "full"
+        "semester": "spring"
+      },
+      "choice3": {
+        "schoolID": null,
+        "semester": null
+      }
+    }
+  },
+  {
+    "typeModuleId": 17,
+    "id": 1557587323557,
+    "infos": {
+      "choice1": {
+        "schoolID": null,
+        "semester": null
+      },
+      "choice2": {
+        "schoolID": null,
+        "semester": null
       },
       "choice3": {
         "schoolID": null,

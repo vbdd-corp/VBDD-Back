@@ -65,6 +65,11 @@ module.exports = class BaseModel {
     return item;
   }
 
+  createWithNextId(obj = {}) {
+    const maxId = this.items.reduce((max, p) => (p.id > max ? p.id : max), 0);
+    return this.createWithGivenId(obj, maxId + 1);
+  }
+
   update(id, obj) {
     if (typeof id === 'string') id = parseInt(id, 10);
     const prevObjIndex = this.items.findIndex(item => item.id === id);
