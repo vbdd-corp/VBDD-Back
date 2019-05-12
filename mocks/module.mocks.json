@@ -366,11 +366,11 @@
   {
     "typeModuleId": 0,
     "infos": {
-      "studentId": null,
+      "studentId": 30,
       "stayCardEndValidity": null,
-      "currentUNSDiploma": null,
-      "nextYearExchangeDiploma": null,
-      "shareMyDetails": null,
+      "currentUNSDiploma": "ingé best quadro",
+      "nextYearExchangeDiploma": "The Diploma",
+      "shareMyDetails": false,
       "datediploma1": null,
       "datediploma2": null,
       "datediploma3": null,
@@ -395,8 +395,8 @@
         "semester": "full"
       },
       "choice2": {
-        "schoolID": null,
-        "semester": null
+        "schoolID": 0,
+        "semester": "spring"
       },
       "choice3": {
         "schoolID": null,
