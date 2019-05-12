@@ -50,6 +50,18 @@ function getSchoolByExactNameSafely(name) {
   }
 }
 
+router.get('/:schoolID', (req, res) => {
+  try {
+    res.status(200).json(School.getById(req.params.schoolID));
+  } catch (err) {
+    if (err.name === 'NotFoundError') {
+      res.status(404).end();
+    } else {
+      res.status(500).json(err);
+    }
+  }
+});
+
 router.get('/status', (req, res) => res.status(200).json({ ans: 'hello world JMD.' }));
 router.get('/', (req, res) => res.status(200).json(School.get()));
 
