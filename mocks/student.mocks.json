@@ -102,7 +102,18 @@
     "mail": "test103@gmail.com",
     "password": "test7test7",
     "firstName": "Victor",
-    "lastName": "Tourtet"
+    "lastName": "Tourtet",
+    "major": "SI4",
+    "gender": "M",
+    "nationality": "FR",
+    "birthDate": "20/07/1997",
+    "INE": "2147926397T",
+    "studentNumber": "21560704",
+    "address": "1 Avenue G.Pompidou, Residence des Dolines, APP 258",
+    "city": "Valbonne",
+    "postalCode": "06560",
+    "mobilePhoneNumber": "0605468978",
+    "phoneNumber": "0455637168"
   },
   {
     "id": 104,
