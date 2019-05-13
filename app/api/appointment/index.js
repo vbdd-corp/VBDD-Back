@@ -146,6 +146,41 @@ router.get('/by-student/:StudentId', (req, res) => {
   }
 });
 
+router.get('/by-bri/:briId', (req, res) => {
+  try {
+    const resList = Appointment.get()
+      .filter(appointment => appointment.briId === parseInt(req.params.briId, 10))
+      .map(appointment => attachAppointmentType(appointment))
+      .map(appointment => attachAppointmentStatus(appointment))
+      .map(appointment => attachAppointmentCreneau(appointment))
+      .map(appointment => attachAppointmentStudent(appointment));
+    res.status(200).json(resList);
+  } catch (err) {
+    if (err.name === 'NotFoundError') {
+      res.status(404).end();
+    } else {
+      res.status(500).json(err);
+    }
+  }
+});
+
+router.get('/by-creneau/:creneauId', (req, res) => {
+  try {
+    const resList = Appointment.get()
+      .filter(appointment => appointment.creneauId === parseInt(req.params.creneauId, 10))
+      .map(appointment => attachAppointmentType(appointment))
+      .map(appointment => attachAppointmentStatus(appointment))
+      .map(appointment => attachAppointmentCreneau(appointment))
+      .map(appointment => attachAppointmentStudent(appointment));
+    res.status(200).json(resList);
+  } catch (err) {
+    if (err.name === 'NotFoundError') {
+      res.status(404).end();
+    } else {
+      res.status(500).json(err);
+    }
+  }
+});
 
 router.post('/', (req, res) => {
   try {
@@ -153,6 +188,31 @@ router.post('/', (req, res) => {
     res.status(201).json(appointment);
   } catch (err) {
     if (err.name === 'ValidationError') {
+      res.status(400).json(err.extra);
+    } else {
+      res.status(500).json(err);
+    }
+  }
+});
+
+
+router.put('/:appointmentId', (req, res) => {
+  try {
+    res.status(200).json(
+      attachAppointmentType(
+        attachAppointmentCreneau(
+          attachAppointmentStatus(
+            attachAppointmentStudent(
+              Appointment.update(req.params.appointmentId, req.body),
+            ),
+          ),
+        ),
+      ),
+    );
+  } catch (err) {
+    if (err.name === 'NotFoundError') {
+      res.status(404).end();
+    } else if (err.name === 'ValidationError') {
       res.status(400).json(err.extra);
     } else {
       res.status(500).json(err);

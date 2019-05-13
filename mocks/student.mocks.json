@@ -75,5 +75,40 @@
     "mobilePhoneNumber": "0605468955",
     "phoneNumber": "0455637198",
     "id": 30
+  },
+  {
+    "id": 100,
+    "mail": "test100@gmail.com",
+    "password": "test7test7",
+    "firstName": "Jean",
+    "lastName": "Valjean"
+  },
+  {
+    "id": 101,
+    "mail": "test101@gmail.com",
+    "password": "test7test7",
+    "firstName": "Martine",
+    "lastName": "Dupont"
+  },
+  {
+    "id": 102,
+    "mail": "test102@gmail.com",
+    "password": "test7test7",
+    "firstName": "Paul",
+    "lastName": "Gaudet"
+  },
+  {
+    "id": 103,
+    "mail": "test103@gmail.com",
+    "password": "test7test7",
+    "firstName": "Victor",
+    "lastName": "Tourtet"
+  },
+  {
+    "id": 104,
+    "mail": "test104@gmail.com",
+    "password": "test7test7",
+    "firstName": "Sébastien",
+    "lastName": "Touquet"
   }
 ]

@@ -1,29 +1,5 @@
 [
   {
-    "id": 0,
-    "appointmentTypeId": 1,
-    "appointmentStatusId": 1,
-    "creneauId": 0,
-    "briId": 30,
-    "studentId": 0
-  },
-  {
-    "id": 1,
-    "appointmentTypeId": 1,
-    "appointmentStatusId": 1,
-    "creneauId": 0,
-    "briId": 30,
-    "studentId": 1
-  },
-  {
-    "id": 2,
-    "appointmentTypeId": 1,
-    "appointmentStatusId": 1,
-    "creneauId": 0,
-    "briId": 30,
-    "studentId": 2
-  },
-  {
     "appointmentTypeId": 1,
     "appointmentStatusId": 1,
     "creneauId": 10,
@@ -32,11 +8,35 @@
     "id": 3
   },
   {
-    "appointmentTypeId": 3,
+    "appointmentTypeId": 1,
     "appointmentStatusId": 1,
-    "creneauId": 1,
-    "studentId": 30,
+    "creneauId": 10,
+    "studentId": 104,
     "briId": 30,
     "id": 4
+  },
+  {
+    "appointmentTypeId": 1,
+    "appointmentStatusId": 1,
+    "creneauId": 10,
+    "studentId": 100,
+    "briId": 30,
+    "id": 5
+  },
+  {
+    "appointmentTypeId": 4,
+    "appointmentStatusId": 1,
+    "creneauId": 10,
+    "studentId": 101,
+    "briId": 30,
+    "id": 6
+  },
+  {
+    "appointmentTypeId": 4,
+    "appointmentStatusId": 2,
+    "creneauId": 10,
+    "studentId": 102,
+    "briId": 30,
+    "id": 7
   }
 ]
