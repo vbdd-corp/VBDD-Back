@@ -274,137 +274,6 @@
     "id": 76
   },
   {
-    "typeModuleId": 4,
-    "infos": {
-      "filePath": null
-    },
-    "id": 77
-  },
-  {
-    "typeModuleId": 5,
-    "infos": {
-      "filePath": null
-    },
-    "id": 78
-  },
-  {
-    "typeModuleId": 6,
-    "infos": {
-      "filePath": null
-    },
-    "id": 79
-  },
-  {
-    "typeModuleId": 7,
-    "infos": {
-      "country": "",
-      "city": "",
-      "stayDuration": "",
-      "travelCost": "",
-      "accommodationCost": "",
-      "foodCost": "",
-      "transportationHobbiesCost": "",
-      "studyCost": "",
-      "othersCost": "",
-      "frenchCROUSScholarship": "",
-      "mobilityScholarship": "",
-      "travelHelp": "",
-      "summerJobSalaries": "",
-      "personalResources": "",
-      "familyResources": "",
-      "othersResources": "",
-      "notes": ""
-    },
-    "id": 80
-  },
-  {
-    "typeModuleId": 8,
-    "infos": {
-      "schoolID": null,
-      "semester": null,
-      "BCICode": null,
-      "BCIProgramName": null,
-      "codeCours1": null,
-      "codeCours2": null,
-      "codeCours3": null,
-      "codeCours4": null,
-      "codeCours5": null,
-      "codeCours6": null,
-      "codeCours7": null,
-      "codeCours8": null,
-      "codeCours9": null,
-      "codeCours10": null,
-      "codeCours11": null,
-      "codeCours12": null,
-      "titreCours1": null,
-      "titreCours2": null,
-      "titreCours3": null,
-      "titreCours4": null,
-      "titreCours5": null,
-      "titreCours6": null,
-      "titreCours7": null,
-      "titreCours8": null,
-      "titreCours9": null,
-      "titreCours10": null,
-      "titreCours11": null,
-      "titreCours12": null,
-      "nombreCredits1": null,
-      "nombreCredits2": null,
-      "nombreCredits3": null,
-      "nombreCredits4": null,
-      "nombreCredits5": null,
-      "nombreCredits6": null,
-      "nombreCredits7": null,
-      "nombreCredits8": null,
-      "nombreCredits9": null,
-      "nombreCredits10": null,
-      "nombreCredits11": null,
-      "nombreCredits12": null
-    },
-    "id": 81
-  },
-  {
-    "typeModuleId": 0,
-    "infos": {
-      "studentId": 30,
-      "stayCardEndValidity": null,
-      "currentUNSDiploma": "ingé best quadro",
-      "nextYearExchangeDiploma": "The Diploma",
-      "shareMyDetails": false,
-      "datediploma1": null,
-      "datediploma2": null,
-      "datediploma3": null,
-      "diploma1": null,
-      "diploma2": null,
-      "diploma3": null,
-      "school1": null,
-      "school2": null,
-      "school3": null,
-      "note1": null,
-      "note2": null,
-      "note3": null
-    },
-    "id": 82
-  },
-  {
-    "typeModuleId": 17,
-    "id": 1556833449718,
-    "infos": {
-      "choice1": {
-        "schoolID": 5,
-        "semester": "full"
-      },
-      "choice2": {
-        "schoolID": 0,
-        "semester": "spring"
-      },
-      "choice3": {
-        "schoolID": null,
-        "semester": null
-      }
-    }
-  },
-  {
     "typeModuleId": 17,
     "id": 1557587323557,
     "infos": {
@@ -421,5 +290,176 @@
         "semester": null
       }
     }
+  },
+  {
+    "typeModuleId": 4,
+    "infos": {
+      "filePath": null
+    },
+    "id": 1557587323558
+  },
+  {
+    "typeModuleId": 5,
+    "infos": {
+      "filePath": null
+    },
+    "id": 1557587323559
+  },
+  {
+    "typeModuleId": 6,
+    "infos": {
+      "filePath": null
+    },
+    "id": 1557587323560
+  },
+  {
+    "typeModuleId": 7,
+    "infos": {
+      "country": null,
+      "city": null,
+      "stayDuration": null,
+      "travelCost": null,
+      "accommodationCost": null,
+      "foodCost": null,
+      "transportationHobbiesCost": null,
+      "studyCost": null,
+      "othersCost": null,
+      "frenchCROUSScholarship": null,
+      "mobilityScholarship": null,
+      "travelHelp": null,
+      "summerJobSalaries": null,
+      "personalResources": null,
+      "familyResources": null,
+      "othersResources": null,
+      "notes": null
+    },
+    "id": 1557587323561
+  },
+  {
+    "typeModuleId": 8,
+    "infos": {
+      "schoolID": null,
+      "semester": null,
+      "BCICode": null,
+      "BCIProgramName": null,
+      "s1": {
+        "codeCours1": null,
+        "codeCours2": null,
+        "codeCours3": null,
+        "codeCours4": null,
+        "codeCours5": null,
+        "codeCours6": null,
+        "codeCours7": null,
+        "codeCours8": null,
+        "codeCours9": null,
+        "codeCours10": null,
+        "codeCours11": null,
+        "codeCours12": null,
+        "titreCours1": null,
+        "titreCours2": null,
+        "titreCours3": null,
+        "titreCours4": null,
+        "titreCours5": null,
+        "titreCours6": null,
+        "titreCours7": null,
+        "titreCours8": null,
+        "titreCours9": null,
+        "titreCours10": null,
+        "titreCours11": null,
+        "titreCours12": null,
+        "nombreCredits1": null,
+        "nombreCredits2": null,
+        "nombreCredits3": null,
+        "nombreCredits4": null,
+        "nombreCredits5": null,
+        "nombreCredits6": null,
+        "nombreCredits7": null,
+        "nombreCredits8": null,
+        "nombreCredits9": null,
+        "nombreCredits10": null,
+        "nombreCredits11": null,
+        "nombreCredits12": null
+      },
+      "s2": {
+        "codeCours1": null,
+        "codeCours2": null,
+        "codeCours3": null,
+        "codeCours4": null,
+        "codeCours5": null,
+        "codeCours6": null,
+        "codeCours7": null,
+        "codeCours8": null,
+        "codeCours9": null,
+        "codeCours10": null,
+        "codeCours11": null,
+        "codeCours12": null,
+        "titreCours1": null,
+        "titreCours2": null,
+        "titreCours3": null,
+        "titreCours4": null,
+        "titreCours5": null,
+        "titreCours6": null,
+        "titreCours7": null,
+        "titreCours8": null,
+        "titreCours9": null,
+        "titreCours10": null,
+        "titreCours11": null,
+        "titreCours12": null,
+        "nombreCredits1": null,
+        "nombreCredits2": null,
+        "nombreCredits3": null,
+        "nombreCredits4": null,
+        "nombreCredits5": null,
+        "nombreCredits6": null,
+        "nombreCredits7": null,
+        "nombreCredits8": null,
+        "nombreCredits9": null,
+        "nombreCredits10": null,
+        "nombreCredits11": null,
+        "nombreCredits12": null
+      }
+    },
+    "id": 1557587323562
+  },
+  {
+    "typeModuleId": 0,
+    "infos": {
+      "studentId": null,
+      "stayCardEndValidity": null,
+      "currentUNSDiploma": null,
+      "nextYearExchangeDiploma": null,
+      "shareMyDetails": null,
+      "datediploma1": null,
+      "datediploma2": null,
+      "datediploma3": null,
+      "diploma1": null,
+      "diploma2": null,
+      "diploma3": null,
+      "school1": null,
+      "school2": null,
+      "school3": null,
+      "note1": null,
+      "note2": null,
+      "note3": null
+    },
+    "id": 1557587323563
+  },
+  {
+    "typeModuleId": 17,
+    "infos": {
+      "choice1": {
+        "schoolID": null,
+        "semester": null
+      },
+      "choice2": {
+        "schoolID": null,
+        "semester": null
+      },
+      "choice3": {
+        "schoolID": null,
+        "semester": null
+      }
+    },
+    "id": 1557587323564
   }
 ]
