@@ -424,11 +424,10 @@
   {
     "typeModuleId": 0,
     "infos": {
-      "studentId": null,
-      "stayCardEndValidity": null,
-      "currentUNSDiploma": null,
+      "studentId": 30,
+      "currentUNSDiploma": "Diplôme Ingénieur",
       "nextYearExchangeDiploma": null,
-      "shareMyDetails": null,
+      "shareMyDetails": false,
       "datediploma1": null,
       "datediploma2": null,
       "datediploma3": null,
@@ -440,7 +439,8 @@
       "school3": null,
       "note1": null,
       "note2": null,
-      "note3": null
+      "note3": null,
+      "stayCardEndValidity": null
     },
     "id": 1557587323563
   },
@@ -448,12 +448,12 @@
     "typeModuleId": 17,
     "infos": {
       "choice1": {
-        "schoolID": null,
-        "semester": null
+        "schoolID": 0,
+        "semester": "fall"
       },
       "choice2": {
-        "schoolID": null,
-        "semester": null
+        "schoolID": 3,
+        "semester": "spring"
       },
       "choice3": {
         "schoolID": null,

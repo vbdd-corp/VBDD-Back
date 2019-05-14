@@ -369,13 +369,10 @@ router.post('/:fileId', (req, res) => {
   }
 });
 
-// *****************  UPLOAD  *****************
-
-
 /* *****************  UPLOAD  *****************
 **
 * USAGE: POST /api/module/upload/:studentID/:fileID/:moduleID
-* si c est un fichier qui est envoyé, doit être envoyé dans une variable foo
+* le fichier doit être envoyé dans une variable foo
 * */
 router.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
   const basicFileMover = (startupFile, fullPath) => {
@@ -404,25 +401,14 @@ router.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
     let dirPath;
     let moduleUpdated;
 
-    logThis(`moduleTypeId == ${moduleTypeId}`);
-
-    logThis(`myBasedir == ${global.myBasedir}`);
-    logThis('\n');
     try {
-      dirPath = path.join(
-        'uploads',
-        `Student_${studentId}`,
-        `Folder_${filedId}`,
-        `Module_${moduleId}`,
-      );
+      dirPath = path.join('uploads', `Student_${studentId}`,
+        `Folder_${filedId}`, `Module_${moduleId}`);
       dirPath = `./${dirPath}`;
     } catch (err) {
       logThis(`ERROR building dirPath: ${err}`);
     }
-    logThis('---------------');
-    // logThis(`dirPath ==> ${dirPath}`);
     const fullPath = path.join(`${dirPath}`, `${startupFile.name}`);
-    logThis(`fullPath == ${fullPath}`);
 
     if (moduleTypeId === 1) {
       if (startupFile.name.startsWith('recto')) {
@@ -483,16 +469,13 @@ router.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
         });
       }).catch(err => logThis(err));
     } else {
-      makeThisDir(dirPath).then((obj) => {
-        logThis(`makeThisDir Promise returns: ${obj}`);
-
+      makeThisDir(dirPath).then(() => {
         cleanDir(dirPath, '*', () => {
           startupFile.mv(fullPath, (err) => {
             if (err) {
               logThis(`startupFile.mv() ERROR == ${err}`);
               return res.status(500).json({ error: '<------- startupFile.mv() FAILED :/ ------->' });
             }
-            logThis('startupFile.mv() SUCCESSFUL');
             moduleUpdated = Module.update(
               moduleId, {
                 infos: {
