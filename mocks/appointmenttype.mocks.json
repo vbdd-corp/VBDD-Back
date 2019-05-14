@@ -1,6 +1,6 @@
 [
   {
-    "name": "all",
+    "name": "tous",
     "avgTime": null,
     "id": -1
   },
@@ -23,6 +23,11 @@
     "name": "autre",
     "avgTime": null,
     "id": 4
+  },
+  {
+    "name": "demande d'information",
+    "avgTime": 10,
+    "id": 5
   }
 ]
 
