@@ -161,8 +161,10 @@ const fillInfos = function (module) {
       // Hors Europe Annexe 1, Asie, Autres
       // Contrat d'études
       infos = {
-        schoolID: null,
-        semester: null,
+        choice: {
+          schoolID: null,
+          semester: null,
+        },
         BCICode: null,
         BCIProgramName: null,
 
