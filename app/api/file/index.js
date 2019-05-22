@@ -361,4 +361,51 @@ router.put('/:fileID', (req, res) => {
   }
 });
 
+function getSchoolSafely(schoolID) {
+  try {
+    return School.getById(schoolID);
+  } catch (err) {
+    if (err.name === 'NotFoundError') {
+      return null;
+    }
+    throw err;
+  }
+}
+
+function attachSchoolToChoice(choice) {
+  logThis('plop4');
+  if (choice.schoolID === null) {
+    return null;
+  }
+  logThis('plop5');
+  const newChoice = Object.assign({}, choice, {
+    school: getSchoolSafely(choice.schoolID),
+  });
+  delete newChoice.schoolID;
+  return newChoice;
+}
+
+router.get('/:fileId/choices', (req, res) => {
+  try {
+    const file = File.getById(req.params.fileId);
+    const choiceModuleId = file.moduleIds
+      .filter(moduleId => Module.getById(moduleId).typeModuleId === 17);
+
+    const choices = Module.getById(choiceModuleId[0]).infos;
+    const resChoices = {
+      choice1: attachSchoolToChoice(choices.choice1),
+      choice2: attachSchoolToChoice(choices.choice2),
+      choice3: attachSchoolToChoice(choices.choice3),
+    };
+
+    res.status(200).json(resChoices);
+  } catch (err) {
+    if (err.name === 'NotFoundError') {
+      res.status(404).end();
+    } else {
+      res.status(500).json(err);
+    }
+  }
+});
+
 module.exports = router;
