@@ -12,6 +12,20 @@ function logThis(elt) {
 
 const router = new Router();
 
+function getSchoolSafely(schoolID) {
+  if (schoolID === null) {
+    return null;
+  }
+  try {
+    return School.getById(schoolID);
+  } catch (err) {
+    if (err.name === 'NotFoundError') {
+      return null;
+    }
+    throw err;
+  }
+}
+
 function getStudentSafely(studentId) {
   try {
     return Student.getById(studentId);
@@ -76,21 +90,30 @@ const attachStudents = (file) => {
 };
 
 const attachModules = (file) => {
+  logThis('plop1');
   const resFile = Object.assign({}, file, {
-    moduleIds: file.moduleIds.map(moduleId => getModuleSafely(moduleId)),
+    modules: file.moduleIds.map((moduleId) => {
+      logThis(moduleId);
+      const module = getModuleSafely(moduleId);
+      logThis(module);
+      if (module.typeModuleId === 8) { // || module.typeModuleId === 11
+        logThis('ici');
+        logThis(module.infos.choice);
+        module.infos.choice.school = getSchoolSafely(module.infos.choice.schoolID);
+        delete module.infos.choice.schoolID;
+      }
+      return module;
+    }),
   });
-  logThis(`file => ${resFile.moduleIds[0]}`);
-  resFile.modules = resFile.moduleIds;
   delete resFile.moduleIds;
+
   resFile.modules.forEach((value, index) => {
-    // log_this("value == " + value.typeModuleId);
-    logThis(resFile.modules);
     resFile.modules[index] = Object.assign({}, resFile.modules[index], {
       typeModule: getModuleTypeSafely(value.typeModuleId),
     });
-    // array[index].typeModule = getModuleTypeSafely(value.typeModuleId);
     delete resFile.modules[index].typeModuleId;
   });
+
   resFile.fileType = getFileTypeSafely(resFile.fileTypeId);
   delete resFile.fileTypeId;
   return resFile;
@@ -360,17 +383,6 @@ router.put('/:fileID', (req, res) => {
     }
   }
 });
-
-function getSchoolSafely(schoolID) {
-  try {
-    return School.getById(schoolID);
-  } catch (err) {
-    if (err.name === 'NotFoundError') {
-      return null;
-    }
-    throw err;
-  }
-}
 
 function attachSchoolToChoice(choice) {
   logThis('plop4');

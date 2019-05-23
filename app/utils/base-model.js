@@ -37,8 +37,6 @@ module.exports = class BaseModel {
   }
 
   getById(id) {
-    // logger.log(`here in getbyId param == ${id}`);
-    // logger.log("items.len === " + this.items.length);
     if (typeof id === 'string') id = parseInt(id, 10);
     const item = this.items.find(i => i.id === id);
     if (!item) throw new NotFoundError(`Cannot get ${this.name} id=${id} : not found`);
