@@ -6,6 +6,7 @@ class ModuleTypeModel extends BaseModel {
     super('ModuleType', {
       id: Joi.number().required(),
       typeName: Joi.string().required(),
+      infos: Joi.object().required(),
     });
   }
 }
