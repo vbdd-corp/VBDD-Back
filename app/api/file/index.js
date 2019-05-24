@@ -79,16 +79,12 @@ const attachModules = (file) => {
   const resFile = Object.assign({}, file, {
     moduleIds: file.moduleIds.map(moduleId => getModuleSafely(moduleId)),
   });
-  logThis(`file => ${resFile.moduleIds[0]}`);
   resFile.modules = resFile.moduleIds;
   delete resFile.moduleIds;
   resFile.modules.forEach((value, index) => {
-    // log_this("value == " + value.typeModuleId);
-    logThis(resFile.modules);
     resFile.modules[index] = Object.assign({}, resFile.modules[index], {
       typeModule: getModuleTypeSafely(value.typeModuleId),
     });
-    // array[index].typeModule = getModuleTypeSafely(value.typeModuleId);
     delete resFile.modules[index].typeModuleId;
   });
   resFile.fileType = getFileTypeSafely(resFile.fileTypeId);
