@@ -97,10 +97,16 @@ const attachModules = (file) => {
       const module = getModuleSafely(moduleId);
       logThis(module);
       if (module.typeModuleId === 8) { // || module.typeModuleId === 11
-        logThis('ici');
+        /* logThis('ici');
         logThis(module.infos.choice);
         module.infos.choice.school = getSchoolSafely(module.infos.choice.schoolID);
-        delete module.infos.choice.schoolID;
+        delete module.infos.choice.schoolID; */
+        const newModule = Object.assign({}, module);
+        newModule.infos.choice.school = getSchoolSafely(module.infos.choice.schoolID);
+        delete newModule.infos.choice.schoolID;
+        const module2 = getModuleSafely(moduleId);
+        logThis(module2.infos.choice.schoolID);
+        return newModule;
       }
       return module;
     }),
