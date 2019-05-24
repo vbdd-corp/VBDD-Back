@@ -878,8 +878,8 @@
       "BCICode": null,
       "BCIProgramName": null,
       "choice": {
-        "schoolID": 1,
-        "semester": "full"
+        "semester": "full",
+        "schoolID": 1
       },
       "s1": {
         "codeCours1": "A1",
@@ -1237,7 +1237,12 @@
       "BCIProgramName": null,
       "choice": {
         "semester": "fall",
-        "schoolID": 0
+        "school": {
+          "id": 0,
+          "city": "Oshawa",
+          "country": "Canada",
+          "name": "Ontario Tech University"
+        }
       },
       "s1": {
         "codeCours1": null,
