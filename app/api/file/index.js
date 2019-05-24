@@ -90,15 +90,10 @@ const attachStudents = (file) => {
 };
 
 const attachModules = (file) => {
-  logThis('plop1');
   const resFile = Object.assign({}, file, {
     modules: file.moduleIds.map((moduleId) => {
-      logThis(moduleId);
       const module = getModuleSafely(moduleId);
-      logThis(module);
       if (module.typeModuleId === 8) { // || module.typeModuleId === 11
-        logThis('ici');
-        logThis(module.infos.choice);
         module.infos.choice.school = getSchoolSafely(module.infos.choice.schoolID);
         delete module.infos.choice.schoolID;
       }
