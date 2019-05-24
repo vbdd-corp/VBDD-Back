@@ -94,8 +94,10 @@ const attachModules = (file) => {
     modules: file.moduleIds.map((moduleId) => {
       const module = getModuleSafely(moduleId);
       if (module.typeModuleId === 8) { // || module.typeModuleId === 11
-        module.infos.choice.school = getSchoolSafely(module.infos.choice.schoolID);
-        delete module.infos.choice.schoolID;
+        const newModule = Object.assign({}, module);
+        newModule.infos.choice.school = getSchoolSafely(module.infos.choice.schoolID);
+        // delete newModule.infos.choice.schoolID;
+        return newModule;
       }
       return module;
     }),
