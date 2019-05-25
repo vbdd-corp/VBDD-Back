@@ -1,70 +1,246 @@
 [
   {
     "id": 0,
-    "typeName": "Informations générales"
+    "typeName": "Informations générales",
+    "infos" : {
+      "studentId": null,
+      "stayCardEndValidity": null,
+      "currentUNSDiploma": null,
+      "nextYearExchangeDiploma": null,
+      "shareMyDetails": null,
+      "datediploma1": null,
+      "datediploma2": null,
+      "datediploma3": null,
+      "diploma1": null,
+      "diploma2": null,
+      "diploma3": null,
+      "school1": null,
+      "school2": null,
+      "school3": null,
+      "note1": null,
+      "note2": null,
+      "note3": null
+    }
   },
   {
     "id": 1,
-    "typeName": "CNI"
+    "typeName": "CNI",
+    "infos": {
+      "recto": null,
+      "verso": null
+    }
   },
   {
     "id": 2,
-    "typeName": "passeport"
+    "typeName": "passeport",
+    "infos": {
+      "filePath": null
+    }
   },
   {
     "id": 4,
-    "typeName": "CV Europass"
+    "typeName": "CV Europass",
+    "infos": {
+      "filePath": null
+    }
   },
   {
     "id": 5,
-    "typeName": "Relevé de note supérieurs"
+    "typeName": "Relevé de note supérieurs",
+    "infos": {
+      "filePath": null
+    }
   },
   {
     "id": 6,
-    "typeName": "Lettre de motivation"
+    "typeName": "Lettre de motivation",
+    "infos": {
+      "filePath": null
+    }
   },
   {
     "id": 7,
-    "typeName": "Budget prévisionnel"
+    "typeName": "Budget prévisionnel",
+    "infos": {
+      "country": null,
+      "city": null,
+      "stayDuration": null,
+      "travelCost": null,
+      "accommodationCost": null,
+      "foodCost": null,
+      "transportationHobbiesCost": null,
+      "studyCost": null,
+      "othersCost": null,
+      "frenchCROUSScholarship": null,
+      "mobilityScholarship": null,
+      "travelHelp": null,
+      "summerJobSalaries": null,
+      "personalResources": null,
+      "familyResources": null,
+      "othersResources": null,
+      "notes": null
+    }
   },
   {
     "id": 8,
-    "typeName": "Contrat d'études"
+    "typeName": "Contrat d'études",
+    "infos": {
+      "choice": {
+        "schoolID": null,
+        "semester": null
+      },
+      "BCICode": null,
+      "BCIProgramName": null,
+
+      "s1": {
+        "codeCours1": null,
+        "codeCours2": null,
+        "codeCours3": null,
+        "codeCours4": null,
+        "codeCours5": null,
+        "codeCours6": null,
+        "codeCours7": null,
+        "codeCours8": null,
+        "codeCours9": null,
+        "codeCours10": null,
+        "codeCours11": null,
+        "codeCours12": null,
+        "titreCours1": null,
+        "titreCours2": null,
+        "titreCours3": null,
+        "titreCours4": null,
+        "titreCours5": null,
+        "titreCours6": null,
+        "titreCours7": null,
+        "titreCours8": null,
+        "titreCours9": null,
+        "titreCours10": null,
+        "titreCours11": null,
+        "titreCours12": null,
+        "nombreCredits1": null,
+        "nombreCredits2": null,
+        "nombreCredits3": null,
+        "nombreCredits4": null,
+        "nombreCredits5": null,
+        "nombreCredits6": null,
+        "nombreCredits7": null,
+        "nombreCredits8": null,
+        "nombreCredits9": null,
+        "nombreCredits10": null,
+        "nombreCredits11": null,
+        "nombreCredits12": null
+      },
+      "s2": {
+        "codeCours1": null,
+        "codeCours2": null,
+        "codeCours3": null,
+        "codeCours4": null,
+        "codeCours5": null,
+        "codeCours6": null,
+        "codeCours7": null,
+        "codeCours8": null,
+        "codeCours9": null,
+        "codeCours10": null,
+        "codeCours11": null,
+        "codeCours12": null,
+        "titreCours1": null,
+        "titreCours2": null,
+        "titreCours3": null,
+        "titreCours4": null,
+        "titreCours5": null,
+        "titreCours6": null,
+        "titreCours7": null,
+        "titreCours8": null,
+        "titreCours9": null,
+        "titreCours10": null,
+        "titreCours11": null,
+        "titreCours12": null,
+        "nombreCredits1": null,
+        "nombreCredits2": null,
+        "nombreCredits3": null,
+        "nombreCredits4": null,
+        "nombreCredits5": null,
+        "nombreCredits6": null,
+        "nombreCredits7": null,
+        "nombreCredits8": null,
+        "nombreCredits9": null,
+        "nombreCredits10": null,
+        "nombreCredits11": null,
+        "nombreCredits12": null
+      }
+    }
   },
   {
     "id": 9,
-    "typeName": "Fiche Inscription MoveOnline Outgoing"
+    "typeName": "Fiche Inscription MoveOnline Outgoing",
+    "infos": {
+      "filePath": null,
+      "moveonlineId": null
+    }
   },
   {
     "id": 10,
-    "typeName": "Autorisation professeur responsable"
+    "typeName": "Autorisation professeur responsable",
+    "infos": {
+      "filePath": null
+    }
   },
   {
     "id": 11,
-    "typeName": "Erasmus Learning Agreement"
+    "typeName": "Erasmus Learning Agreement",
+    "infos" : {}
   },
   {
     "id": 12,
-    "typeName": "Evaluation des compétences Linguistiques"
+    "typeName": "Evaluation des compétences Linguistiques",
+    "infos": {
+      "filePath": null
+    }
   },
   {
     "id": 13,
-    "typeName": "Carte Européenne d'Assurance Maladie"
+    "typeName": "Carte Européenne d'Assurance Maladie",
+    "infos": {
+      "filePath": null
+    }
   },
   {
     "id": 14,
-    "typeName": "Liste Cours année en cours"
+    "typeName": "Liste Cours année en cours",
+    "infos": {
+
+    }
   },
   {
     "id": 15,
-    "typeName": "Lettre de Recommandation Enseignant"
+    "typeName": "Lettre de Recommandation Enseignant",
+    "infos": {
+      "filePath": null
+    }
   },
   {
     "id": 16,
-    "typeName": "Acte Naissance avec Filiation"
+    "typeName": "Acte Naissance avec Filiation",
+    "infos": {
+      "filePath": null
+    }
   },{
     "id": 17,
-    "typeName": "Voeux Universités"
+    "typeName": "Voeux Universités",
+    "infos": {
+      "choice1": {
+        "schoolID": null,
+        "semester": null
+      },
+      "choice2": {
+        "schoolID": null,
+        "semester": null
+      },
+      "choice3": {
+        "schoolID": null,
+        "semester": null
+      }
+    }
   }
 
 ]
