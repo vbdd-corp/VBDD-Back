@@ -1,6 +1,8 @@
 const Joi = require('joi');
 const { Router } = require('express');
-const { Plage, Creneau, AppointmentType } = require('../../models');
+const {
+  Plage, Creneau, AppointmentType, Appointment,
+} = require('../../models');
 const Time = require('../../models/time.model');
 const logger = require('../../utils/logger');
 
@@ -198,6 +200,11 @@ router.post('/', (req, res) => {
 
 function deleteCreneau(creneau) {
   Creneau.delete(creneau.id);
+  Appointment.get()
+    .filter(appointment => appointment.creneauId === creneau.id)
+    .forEach((appointment) => {
+      Appointment.update(appointment.id, { appointmentTypeId: 2 });
+    });
 }
 
 function changeTimeCreneau(creneau, start, end) {
