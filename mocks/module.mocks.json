@@ -879,7 +879,13 @@
       "BCIProgramName": null,
       "choice": {
         "semester": "full",
-        "schoolID": 1
+        "schoolID": 1,
+        "school": {
+          "id": 1,
+          "city": "Cambridge",
+          "country": "United States",
+          "name": "Massachusetts Institute of Technology"
+        }
       },
       "s1": {
         "codeCours1": "A1",
@@ -912,7 +918,7 @@
         "nombreCredits4": "",
         "nombreCredits5": "",
         "nombreCredits6": "",
-        "nombreCredits7": "",
+        "nombreCredits7": "8",
         "nombreCredits8": "",
         "nombreCredits9": "",
         "nombreCredits10": "",
@@ -955,7 +961,7 @@
         "nombreCredits9": "sptit L",
         "nombreCredits10": "sm",
         "nombreCredits11": "sn",
-        "nombreCredits12": "so"
+        "nombreCredits12": "5"
       }
     },
     "id": 1557587323601
@@ -992,11 +998,11 @@
       },
       "choice2": {
         "schoolID": 0,
-        "semester": "fall"
+        "semester": "spring"
       },
       "choice3": {
-        "schoolID": null,
-        "semester": null
+        "schoolID": 5,
+        "semester": "fall"
       }
     },
     "id": 1557587323603
@@ -1007,11 +1013,6 @@
       "filePath": null
     },
     "id": 1557587323604
-  },
-  {
-    "typeModuleId": 14,
-    "infos": {},
-    "id": 1557587323605
   },
   {
     "typeModuleId": 10,
@@ -1025,7 +1026,8 @@
     "infos": {
       "choice": {
         "schoolID": null,
-        "semester": null
+        "semester": null,
+        "school": null
       },
       "BCICode": null,
       "BCIProgramName": null,
@@ -1236,8 +1238,108 @@
       "BCICode": null,
       "BCIProgramName": null,
       "choice": {
+        "semester": "spring",
+        "schoolID": 0,
+        "school": {
+          "id": 0,
+          "city": "Oshawa",
+          "country": "Canada",
+          "name": "Ontario Tech University"
+        }
+      },
+      "s1": {
+        "codeCours1": null,
+        "codeCours2": null,
+        "codeCours3": null,
+        "codeCours4": null,
+        "codeCours5": null,
+        "codeCours6": null,
+        "codeCours7": null,
+        "codeCours8": null,
+        "codeCours9": null,
+        "codeCours10": null,
+        "codeCours11": null,
+        "codeCours12": null,
+        "titreCours1": null,
+        "titreCours2": null,
+        "titreCours3": null,
+        "titreCours4": null,
+        "titreCours5": null,
+        "titreCours6": null,
+        "titreCours7": null,
+        "titreCours8": null,
+        "titreCours9": null,
+        "titreCours10": null,
+        "titreCours11": null,
+        "titreCours12": null,
+        "nombreCredits1": null,
+        "nombreCredits2": null,
+        "nombreCredits3": null,
+        "nombreCredits4": null,
+        "nombreCredits5": null,
+        "nombreCredits6": null,
+        "nombreCredits7": null,
+        "nombreCredits8": null,
+        "nombreCredits9": null,
+        "nombreCredits10": null,
+        "nombreCredits11": null,
+        "nombreCredits12": null
+      },
+      "s2": {
+        "codeCours1": null,
+        "codeCours2": null,
+        "codeCours3": null,
+        "codeCours4": null,
+        "codeCours5": null,
+        "codeCours6": null,
+        "codeCours7": null,
+        "codeCours8": null,
+        "codeCours9": null,
+        "codeCours10": null,
+        "codeCours11": null,
+        "codeCours12": null,
+        "titreCours1": null,
+        "titreCours2": null,
+        "titreCours3": null,
+        "titreCours4": null,
+        "titreCours5": null,
+        "titreCours6": null,
+        "titreCours7": null,
+        "titreCours8": null,
+        "titreCours9": null,
+        "titreCours10": null,
+        "titreCours11": null,
+        "titreCours12": null,
+        "nombreCredits1": "4",
+        "nombreCredits2": "6",
+        "nombreCredits3": null,
+        "nombreCredits4": null,
+        "nombreCredits5": null,
+        "nombreCredits6": null,
+        "nombreCredits7": null,
+        "nombreCredits8": null,
+        "nombreCredits9": null,
+        "nombreCredits10": null,
+        "nombreCredits11": null,
+        "nombreCredits12": null
+      }
+    }
+  },
+  {
+    "typeModuleId": 8,
+    "id": 1557587323620,
+    "infos": {
+      "BCICode": null,
+      "BCIProgramName": null,
+      "choice": {
         "semester": "fall",
-        "schoolID": 0
+        "schoolID": 5,
+        "school": {
+          "id": 5,
+          "city": "Hong Kong",
+          "country": "China",
+          "name": "University of Hong Kong"
+        }
       },
       "s1": {
         "codeCours1": null,
@@ -1306,6 +1408,88 @@
         "nombreCredits2": null,
         "nombreCredits3": null,
         "nombreCredits4": null,
+        "nombreCredits5": null,
+        "nombreCredits6": null,
+        "nombreCredits7": null,
+        "nombreCredits8": null,
+        "nombreCredits9": null,
+        "nombreCredits10": null,
+        "nombreCredits11": null,
+        "nombreCredits12": null
+      }
+    }
+  },
+  {
+    "typeModuleId": 14,
+    "id": 1557587323621,
+    "infos": {
+      "s1": {
+        "codeCours1": null,
+        "codeCours2": "A1",
+        "codeCours3": "B2",
+        "codeCours4": "F5",
+        "codeCours5": null,
+        "codeCours6": null,
+        "codeCours7": null,
+        "codeCours8": null,
+        "codeCours9": null,
+        "codeCours10": null,
+        "codeCours11": null,
+        "codeCours12": null,
+        "titreCours1": null,
+        "titreCours2": "a",
+        "titreCours3": "b",
+        "titreCours4": "f",
+        "titreCours5": null,
+        "titreCours6": null,
+        "titreCours7": null,
+        "titreCours8": null,
+        "titreCours9": null,
+        "titreCours10": null,
+        "titreCours11": null,
+        "titreCours12": null,
+        "nombreCredits1": null,
+        "nombreCredits2": "3",
+        "nombreCredits3": "4",
+        "nombreCredits4": "7",
+        "nombreCredits5": null,
+        "nombreCredits6": null,
+        "nombreCredits7": null,
+        "nombreCredits8": null,
+        "nombreCredits9": null,
+        "nombreCredits10": null,
+        "nombreCredits11": null,
+        "nombreCredits12": null
+      },
+      "s2": {
+        "codeCours1": null,
+        "codeCours2": "C3",
+        "codeCours3": "D4",
+        "codeCours4": "E5",
+        "codeCours5": null,
+        "codeCours6": null,
+        "codeCours7": null,
+        "codeCours8": null,
+        "codeCours9": null,
+        "codeCours10": null,
+        "codeCours11": null,
+        "codeCours12": null,
+        "titreCours1": null,
+        "titreCours2": "c",
+        "titreCours3": "d",
+        "titreCours4": "e",
+        "titreCours5": null,
+        "titreCours6": null,
+        "titreCours7": null,
+        "titreCours8": null,
+        "titreCours9": null,
+        "titreCours10": null,
+        "titreCours11": null,
+        "titreCours12": null,
+        "nombreCredits1": null,
+        "nombreCredits2": "5",
+        "nombreCredits3": "7",
+        "nombreCredits4": "12",
         "nombreCredits5": null,
         "nombreCredits6": null,
         "nombreCredits7": null,
