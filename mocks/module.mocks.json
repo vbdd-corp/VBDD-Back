@@ -1236,8 +1236,8 @@
       "BCICode": null,
       "BCIProgramName": null,
       "choice": {
-        "semester": "fall",
-        "schoolID": 0
+        "semester": null,
+        "schoolID": null
       },
       "s1": {
         "codeCours1": null,
