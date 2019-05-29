@@ -62,5 +62,29 @@
     "studentId": 103,
     "briId": 30,
     "id": 10
+  },
+  {
+    "appointmentTypeId": 3,
+    "appointmentStatusId": 1,
+    "creneauId": 4,
+    "studentId": 30,
+    "briId": 30,
+    "id": 11
+  },
+  {
+    "appointmentTypeId": 1,
+    "appointmentStatusId": 1,
+    "creneauId": 43,
+    "studentId": 30,
+    "briId": 30,
+    "id": 12
+  },
+  {
+    "appointmentTypeId": 1,
+    "appointmentStatusId": 1,
+    "creneauId": 53,
+    "studentId": 30,
+    "briId": 31,
+    "id": 13
   }
 ]

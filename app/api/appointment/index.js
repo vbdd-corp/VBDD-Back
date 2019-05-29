@@ -1,6 +1,8 @@
+
+
 const { Router } = require('express');
 const {
-  Appointment, AppointmentType, AppointmentStatus, Creneau, Student,
+  Appointment, AppointmentType, AppointmentStatus, Creneau, Student, Plage, Time,
 } = require('../../models');
 const logger = require('../../utils/logger');
 
@@ -168,6 +170,30 @@ router.get('/by-creneau/:creneauId', (req, res) => {
   try {
     const resList = Appointment.get()
       .filter(appointment => appointment.creneauId === parseInt(req.params.creneauId, 10))
+      .map(appointment => attachAppointmentType(appointment))
+      .map(appointment => attachAppointmentStatus(appointment))
+      .map(appointment => attachAppointmentCreneau(appointment))
+      .map(appointment => attachAppointmentStudent(appointment));
+    res.status(200).json(resList);
+  } catch (err) {
+    if (err.name === 'NotFoundError') {
+      res.status(404).end();
+    } else {
+      res.status(500).json(err);
+    }
+  }
+});
+
+router.get('/by-plage/:plageId', (req, res) => {
+  try {
+    const plage = Plage.getById(req.params.plageId);
+    const resList = Appointment.get()
+      .filter(appointment => appointment.briId === plage.briId)
+      .filter((appointment) => {
+        const creneau = Creneau.getById(appointment.creneauId);
+        return Time.compare(creneau.start, plage.start) >= 0
+        && Time.compare(creneau.end, plage.end) <= 0;
+      })
       .map(appointment => attachAppointmentType(appointment))
       .map(appointment => attachAppointmentStatus(appointment))
       .map(appointment => attachAppointmentCreneau(appointment))
