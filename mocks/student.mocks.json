@@ -121,5 +121,19 @@
     "password": "test7test7",
     "firstName": "Sébastien",
     "lastName": "Touquet"
+  },
+  {
+    "id": 105,
+    "mail": "lupunerunie@yahoo.fr",
+    "password": "password",
+    "firstName": "Camille",
+    "lastName": "Bauce"
+  },
+  {
+    "id": 106,
+    "mail": "lupunerunie@gmail.com",
+    "password": "password",
+    "firstName": "Camille2",
+    "lastName": "Bauce"
   }
 ]

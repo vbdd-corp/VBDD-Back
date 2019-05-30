@@ -1,10 +1,9 @@
-
-
 const { Router } = require('express');
 const {
   Appointment, AppointmentType, AppointmentStatus, Creneau, Student, Plage, Time,
 } = require('../../models');
 const logger = require('../../utils/logger');
+const mailer = require('../../utils/mailer');
 
 function logThis(elt) {
   logger.log(`debug ==> ${elt}`);
@@ -88,6 +87,11 @@ const attachAppointmentStudent = (appointment) => {
   delete newAppointment.studentId;
   return newAppointment;
 };
+
+function cancelAppointment(appointment) {
+  Appointment.update(appointment.id, { appointmentTypeId: 2 });
+  mailer.sendAppointmentCancelMessage(appointment);
+}
 
 router.get('/status', (req, res) => res.status(200).json({ msg: 'ok :)' }));
 
@@ -221,7 +225,6 @@ router.post('/', (req, res) => {
   }
 });
 
-
 router.put('/:appointmentId', (req, res) => {
   try {
     res.status(200).json(
@@ -246,4 +249,32 @@ router.put('/:appointmentId', (req, res) => {
   }
 });
 
-module.exports = router;
+// TODO: probably the wrong route for a REST API.
+router.post('/:appointmentId/notify-cancellation', (req, res) => {
+  try {
+    const appointment = Appointment.getById(req.params.appointmentId);
+    mailer.sendAppointmentCancelMessage(appointment);
+    res.status(200).json(
+      attachAppointmentType(
+        attachAppointmentCreneau(
+          attachAppointmentStatus(
+            attachAppointmentStudent(
+              appointment,
+            ),
+          ),
+        ),
+      ),
+    );
+  } catch (err) {
+    if (err.name === 'NotFoundError') {
+      res.status(404).end();
+    } else {
+      res.status(500).json(err);
+    }
+  }
+});
+
+module.exports = {
+  router,
+  cancelAppointment,
+};
