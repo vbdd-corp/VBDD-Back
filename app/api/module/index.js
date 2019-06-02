@@ -281,6 +281,29 @@ router.post('/upload/:studentID/:fileID/:moduleID', (req, res) => {
           });
         });
       }).catch(err => logThis(err));
+    } else if (moduleTypeId === 8) {
+      makeThisDir(dirPath).then((obj) => {
+        logThis(`makeThisDir Promise returns: ${obj}`);
+
+        cleanDir(dirPath, '*', () => {
+          startupFile.mv(fullPath, (err) => {
+            if (err) {
+              logThis(`startupFile.mv() ERROR == ${err}`);
+              return res.status(500).json({ error: '<------- startupFile.mv() FAILED :/ ------->' });
+            }
+            logThis('startupFile.mv() SUCCESSFUL');
+            // logThis(`ICI theModule.infos.moveonelineId === ${theModule.infos.moveonlineId}`);
+            theModule.infos.filePath = fullPath;
+            moduleUpdated = Module.update(
+              moduleId, {
+                infos: theModule.infos,
+              },
+            );
+            logThis('<------- startupFile.mv() COMPLETED: SUCCESS ------->');
+            return res.status(200).json({ moduleUp: moduleUpdated });
+          });
+        });
+      }).catch(err => logThis(err));
     } else {
       makeThisDir(dirPath).then(() => {
         cleanDir(dirPath, '*', () => {
