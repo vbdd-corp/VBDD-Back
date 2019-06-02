@@ -85,6 +85,7 @@
     "id": 8,
     "typeName": "Contrat d'études",
     "infos": {
+      "filePath": null,
       "choice": {
         "schoolID": null,
         "semester": null
