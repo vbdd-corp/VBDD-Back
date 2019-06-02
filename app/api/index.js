@@ -8,7 +8,7 @@ const FileTypeRouter = require('./fileType');
 const PlageRouter = require('./plage');
 const CreneauRouter = require('./creneau');
 const SchoolRouter = require('./school');
-const AppointmentRouter = require('./appointment');
+const AppointmentRouter = require('./appointment').router;
 const ModuleTypeRouter = require('./moduleTypes');
 const AppointmentTypeRouter = require('./appointmentTypes');
 

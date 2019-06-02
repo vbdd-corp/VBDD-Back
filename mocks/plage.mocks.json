@@ -150,5 +150,43 @@
     "briId": 30,
     "appointmentTypeId": -1,
     "id": 8
+  },
+  {
+    "start": {
+      "minute": 0,
+      "hour": 13,
+      "day": 29,
+      "month": 5,
+      "year": 2019
+    },
+    "end": {
+      "minute": 0,
+      "hour": 16,
+      "day": 29,
+      "month": 5,
+      "year": 2019
+    },
+    "briId": 30,
+    "appointmentTypeId": -1,
+    "id": 9
+  },
+  {
+    "start": {
+      "minute": 0,
+      "hour": 12,
+      "day": 29,
+      "month": 5,
+      "year": 2019
+    },
+    "end": {
+      "minute": 30,
+      "hour": 15,
+      "day": 29,
+      "month": 5,
+      "year": 2019
+    },
+    "briId": 31,
+    "appointmentTypeId": -1,
+    "id": 10
   }
 ]

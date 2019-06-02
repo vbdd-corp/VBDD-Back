@@ -6,6 +6,8 @@ const {
 const Time = require('../../models/time.model');
 const logger = require('../../utils/logger');
 
+const appointmentAPI = require('../appointment/index.js');
+
 function logThis(elt) {
   logger.log(`debug ==> ${elt}`);
 }
@@ -100,7 +102,6 @@ router.get('/status', (req, res) => {
   try {
     res.status(200).json({ msg: 'ok here :)' });
   } catch (err) {
-    logThis(err);
     if (err.name === 'NotFoundError') {
       res.status(404).end();
     } else {
@@ -144,7 +145,6 @@ router.get('/between-times', (req, res) => {
 
     res.status(200).json(plageList);
   } catch (err) {
-    logThis(err);
     if (err.name === 'NotFoundError') {
       res.status(404).end();
     } else {
@@ -185,9 +185,7 @@ router.get('/:plageId', (req, res) => {
 router.post('/', (req, res) => {
   try {
     const plage = Plage.createWithNextId(req.body);
-    logThis('plop');
     createCreneauxFromPlage(plage);
-
     res.status(201).json(attachAppointmentType(plage));
   } catch (err) {
     if (err.name === 'ValidationError') {
@@ -198,19 +196,36 @@ router.post('/', (req, res) => {
   }
 });
 
+// TODO: put this function in creneau API
 function deleteCreneau(creneau) {
   Creneau.delete(creneau.id);
   Appointment.get()
     .filter(appointment => appointment.creneauId === creneau.id)
     .forEach((appointment) => {
-      Appointment.update(appointment.id, { appointmentTypeId: 2 });
+      appointmentAPI.cancelAppointment(appointment);
     });
 }
 
+// TODO: put this function in creneau API
 function changeTimeCreneau(creneau, start, end) {
   Creneau.update(creneau.id, { start, end });
+  Appointment.get()
+    .filter(appointment => appointment.creneauId === creneau.id)
+    .filter((appointment) => {
+      // if the creneau is unavailable -> has already been processed by the validation system
+      if (creneau.statusId === 1) {
+        return Time.compare(appointment.start, start) < 0
+        || Time.compare(appointment.end, end) > 0;
+      }
+      // TODO: need to call the appointment validation system after that
+      // it will take charge of removing an appointment,
+      // if there is not enough time in the creneau anymore
+      return false;
+    })
+    .forEach(appointment => appointmentAPI.cancelAppointment(appointment));
 }
 
+// TODO: put this function in creneau API
 function deleteCreneauxBetween(briId, timeA, timeB) {
   let start; let end;
   if (Time.compare(timeB, timeA) >= 0) {
@@ -226,6 +241,7 @@ function deleteCreneauxBetween(briId, timeA, timeB) {
     .forEach(creneau => deleteCreneau(creneau));
 }
 
+// TODO: put this function in creneau API
 function putAndDeleteCreneauxBetween(briId, timeA, timeB) {
   let start; let end;
   if (Time.compare(timeB, timeA) >= 0) {
@@ -252,6 +268,7 @@ function putAndDeleteCreneauxBetween(briId, timeA, timeB) {
     });
 }
 
+// TODO: put this function in creneau API
 function changeAppointmentTypeCreneauxBetween(appointmentTypeId, briId, timeA, timeB) {
   let start; let end;
   if (Time.compare(timeB, timeA) >= 0) {
@@ -279,20 +296,12 @@ router.put('/:plageId', (req, res) => {
       plage.briId, plage.start, plage.end);
 
     if (Time.compare(plage.start, oldPlage.start) > 0) {
-      try {
-        putAndDeleteCreneauxBetween(plage.briId, oldPlage.start, plage.start);
-      } catch (err) {
-        logThis('404 not found error during putAndDeleteCreneauxBetween !');
-      }
+      putAndDeleteCreneauxBetween(plage.briId, oldPlage.start, plage.start);
     } else if (Time.compare(plage.start, oldPlage.start) < 0) {
       createCreneauxBetween(plage.bri, plage.appointmentTypeId, plage.start, oldPlage.start);
     }
     if (Time.compare(oldPlage.end, plage.end) > 0) {
-      try {
-        putAndDeleteCreneauxBetween(plage.briId, plage.end, oldPlage.end);
-      } catch (err) {
-        logThis('404 not found error during putAndDeleteCreneauxBetween !');
-      }
+      putAndDeleteCreneauxBetween(plage.briId, plage.end, oldPlage.end);
     } else if (Time.compare(oldPlage.end, plage.end) < 0) {
       createCreneauxBetween(plage.briId, plage.appointmentTypeId, oldPlage.end, plage.end);
     }
