@@ -102,5 +102,53 @@
     "studentId": 106,
     "briId": 30,
     "id": 15
+  },
+  {
+    "appointmentTypeId": 5,
+    "appointmentStatusId": 1,
+    "creneauId": 60,
+    "studentId": 105,
+    "briId": 30,
+    "id": 16
+  },
+  {
+    "appointmentTypeId": 1,
+    "appointmentStatusId": 1,
+    "creneauId": 77,
+    "studentId": 105,
+    "briId": 30,
+    "id": 17
+  },
+  {
+    "appointmentTypeId": 4,
+    "appointmentStatusId": 1,
+    "creneauId": 64,
+    "studentId": 30,
+    "briId": 30,
+    "id": 18
+  },
+  {
+    "appointmentTypeId": 1,
+    "appointmentStatusId": 1,
+    "creneauId": 74,
+    "studentId": 30,
+    "briId": 30,
+    "id": 19
+  },
+  {
+    "appointmentTypeId": 1,
+    "appointmentStatusId": 1,
+    "creneauId": 74,
+    "studentId": 104,
+    "briId": 30,
+    "id": 19
+  },
+  {
+    "appointmentTypeId": 1,
+    "appointmentStatusId": 1,
+    "creneauId": 74,
+    "studentId": 103,
+    "briId": 30,
+    "id": 19
   }
 ]

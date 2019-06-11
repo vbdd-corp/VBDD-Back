@@ -188,5 +188,176 @@
     "briId": 31,
     "appointmentTypeId": -1,
     "id": 10
+  },
+  {
+    "start": {
+      "minute": 0,
+      "hour": 8,
+      "day": 11,
+      "month": 6,
+      "year": 2019
+    },
+    "end": {
+      "minute": 0,
+      "hour": 12,
+      "day": 11,
+      "month": 6,
+      "year": 2019
+    },
+    "briId": 30,
+    "appointmentTypeId": -1,
+    "id": 11
+  },
+  {
+    "start": {
+      "minute": 0,
+      "hour": 14,
+      "day": 11,
+      "month": 6,
+      "year": 2019
+    },
+    "end": {
+      "minute": 0,
+      "hour": 16,
+      "day": 11,
+      "month": 6,
+      "year": 2019
+    },
+    "briId": 30,
+    "appointmentTypeId": -1,
+    "id": 12
+  },
+  {
+    "start": {
+      "minute": 0,
+      "hour": 14,
+      "day": 12,
+      "month": 6,
+      "year": 2019
+    },
+    "end": {
+      "minute": 0,
+      "hour": 16,
+      "day": 12,
+      "month": 6,
+      "year": 2019
+    },
+    "briId": 30,
+    "appointmentTypeId": -1,
+    "id": 13
+  },
+  {
+    "start": {
+      "minute": 0,
+      "hour": 14,
+      "day": 13,
+      "month": 6,
+      "year": 2019
+    },
+    "end": {
+      "minute": 0,
+      "hour": 15,
+      "day": 13,
+      "month": 6,
+      "year": 2019
+    },
+    "briId": 30,
+    "appointmentTypeId": -1,
+    "id": 14
+  },
+  {
+    "start": {
+      "minute": 30,
+      "hour": 13,
+      "day": 14,
+      "month": 6,
+      "year": 2019
+    },
+    "end": {
+      "minute": 30,
+      "hour": 16,
+      "day": 14,
+      "month": 6,
+      "year": 2019
+    },
+    "briId": 30,
+    "appointmentTypeId": -1,
+    "id": 15
+  },
+  {
+    "start": {
+      "minute": 30,
+      "hour": 9,
+      "day": 14,
+      "month": 6,
+      "year": 2019
+    },
+    "end": {
+      "minute": 30,
+      "hour": 11,
+      "day": 14,
+      "month": 6,
+      "year": 2019
+    },
+    "briId": 30,
+    "appointmentTypeId": -1,
+    "id": 16
+  },
+  {
+    "start": {
+      "minute": 0,
+      "hour": 9,
+      "day": 13,
+      "month": 6,
+      "year": 2019
+    },
+    "end": {
+      "minute": 30,
+      "hour": 11,
+      "day": 13,
+      "month": 6,
+      "year": 2019
+    },
+    "briId": 30,
+    "appointmentTypeId": -1,
+    "id": 17
+  },
+  {
+    "start": {
+      "minute": 0,
+      "hour": 9,
+      "day": 12,
+      "month": 6,
+      "year": 2019
+    },
+    "end": {
+      "minute": 30,
+      "hour": 11,
+      "day": 12,
+      "month": 6,
+      "year": 2019
+    },
+    "briId": 30,
+    "appointmentTypeId": -1,
+    "id": 18
+  },
+  {
+    "start": {
+      "minute": 0,
+      "hour": 9,
+      "day": 11,
+      "month": 6,
+      "year": 2019
+    },
+    "end": {
+      "minute": 0,
+      "hour": 12,
+      "day": 11,
+      "month": 6,
+      "year": 2019
+    },
+    "briId": 31,
+    "appointmentTypeId": -1,
+    "id": 19
   }
 ]
