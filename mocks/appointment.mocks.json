@@ -113,7 +113,7 @@
   },
   {
     "appointmentTypeId": 1,
-    "appointmentStatusId": 1,
+    "appointmentStatusId": 2,
     "creneauId": 77,
     "studentId": 105,
     "briId": 30,
@@ -150,5 +150,13 @@
     "studentId": 103,
     "briId": 30,
     "id": 19
+  },
+  {
+    "appointmentTypeId": 3,
+    "appointmentStatusId": 1,
+    "creneauId": 57,
+    "studentId": 1,
+    "briId": 30,
+    "id": 20
   }
 ]

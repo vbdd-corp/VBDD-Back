@@ -214,37 +214,43 @@
   {
     "typeModuleId": 7,
     "infos": {
-      "country": null,
-      "city": null,
-      "stayDuration": null,
-      "travelCost": null,
-      "accommodationCost": null,
-      "foodCost": null,
-      "transportationHobbiesCost": null,
-      "studyCost": null,
-      "othersCost": null,
-      "frenchCROUSScholarship": null,
-      "mobilityScholarship": null,
-      "travelHelp": null,
-      "summerJobSalaries": null,
-      "personalResources": null,
-      "familyResources": null,
-      "othersResources": null,
-      "notes": null
+      "country": "France",
+      "city": "Hyeres",
+      "stayDuration": "23",
+      "travelCost": "321",
+      "accommodationCost": "432",
+      "foodCost": "432",
+      "transportationHobbiesCost": "2",
+      "studyCost": "32",
+      "othersCost": "32",
+      "frenchCROUSScholarship": "32",
+      "mobilityScholarship": "12",
+      "travelHelp": "12",
+      "summerJobSalaries": "543",
+      "personalResources": "543",
+      "familyResources": "321",
+      "othersResources": "32",
+      "notes": ""
     },
     "id": 1557587323568
   },
   {
     "typeModuleId": 8,
     "infos": {
-      "choice": {
-        "schoolID": null,
-        "semester": null
-      },
       "BCICode": null,
       "BCIProgramName": null,
+      "choice": {
+        "semester": "full",
+        "schoolID": 5,
+        "school": {
+          "id": 5,
+          "city": "Hong Kong",
+          "country": "China",
+          "name": "University of Hong Kong"
+        }
+      },
       "s1": {
-        "codeCours1": null,
+        "codeCours1": "23232",
         "codeCours2": null,
         "codeCours3": null,
         "codeCours4": null,
@@ -256,7 +262,7 @@
         "codeCours10": null,
         "codeCours11": null,
         "codeCours12": null,
-        "titreCours1": null,
+        "titreCours1": "Machine learning",
         "titreCours2": null,
         "titreCours3": null,
         "titreCours4": null,
@@ -268,7 +274,7 @@
         "titreCours10": null,
         "titreCours11": null,
         "titreCours12": null,
-        "nombreCredits1": null,
+        "nombreCredits1": "3",
         "nombreCredits2": null,
         "nombreCredits3": null,
         "nombreCredits4": null,
@@ -531,7 +537,8 @@
     "infos": {
       "choice": {
         "schoolID": null,
-        "semester": null
+        "semester": null,
+        "school": null
       },
       "BCICode": null,
       "BCIProgramName": null,
@@ -704,7 +711,8 @@
     "infos": {
       "choice": {
         "schoolID": null,
-        "semester": null
+        "semester": null,
+        "school": null
       },
       "BCICode": null,
       "BCIProgramName": null,
